@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -19,12 +20,12 @@ import java.util.List;
 @Component
 @RequestMapping("/front/SystemDisplay")
 public class SystemDisplayController {
-    @Autowired
+//    @Resource
     private SystemDisplayService systemDisplayService;
 
     @RequestMapping("/bone")
     public String bone() {
-        return "../../front/system3D/motion/bones.jsp?id=100-200-300";
+        return "../../front/system3D/motion/bones.jsp?id=001-002-003";
     }
     @RequestMapping("/skull")
     public String skull() {

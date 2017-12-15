@@ -10,7 +10,6 @@ import java.util.Map;
  * @author 马欢欢
  * @date 2017/12/15
  */
-@Service
 public interface SystemDisplayService {
     /**
      *  系统解剖各菜单信息查询

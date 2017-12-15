@@ -4,15 +4,20 @@ import com.eutwStudio.front.dao.SystemDisplayDao;
 import com.eutwStudio.front.entity.Level;
 import com.eutwStudio.front.service.SystemDisplayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * Created by 马欢欢 on 2017/12/15.
+ *
+ * @author 马欢欢
+ * @date 2017/12/15
  */
+//@Service
 public class SystemDisplayServiceImpl implements SystemDisplayService{
 
-    @Autowired
+//    @Resource
     private SystemDisplayDao systemDisplayDao;
 
     @Override
