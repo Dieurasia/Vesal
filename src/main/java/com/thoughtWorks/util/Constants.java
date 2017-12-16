@@ -30,6 +30,7 @@ public class Constants {
     public static final String ROLE_COMMON_NAME = "普通用户";
 
     public final static String PATH = "/home/vincent1/";
+    public final static String UNPATH = "/home/vincent2/";
 
     public static int defaultPageSize = 10;
 

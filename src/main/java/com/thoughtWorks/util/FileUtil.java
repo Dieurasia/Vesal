@@ -3,18 +3,19 @@ package com.thoughtWorks.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 /**
  * 文件操作工具类
- * 
+ *
  * @author Vincent.wang
  */
 public class FileUtil {
 
     /**
      * 获得指定文件的byte数组
-     * 
+     *
      * @throws IOException
      */
     public static byte[] getBytes(String filePath) throws BusinessException {
@@ -62,10 +63,9 @@ public class FileUtil {
 
     /**
      * 判断文件是否存在
-     * 
+     *
      * @param filePath
-     * @param isCreate
-     *            当文件夹不存在时，是否创建，true=创建,false=不创建
+     * @param isCreate 当文件夹不存在时，是否创建，true=创建,false=不创建
      * @return 若存在，则返回true；不存在，则返回false
      */
     public static boolean isFile(String filePath, boolean isCreate) {
@@ -80,21 +80,20 @@ public class FileUtil {
 
     /**
      * 判断文件夹是否存在
-     * 
-     * @param path
-     *            文件夹目录
-     * @param isCreate
-     *            当文件夹不存在时，是否创建，true=创建,false=不创建
+     *
+     * @param path     文件夹目录
+     * @param isCreate 当文件夹不存在时，是否创建，true=创建,false=不创建
      * @return false=文件夹不存在，true=文件夹存在
      */
-    public static boolean isDirectory(String path, boolean isCreate) {
+    public static boolean isDirectory(String path, boolean isCreate, HttpServletRequest request) {
         if (StringUtils.isBlank(path)) {
             return false;
         }
         File file = new File(path);
+        System.out.println("file的名称：" + file);
         if (!file.exists()) {
             if (isCreate)
-                file.mkdir();
+                file.mkdirs();
             return false;
         }
         return true;
