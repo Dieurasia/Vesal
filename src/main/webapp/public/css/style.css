@@ -157,15 +157,15 @@ ul li {
 .header .container .logo {
   width: 25%;
   float: left;
-  margin-left: 5%;
+  margin-left: 2%;
 }
 .header .container .logo img{
   width: 80px;
   height:80px;
-  margin-left: 40%;
+  margin-left: 28%;
 }
 .header .container .nav_right {
-  width: 60%;
+  width: 73%;
   float: right;
   line-height: 80px;
 }

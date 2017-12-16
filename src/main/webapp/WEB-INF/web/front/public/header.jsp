@@ -7,7 +7,7 @@
         <div class="logo">
             <a href="${baseurl}/front/home/index.jsp">
                 <img src="${baseurl}/public/images/logo.png" alt=""/><span style="margin-left: 10px ;color: #096d96 "
-                                                                           class="h4">维萨里产品展示网</span></a>
+                                                                            class="h4">维萨里产品展示网</span></a>
         </div>
         <div class="nav_right">
             <nav>
@@ -61,39 +61,36 @@
                 Custom custom = (Custom) session.getAttribute("custom");
                 if (custom == null) { %>
             <div class="cen">
-                <a href="${baseurl}/page/frontLogin     ">登录</a>
-                <a href="">注册</a>
+                <a href="${baseurl}/page/frontLogin">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="h5"  style="margin-right: 20px">登录</span>
+                </a>
+                <a href="#">
+                    <span class="glyphicon glyphicon-log-in "></span>
+                    <span class="h5"  style="margin-right: 20px">注册</span>
+                </a>
             </div>
             <%} else {%>
             <div class="cen">
-                <a href="#">
+                <a href="/page/personal">
                     <span class="glyphicon glyphicon-user"></span>
                     <span class="h5">您好:</span>
                     <span class="h5" style="margin-right: 20px;"><%=custom.getcName()%></span>
                 </a>
                 <a style="cursor: pointer" onclick="loginOut()">
-                    <span class="glyphicon glyphicon-log-in"></span>
+                    <span class="glyphicon glyphicon-off"></span>
                     <span class="h4">注销</span>
                 </a>
             </div>
             <%}%>
         </div>
-
-
         <a href="#" class="phone-nav"><i class="fa fa-list"></i></a>
-
     </div>
     <div style="width: 100%;height: 83px;"></div>
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
-    <script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
     <script>
         function loginOut() {
             $.post("/CustomLogin/loginOut", function (data) {
-                layer.msg(data.msg, {
-                    time: 1000
-                }, function () {
                     location.reload();
-                });
             });
         }
     </script>

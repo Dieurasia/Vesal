@@ -3,6 +3,9 @@ package com.thoughtWorks.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author ubuntu
+ */
 @Controller
 @RequestMapping("page")
 public class PageController {
@@ -15,5 +18,9 @@ public class PageController {
     @RequestMapping("frontLogin")
     public String frontLogin(){
         return "front/login";
+    }
+    @RequestMapping("personal")
+    public String personal(){
+        return "front/personal/personal";
     }
 }

@@ -51,8 +51,8 @@ html,body{
 }
 .larry-grid{
 	width: calc(100% - 30px);
-	width: -moz-calc(100%-30px);
-	width: -webkit-calc(100%-30px);
+	width: -moz-calc(100% - 30px);
+	width: -webkit-calc(100% - 30px);
 	margin: 0 auto;
 }
 .larry-wrapper{padding:10px;}
