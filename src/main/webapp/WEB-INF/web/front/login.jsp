@@ -18,8 +18,10 @@
 <body>
 <div class="htmleaf-container">
     <div id="logo">
+        <a href="${baseurl}/page/index">
         <img id="img" src="${baseurl}/public/images/favicon.ico"/>
         <span id="title">维萨里展示网</span>
+        </a>
     </div>
     <div class="wrapper">
         <div class="container">

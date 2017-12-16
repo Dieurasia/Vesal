@@ -24,7 +24,8 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/jquery.mmenu.all.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
-    <link href="${baseurl}/public/font-awesome-4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css' media="all"/>
+    <link href="${baseurl}/public/font-awesome-4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'
+          media="all"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/animate.css"/>
     <script src="${baseurl}/public/js/jquery.min.js"></script>
 </head>
@@ -64,14 +65,12 @@
                 <div class="my-page">
                     <div class="user-info-box">
                         <div class="user-info">
-                            <div class="head-img"><a href="#"
-                                                     target="_blank">
-                                <img src="${baseurl}/public/images/head-img.jpg"  alt=""></a></div>
-                            <div class="nick-name"><a href="#"
-                                                      target="_blank"><p class="nick-name-txt">miting双鱼<i
+                            <div class="head-img">
+                                <img src="${baseurl}/public/images/head-img.jpg" alt=""></div>
+                            <div class="nick-name"><a><p class="nick-name-txt" id="cName">用户名<i
                                     class="iconfont iconfont_level icon-lable_level_0"></i></p></a>
-                                <p class="user-money">我的余额：￥<!-- --> 0<!-- --> · <a
-                                        href="#" target="_blank">充值卡充值</a>
+                                <p class="user-money">我的余额：￥0 ·
+                                    <a href="#" target="_blank">普通会员</a>
                                 </p></div>
                             <a href="#" target="_blank"
                                class="user-setting">个人信息设置 &gt;</a></div>
@@ -81,11 +80,14 @@
                                     <i><img src="${baseurl}/public/images/subscribe.png" style="width: 40px"></i><span>订阅栏目</span></a>
                                 </li>
                                 <li><a href="#"><i
-                                ><img src="${baseurl}/public/images/daiban.png" style="width: 40px"></i><span>全部订单</span></a></li>
+                                ><img src="${baseurl}/public/images/daiban.png"
+                                      style="width: 40px"></i><span>全部订单</span></a></li>
                                 <li><a href="#"><i
-                                ><img src="${baseurl}/public/images/fukuan.png" style="width: 40px"></i><span>待付款</span></a></li>
+                                ><img src="${baseurl}/public/images/fukuan.png" style="width: 40px"></i><span>待付款</span></a>
+                                </li>
                                 <li><a href="#"><i
-                                ><img src="${baseurl}/public/images/tuikuan.png" style="width: 40px"></i><span>退款/售后</span></a></li>
+                                ><img src="${baseurl}/public/images/tuikuan.png"
+                                      style="width: 40px"></i><span>退款/售后</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -96,8 +98,13 @@
 </div>
 <jsp:include page="../public/footer.jsp"/>
 <script>
-    $.post("${baseurl}/",function (data) {
-
+    $.post("${baseurl}/CustomLogin/session", function (data) {
+        if (!data.haveSession) {
+            location.href = "${baseurl}/page/frontLogin";
+        } else {
+            let cName = data.user.cName;
+            $("#cName").html(cName);
+        }
     });
 </script>
 </body>

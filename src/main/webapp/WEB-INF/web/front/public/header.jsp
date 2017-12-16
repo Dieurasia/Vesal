@@ -7,7 +7,7 @@
         <div class="logo">
             <a href="${baseurl}/front/home/index.jsp">
                 <img src="${baseurl}/public/images/logo.png" alt=""/><span style="margin-left: 10px ;color: #096d96 "
-                                                                            class="h4">维萨里产品展示网</span></a>
+                                                                           class="h4">维萨里产品展示网</span></a>
         </div>
         <div class="nav_right">
             <nav>
@@ -54,7 +54,7 @@
                     <li><a href="${baseurl}/front/public/case.jsp">手绘分享</a></li>
                     <li><a href="${baseurl}/front/public/case.jsp">软件下载</a></li>
                     <li><a href="${baseurl}/front/about/about.jsp">关于我们</a>
-                    <li><a href="${baseurl}/front/public/case.jsp">用户管理 </a></li>
+                    <li><a href="" onclick="session()">用户中心 </a></li>
                 </ul>
             </nav>
             <%
@@ -63,11 +63,11 @@
             <div class="cen">
                 <a href="${baseurl}/page/frontLogin">
                     <span class="glyphicon glyphicon-user"></span>
-                    <span class="h5"  style="margin-right: 20px">登录</span>
+                    <span class="h5" style="margin-right: 20px">登录</span>
                 </a>
                 <a href="#">
                     <span class="glyphicon glyphicon-log-in "></span>
-                    <span class="h5"  style="margin-right: 20px">注册</span>
+                    <span class="h5" style="margin-right: 20px">注册</span>
                 </a>
             </div>
             <%} else {%>
@@ -79,7 +79,7 @@
                 </a>
                 <a style="cursor: pointer" onclick="loginOut()">
                     <span class="glyphicon glyphicon-off"></span>
-                    <span class="h4">注销</span>
+                    <span class="h5">注销</span>
                 </a>
             </div>
             <%}%>
@@ -90,7 +90,17 @@
     <script>
         function loginOut() {
             $.post("${baseurl}/CustomLogin/loginOut", function (data) {
-                    location.reload();
+                location.reload();
+            });
+        }
+
+        function session() {
+            $.post("${baseurl}/CustomLogin/session", function (data) {
+                if (data.haveSession) {
+                    location.href = "${baseurl}/page/personal";
+                } else {
+                    location.href = "${baseurl}/page/frontLogin";
+                }
             });
         }
     </script>
