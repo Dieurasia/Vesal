@@ -72,7 +72,7 @@
             </div>
             <%} else {%>
             <div class="cen">
-                <a href="/page/personal">
+                <a href="${baseurl}/page/personal">
                     <span class="glyphicon glyphicon-user"></span>
                     <span class="h5">您好:</span>
                     <span class="h5" style="margin-right: 20px;"><%=custom.getcName()%></span>
@@ -89,7 +89,7 @@
     <div style="width: 100%;height: 83px;"></div>
     <script>
         function loginOut() {
-            $.post("/CustomLogin/loginOut", function (data) {
+            $.post("${baseurl}/CustomLogin/loginOut", function (data) {
                     location.reload();
             });
         }

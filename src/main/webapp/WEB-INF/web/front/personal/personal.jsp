@@ -95,4 +95,9 @@
     </div>
 </div>
 <jsp:include page="../public/footer.jsp"/>
+<script>
+    $.post("${baseurl}/",function (data) {
+
+    });
+</script>
 </body>
