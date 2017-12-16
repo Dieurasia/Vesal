@@ -51,4 +51,14 @@ public class CustomLoginController {
         return data;
     }
 
+    @RequestMapping(value = "loginOut")
+    @ResponseBody
+    private Map<String, Object> loginOut(HttpServletRequest request) {
+        Map<String, Object> data = new HashMap<>();
+        request.getSession().removeAttribute("custom");
+        data.put("result",true);
+        data.put("msg",Constant.LOGIN_OUT);
+        return data;
+    }
+
 }
