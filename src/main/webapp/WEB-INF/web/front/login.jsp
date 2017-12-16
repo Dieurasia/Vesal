@@ -22,8 +22,8 @@
         <div class="container">
             <h1 style="color: white">用户登录</h1>
             <form class="form">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
+                <input type="text" placeholder="Username" id="username">
+                <input type="password" placeholder="Password" id="password">
                 <button type="submit" id="login-button" >登录</button>
             </form>
         </div>
@@ -58,7 +58,15 @@
         event.preventDefault();
         $('form').fadeOut(500);
         $('.wrapper').addClass('form-success');
-        location.href="./home/index.jsp";
+        let username = $("#username").val();
+        let password = $("#password").val();
+        $.post("/CustomLogin/login",{
+            cName:username,
+            cPassword:password
+        },function (data) {
+
+        });
+//        location.href="./home/index.jsp";
     });
 </script>
 

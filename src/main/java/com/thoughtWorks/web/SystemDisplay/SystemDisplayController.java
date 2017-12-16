@@ -6,6 +6,7 @@ import com.thoughtWorks.service.SystemDisplayService;
 import com.thoughtWorks.util.Constant;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -26,10 +27,12 @@ public class SystemDisplayController {
     public String bone() {
         return "front/system3D/motion/bones.jsp?id=001-002-003";
     }
+
     @RequestMapping("/skull")
     public String skull() {
         return "../front/system3D/motion/bones";
     }
+
     @RequestMapping("/upperLimb")
     public String upperLimb() {
         return "../front/system3D/motion/bones";
@@ -40,20 +43,20 @@ public class SystemDisplayController {
         return "../../front/system3D/motion/bones";
     }
 
-    @RequestMapping("/SystemInfo")
-    public Map<String,Object> systemInfo(Level level) {
-        Map<String,Object> data = new HashMap<String,Object>();
+    @RequestMapping("/systemInfo")
+    @ResponseBody
+    public Map<String, Object> systemInfo(Level level) {
+        Map<String, Object> data = new HashMap<String, Object>();
         try {
-           List<Model> list = systemDisplayService.systemInfo(level);
-           data.put("info",list);
-           data.put("result",true);
-           data.put("msg", Constant.SEARCH_SUCCESS);
+            List<Model> list = systemDisplayService.systemInfo(level);
+            data.put("info", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
-            data.put("result",false);
+            data.put("result", false);
             data.put("msg", Constant.SEARCH_FAILURE);
             e.printStackTrace();
         }
-
-        return null;
+        return data;
     }
 }
