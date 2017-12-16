@@ -26,13 +26,17 @@ public class CustomLoginController {
 
     @RequestMapping(value = "login")
     @ResponseBody
-    private Map<String, Object> login(Custom custom) {
-        HttpServletRequest request = null;
-        Map<String, Object> data = new HashMap<>();
+    private Map<String, Object> login(Custom custom,HttpServletRequest request) {
+            Map<String, Object> data = new HashMap<>();
         try {
             Custom custom1 = customLoginService.login(custom);
-            request.getSession().setAttribute("custom", custom1);
-            data.put("result", true);
+            if(custom1!= null){
+                request.getSession().setAttribute("custom", custom1);
+                data.put("result", true);
+            }else{
+                data.put("result", false);
+                data.put("msg", Constant.ACCOUNT_OR_PWD_ERROR);
+            }
         } catch (UnknownAccountException e) {
             data.put("result", false);
             data.put("msg", Constant.ACCOUNT_NOT_EXIST);
