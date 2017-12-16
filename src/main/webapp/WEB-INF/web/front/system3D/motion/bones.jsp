@@ -306,7 +306,7 @@
     $(function () {
         $('input, textarea').placeholder();
         let value = ("${param.id}".split(".jsp")[0]).split("-");
-        $.post("/systemDisplay/systemInfo",{
+        $.post("${baseurl}/systemDisplay/systemInfo",{
             oneLevel:value[0],
             secondLevel:value[1],
             threeLevel:value[2]

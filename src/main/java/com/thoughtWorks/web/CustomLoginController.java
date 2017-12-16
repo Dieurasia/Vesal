@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +59,25 @@ public class CustomLoginController {
         request.getSession().removeAttribute("custom");
         data.put("result",true);
         data.put("msg",Constant.LOGIN_OUT);
+        return data;
+    }
+    //判断是否有session
+    @RequestMapping("/session")
+    @ResponseBody
+    public Map<String, Object> session(HttpSession session) {
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+            Custom user = (Custom) session.getAttribute("custom");
+            if(user != null){
+                data.put("haveSession",true);
+                data.put("user",user);
+            }else{
+                data.put("haveSession",false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return data;
     }
 
