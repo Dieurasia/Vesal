@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="../../../public/tag.jsp" %>
 <html>
@@ -34,18 +34,20 @@
                             </li>
                         </ul>
                     </shiro:hasPermission>
-                        <div class="container" style="float: right;">
-                            <div class="row">
-                                <form role="form" action="${baseurl}/upload/spring" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="uploadfile">文件</label> <input type="file" id="uploadfile" name="uploadfile">
-                                        <p class="help-block">目前没有对文件类型进行限制</p>
-                                    </div>
-                                    <button type="submit" class="btn btn-default">上传</button>
-                                </form>
-                                ${msg }
-                            </div>
+                    <div class="container" style="float: right;">
+                        <div class="row">
+                            <form role="form" action="${baseurl}/upload/spring" method="post"
+                                  enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="uploadfile">文件</label> <input type="file" id="uploadfile"
+                                                                              name="uploadfile">
+                                    <p class="help-block">目前没有对文件类型进行限制</p>
+                                </div>
+                                <button type="submit" class="btn btn-default">上传</button>
+                            </form>
+                            ${msg }
                         </div>
+                    </div>
                 </div>
             </blockquote>
 
@@ -61,7 +63,7 @@
                                     <th>下载</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="showInfo">
                                 <c:forEach var="file" items="${files }" varStatus="cur">
                                     <tr>
                                         <td>${cur.index+1 }</td>
@@ -75,11 +77,13 @@
                             </table>
                         </div>
                     </div>
-                    <form id="downloadfile" name="downloadfile" class="hide" method="post" action="${baseurl }/download/file"
+                    <form id="downloadfile" name="downloadfile" class="hide" method="post"
+                          action="${baseurl }/download/file"
                           target="downloadFrom">
                         <input type="hidden" id="filepath" name="filepath" value=""/>
                     </form>
-                    <form id="downloadzip" name="downloadzip" class="hide" method="post" action="${baseurl }/download/zip"
+                    <form id="downloadzip" name="downloadzip" class="hide" method="post"
+                          action="${baseurl }/download/zip"
                           target="downloadFrom">
                         <input type="hidden" id="zippath" name="zippath" value=""/>
                     </form>
@@ -357,14 +361,31 @@
             laytpl = layui.laytpl;
 
         <%--fileOperation = {--%>
-            <%--loadFile: function () {--%>
-                <%--$.post("${baseurl}/download/zip");--%>
-            <%--}--%>
+        <%--loadFile: function () {--%>
+        <%--$.post("${baseurl}/download/zip");--%>
+        <%--}--%>
         <%--}--%>
     });
-    
+
     $(function () {
         $.get("${baseurl}/download/zip");
+    /*, function (data) {
+            if (data.result) {
+                let datainfo = data.data;
+                console.log(datainfo);
+                $("#showInfo").html("");
+                for (let i = 0; i < datainfo.length; i++) {
+                    $("#showInfo").append(`<tr>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);" class="downloadfile"
+                                           data-file-path="` + datainfo[i] + `"><strong>` + datainfo[i].replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi, "$1") + `</strong></a>
+                                    </td>
+                                    <td><a href="javascript:void(0);" class="downloadzipfile"
+                                           data-file-path="` + datainfo[i] + `"><strong>zip</strong></a></td>
+                                </tr>`);
+                }
+            }
+        }*/
     })
 </script>
 </body>
