@@ -1,7 +1,9 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.entity.Level;
+import com.thoughtWorks.entity.Model;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +17,5 @@ public interface SystemDisplayService {
      * @param level
      * @return
      */
-    Map<String,Object> systemInfo(Level level) throws Exception;
+    List<Model> systemInfo(Level level) throws Exception;
 }

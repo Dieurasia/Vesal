@@ -2,10 +2,12 @@ package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.SystemDisplayDao;
 import com.thoughtWorks.entity.Level;
+import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.service.SystemDisplayService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +22,7 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
     private SystemDisplayDao systemDisplayDao;
 
     @Override
-    public Map<String, Object> systemInfo(Level level) throws Exception {
+    public List<Model> systemInfo(Level level) throws Exception {
         return systemDisplayDao.systemInfo(level);
     }
 }

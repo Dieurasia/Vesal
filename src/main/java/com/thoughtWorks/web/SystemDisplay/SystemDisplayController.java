@@ -44,7 +44,7 @@ public class SystemDisplayController {
     public Map<String,Object> systemInfo(Level level) {
         Map<String,Object> data = new HashMap<String,Object>();
         try {
-           List<Model> list = (List<Model>) systemDisplayService.systemInfo(level);
+           List<Model> list = systemDisplayService.systemInfo(level);
            data.put("info",list);
            data.put("result",true);
            data.put("msg", Constant.SEARCH_SUCCESS);

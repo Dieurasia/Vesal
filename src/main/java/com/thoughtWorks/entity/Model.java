@@ -7,14 +7,14 @@ package com.thoughtWorks.entity;
  */
 public class Model {
     private Integer mId;
-    private Integer mCode;
-    private Integer mName;
-    private Integer mPrice;
-    private Integer mIntroduce;
-    private Integer mThumbnail;
-    private Integer mDynamic;
-    private Integer mUnity;
-    private Integer mFile;
+    private String mCode;
+    private String mName;
+    private Double mPrice;
+    private String mIntroduce;
+    private String mThumbnail;
+    private String mDynamic;
+    private String mUnity;
+    private String mFile;
 
     public Integer getmId() {
         return mId;
@@ -24,67 +24,67 @@ public class Model {
         this.mId = mId;
     }
 
-    public Integer getmCode() {
+    public String getmCode() {
         return mCode;
     }
 
-    public void setmCode(Integer mCode) {
+    public void setmCode(String mCode) {
         this.mCode = mCode;
     }
 
-    public Integer getmName() {
+    public String getmName() {
         return mName;
     }
 
-    public void setmName(Integer mName) {
+    public void setmName(String mName) {
         this.mName = mName;
     }
 
-    public Integer getmPrice() {
+    public Double getmPrice() {
         return mPrice;
     }
 
-    public void setmPrice(Integer mPrice) {
+    public void setmPrice(Double mPrice) {
         this.mPrice = mPrice;
     }
 
-    public Integer getmIntroduce() {
+    public String getmIntroduce() {
         return mIntroduce;
     }
 
-    public void setmIntroduce(Integer mIntroduce) {
+    public void setmIntroduce(String mIntroduce) {
         this.mIntroduce = mIntroduce;
     }
 
-    public Integer getmThumbnail() {
+    public String getmThumbnail() {
         return mThumbnail;
     }
 
-    public void setmThumbnail(Integer mThumbnail) {
+    public void setmThumbnail(String mThumbnail) {
         this.mThumbnail = mThumbnail;
     }
 
-    public Integer getmDynamic() {
+    public String getmDynamic() {
         return mDynamic;
     }
 
-    public void setmDynamic(Integer mDynamic) {
+    public void setmDynamic(String mDynamic) {
         this.mDynamic = mDynamic;
     }
 
-    public Integer getmUnity() {
+    public String getmUnity() {
         return mUnity;
     }
 
-    public void setmUnity(Integer mUnity) {
+    public void setmUnity(String mUnity) {
         this.mUnity = mUnity;
     }
 
-    public Integer getmFile() {
+    public String getmFile() {
         return mFile;
     }
 
-    public void setmFile(Integer mFile) {
+    public void setmFile(String mFile) {
         this.mFile = mFile;
     }
 }

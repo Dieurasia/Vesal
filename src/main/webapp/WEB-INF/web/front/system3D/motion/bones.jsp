@@ -306,13 +306,13 @@
     $(function () {
         $('input, textarea').placeholder();
         let value = ("${param.id}".split(".jsp")[0]).split("-");
-        alert(value)
-        $.post("/front/SystemDisplay/SystemInfo",{
+        $.post("/systemDisplay/SystemInfo",{
             oneLevel:value[0],
             secondLevel:value[1],
             threeLevel:value[2]
         },function (data) {
             alert(111);
+            console.log(data)
         });
     });
 </script>

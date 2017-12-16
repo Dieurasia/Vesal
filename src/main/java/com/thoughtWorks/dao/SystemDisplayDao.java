@@ -1,8 +1,9 @@
 package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.Level;
+import com.thoughtWorks.entity.Model;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,5 @@ public interface SystemDisplayDao {
      * @param level
      * @return
      */
-    Map<String,Object> systemInfo(Level level) throws Exception;
+    List<Model> systemInfo(Level level) throws Exception;
 }

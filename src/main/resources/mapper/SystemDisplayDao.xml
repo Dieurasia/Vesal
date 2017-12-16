@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thoughtWorks.dao.SystemDisplayDao">
+
+    <select id="systemInfo" resultType="Model">
+        select * from v_model m,
+        (select model_code from v_model_grade
+        <where>
+            <if test="oneLevel !='' ">
+                and one_level = #{oneLevel}
+            </if>
+            <if test="secondLevel !='' ">
+                and  second_level = #{secondLevel}
+            </if>
+            <if test="threeLevel !='' ">
+                and three_level=#{threeLevel}
+            </if>
+        </where>
+        ) g where g.model_code = m.m_code
+    </select>
+
+</mapper>
