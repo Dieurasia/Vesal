@@ -4,4 +4,4 @@ target/
 out/
 rebel.xml
 rebel-remote.xml
-/src/main/webapp/file/
+src/main/webapp/file/*
