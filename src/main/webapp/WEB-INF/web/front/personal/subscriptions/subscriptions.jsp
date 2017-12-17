@@ -69,7 +69,7 @@
             <div class="userinfo-box" style="float:right ;width: 84%">
                 <h1 style="text-align: center">个人订阅</h1>
                 <div class="case_nei">
-                    <ul class="clearfix">
+                    <ul class="clearfix" id="model">
                         <li>
                             <div class="pic">
                                 <a href="#">
@@ -317,5 +317,72 @@
         });
     });
 
+    $.post("${baseurl}/CustomLogin/personal",function (data) {
+        let subscribe = data.customs;
+        let _html="";
+        for(let i = 0; i<subscribe.length;i++){
+            let fileLong = subscribe[i].m_thumbnail.split("file")[1];
+            let file = "/file"+fileLong;
+            let m_dynamic = subscribe[i].m_dynamic.split("file")[1];
+            let dynamic = "/file"+m_dynamic;
+            _html +=`   <li>
+                <div class="pic">
+                    <a href="#">
+                        <img src="${baseurl}`+file+`" alt=""/>
+                        <i></i>
+                    </a>
+                </div>
+                <div class="txt">
+                    <img src="${baseurl}`+dynamic+`">
+                </div>
+                <div class="product_name">
+                    <span class="h4">`+subscribe[i].m_name+`</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
+                </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default">价格:`+subscribe[i].m_price+`元</button>
+                    </div>
+                    <div class="subscribe btn-group" role="group">
+                        <span style="display: none">`+subscribe[i].m_id+`</span>`;
+
+//            if(subscribe[i].s_whether == 1){
+                _html += `<input type="button" class="btn btn-warning"  value="已订阅" />`;
+//            }else{
+//                _html +=`<!--<input type="button" class="btn btn-warning"  value="订阅|`+subscribe[i].m_id+`"  onclick='aa(this)'/>-->`;
+//            }
+            _html +=`</div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger">购买</button>
+                    </div>
+                </div>
+            </li>`;
+        }
+        $("#model").html(_html);
+    });
+    <%--function aa(obj) {--%>
+        <%--console.log(obj.value)--%>
+        <%--let valee1 = obj.value.split("|")[0];--%>
+        <%--let valee2 = obj.value.split("|")[1];--%>
+
+        <%--//判断是否有session--%>
+        <%--$.post("${baseurl}/CustomLogin/session", function (data) {--%>
+            <%--if (data.haveSession) {--%>
+                <%--let sWhether = 0;--%>
+                <%--let customId = data.user.cId;--%>
+                <%--if ( valee1=="订阅" ) {--%>
+                    <%--obj.value = "已订阅|"+valee2;--%>
+                    <%--sWhether = 1;--%>
+                <%--} else {--%>
+                    <%--obj.value = "订阅|"+valee2;--%>
+                    <%--sWhether = 2;--%>
+                <%--}--%>
+                <%--$.post("${baseurl}/CustomLogin/Subscribe", {sWhether: sWhether,customId:customId,modelId:valee2}, function (data) {--%>
+
+                <%--});--%>
+            <%--} else {--%>
+                <%--location.href = "${baseurl}/page/frontLogin";--%>
+            <%--}--%>
+        <%--});--%>
+    }
 </script>
 </body>
