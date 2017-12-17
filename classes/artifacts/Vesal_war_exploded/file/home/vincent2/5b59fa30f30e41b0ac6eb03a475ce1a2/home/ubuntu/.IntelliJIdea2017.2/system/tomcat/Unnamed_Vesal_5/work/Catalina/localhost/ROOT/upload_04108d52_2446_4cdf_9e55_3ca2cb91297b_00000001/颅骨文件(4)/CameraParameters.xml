@@ -1,0 +1,23 @@
+<Camera>
+  <CameraParameters name="LuGu" xPos="0" yPos="0" zPos="0" xRot="0" yRot="0" zRot="0" dis="2.5" minDis="0.4" maxDis="3">
+    <model abName ="bigu_L" objName ="bigu_L" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="bigu_R" objName ="bigu_R" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="diegu" objName ="diegu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="dinggu_L" objName ="dinggu_L" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="dinggu_R" objName ="dinggu_R" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="donggu" objName ="donggu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="egu" objName ="egu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="ligu" objName ="ligu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="niegu_L" objName ="niegu_L" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="niegu_R" objName ="niegu_R" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="quangu_L" objName ="quangu_L" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="quangu_R" objName ="quangu_R" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="shaigu" objName ="shaigu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="shanghegu" objName ="shanghegu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="xiabijia" objName ="xiabijia" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="xiahegu" objName ="xiahegu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="ya" objName ="ya" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="zhengu" objName ="zhengu" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+    <model abName ="zhongbijia" objName ="zhongbijia" version ="2" mapsab ="lugu_maps" mapsDiff = "lugu_m01_diffi_20170512.jpg" mapsNor = "lugu_m01_diffi_20170512_NORM.jpg" mapsver = "2"></model>
+  </CameraParameters>
+</Camera>
