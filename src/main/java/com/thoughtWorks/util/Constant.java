@@ -30,4 +30,7 @@ public class Constant {
     public static int ADMIN_ROLE_ID = 1;
 
     public static final String LOGIN_OUT = "注销成功";
+    public static final String SUBSCRIBE_SUCCESS = "订阅成功";
+    public static final String SUBSCRIBE_FAILURE = "取消订阅";
+
 }

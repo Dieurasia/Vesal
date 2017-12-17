@@ -1,21 +1,20 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.entity.Level;
-import com.thoughtWorks.entity.Model;
-
 import java.util.List;
 import java.util.Map;
 
+
 /**
- *
- * @author 马欢欢
- * @date 2017/12/15
+ * @author ubuntu
  */
 public interface SystemDisplayService {
+
     /**
-     *  系统解剖各菜单信息查询
-     * @param level
-     * @return
+     * 根据级别查找各菜单信息查询
+     * @param level 级别信息和用户信息
+     * @return 模型的信息
+     * @throws Exception
      */
     List<Map<String,Object>> systemInfo(Level level) throws Exception;
 }

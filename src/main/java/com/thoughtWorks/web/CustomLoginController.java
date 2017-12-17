@@ -1,7 +1,7 @@
 package com.thoughtWorks.web;
 
-import com.thoughtWorks.dao.CustomLoginDao;
 import com.thoughtWorks.entity.Custom;
+import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomLoginService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.authc.LockedAccountException;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,16 +26,23 @@ public class CustomLoginController {
     @Autowired
     private CustomLoginService customLoginService;
 
+    /**
+     * 登录
+     *
+     * @param custom
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "login")
     @ResponseBody
-    private Map<String, Object> login(Custom custom,HttpServletRequest request) {
-            Map<String, Object> data = new HashMap<>();
+    private Map<String, Object> login(Custom custom, HttpServletRequest request) {
+        Map<String, Object> data = new HashMap<>();
         try {
             Custom custom1 = customLoginService.login(custom);
-            if(custom1!= null){
+            if (custom1 != null) {
                 request.getSession().setAttribute("custom", custom1);
                 data.put("result", true);
-            }else{
+            } else {
                 data.put("result", false);
                 data.put("msg", Constant.ACCOUNT_OR_PWD_ERROR);
             }
@@ -52,27 +60,39 @@ public class CustomLoginController {
         return data;
     }
 
+    /**
+     * 注销登录
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "loginOut")
     @ResponseBody
     private Map<String, Object> loginOut(HttpServletRequest request) {
         Map<String, Object> data = new HashMap<>();
         request.getSession().removeAttribute("custom");
-        data.put("result",true);
-        data.put("msg",Constant.LOGIN_OUT);
+        data.put("result", true);
+        data.put("msg", Constant.LOGIN_OUT);
         return data;
     }
-    //判断是否有session
+
+    /**
+     * 判断是否有session
+     *
+     * @param session
+     * @return
+     */
     @RequestMapping("/session")
     @ResponseBody
     public Map<String, Object> session(HttpSession session) {
         Map<String, Object> data = new HashMap<String, Object>();
         try {
             Custom user = (Custom) session.getAttribute("custom");
-            if(user != null){
-                data.put("haveSession",true);
-                data.put("user",user);
-            }else{
-                data.put("haveSession",false);
+            if (user != null) {
+                data.put("haveSession", true);
+                data.put("user", user);
+            } else {
+                data.put("haveSession", false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,14 +100,47 @@ public class CustomLoginController {
 
         return data;
     }
-    //订阅和取消订阅
+
+    /**
+     * 订阅和取消订阅
+     *
+     * @param subscribe
+     * @return
+     */
     @RequestMapping("/Subscribe")
     @ResponseBody
-    public Map<String, Object> Subscribe(HttpSession session) {
+    public Map<String, Object> Subscribe(Subscribe subscribe) {
         Map<String, Object> data = new HashMap<String, Object>();
         try {
-
+            customLoginService.subscribe(subscribe);
+            data.put("result", true);
+            data.put("msg", Constant.SUBSCRIBE_SUCCESS);
         } catch (Exception e) {
+            data.put("msg", Constant.UPDATE_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    /**
+     * 用户查找个人订阅
+     *
+     * @param custom
+     * @return
+     */
+    @RequestMapping("/personal")
+    @ResponseBody
+    public Map<String, Object> personalSubscription(Custom custom,HttpSession session) {
+        Map<String, Object> data = new HashMap<>();
+        Custom user = (Custom) session.getAttribute("custom");
+        try {
+            custom.setcId(user.getcId());
+            List<Map<String, Object>> customs = customLoginService.personalSubscription(custom);
+            data.put("customs", customs);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("msg", Constant.SEARCH_FAILURE);
             e.printStackTrace();
         }
 

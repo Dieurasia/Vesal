@@ -27,4 +27,8 @@ public class PageController {
     public String register(){
         return "front/register";
     }
+    @RequestMapping("subscriptions")
+    public String subscriptions(){
+        return "front/personal/subscriptions/subscriptions";
+    }
 }
