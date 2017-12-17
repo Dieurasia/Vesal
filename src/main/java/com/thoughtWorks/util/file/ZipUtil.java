@@ -1,4 +1,4 @@
-package com.thoughtWorks.util;
+package com.thoughtWorks.util.file;
 
 import com.github.junrar.Archive;
 import com.github.junrar.exception.RarException;

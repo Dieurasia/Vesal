@@ -1,6 +1,7 @@
-package com.thoughtWorks.util;
+package com.thoughtWorks.util.file;
 
 
+import com.thoughtWorks.util.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -90,7 +91,6 @@ public class FileUtil {
             return false;
         }
         File file = new File(path);
-        System.out.println("file的名称：" + file);
         if (!file.exists()) {
             if (isCreate)
                 file.mkdirs();
