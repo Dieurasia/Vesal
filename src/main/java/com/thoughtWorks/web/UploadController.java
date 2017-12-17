@@ -71,7 +71,6 @@ public class UploadController {
 
                     ReadFileUtil readFileUtil = new ReadFileUtil();
                     Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
-                    System.out.println("fileInfo:" + fileInfo);
                     //提取zip里面的信息,并封装到map集合中,并传入Service层
                     uploadService.addZipInfo(extractZipInfo(fileInfo));
                 } catch (IOException e) {
@@ -88,6 +87,7 @@ public class UploadController {
 
     private Map<String, Object> extractZipInfo(Map<String, Object> fileInfo) {
         Map<String, Object> zipFileInfo = new HashMap<>();
+        zipFileInfo.put("code", UUID.randomUUID().toString().replaceAll("-",""));
         for (String key : fileInfo.keySet()) {
             if (key.equals("txt")) {
                 //读取txt文件的内容
