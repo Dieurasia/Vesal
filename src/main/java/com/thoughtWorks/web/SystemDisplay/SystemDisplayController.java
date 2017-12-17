@@ -28,7 +28,7 @@ public class SystemDisplayController {
 
     @RequestMapping("/bone")
     public String bone() {
-        return "front/system3D/motion/bones.jsp?id=001-002-003";
+        return "front/system3D/motion/bones.jsp?id=1-1-1";
     }
 
     @RequestMapping("/skull")

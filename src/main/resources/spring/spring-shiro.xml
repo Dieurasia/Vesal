@@ -27,6 +27,7 @@
         <property name="filterChainDefinitions">
             <value>
                 <!--静态资源通过-->
+                /file/** = anon
                 /page/** = anon
                 /login = anon
                 /getValidateCode = anon  <!--验证码-->
