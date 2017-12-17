@@ -61,217 +61,7 @@
         </div>
     </div>
     <div class="case_nei">
-        <ul class="clearfix">
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/鼻骨.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/BiGu.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">鼻骨</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none">1</span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/大腿后肌群.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/DaTuiHouJiQun.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">大腿后肌群</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none">2</span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/腹直肌和腹直肌鞘.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/FuZhiJiHeFuZhiJiQiao.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">腹直肌和腹直肌鞘</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none">3</span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/肩肌群.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/JianJIQun.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">肩肌群</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none"></span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/咀嚼肌.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/JuJueJi.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">咀嚼肌</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none"></span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/颅骨整体.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/LuGu.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">颅骨整体</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none"></span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/前臂后肌群.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/QianBiHouJiQun.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">前臂后肌群</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class=" btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none"></span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="pic">
-                    <a href="#">
-                        <img src="${baseurl}/public/organ/小腿肌.png" alt=""/>
-                        <i></i>
-                    </a>
-                </div>
-                <div class="txt">
-                    <img src="${baseurl}/public/gif/XiaoTuiJi.gif">
-                </div>
-                <div class="product_name">
-                    <span class="h4">小腿肌</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
-                    </div>
-                    <div class="subscribe btn-group" role="group">
-                        <span style="display: none"></span>
-                        <input type="button" class="btn btn-default" value="订阅">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger">购买</button>
-                    </div>
-                </div>
-            </li>
-
-
+        <ul class="clearfix" id = "model">
         </ul>
         <section class="pageing">
             <a href="">«</a>
@@ -315,33 +105,100 @@
             threeLevel: value[2]
         }, function (data) {
             console.log(data)
-        });
-        $(".subscribe input").click(function () {
-            let hasclazz = $(this).hasClass("btn-default");
-            let thiz = $(this);
-            let modelId = $(this).siblings('span').text();
-            //判断是否有session
-            $.post("${baseurl}/CustomLogin/session", function (data) {
-                if (data.haveSession) {
-                    let sWhether = 0;
-                    let customId = data.user.cId;
-                    if (hasclazz) {
-                        thiz.val("已订阅").addClass("btn-warning").removeClass("btn-default");
-                        sWhether = 1;
-                    } else {
-                        thiz.val("订阅").addClass("btn-default").removeClass("btn-warning");
-                        sWhether = 2;
-                    }
-                    $.post("${baseurl}/CustomLogin/Subscribe", {sWhether: sWhether,customId:customId,modelId:modelId}, function (data) {
+            let subscribe = data.info;
+            let _html="";
 
-                    });
+            for(let i = 0; i<subscribe.length;i++){
+                let fileLong = subscribe[i].m_thumbnail.split("file")[1];
+                let file = "/file"+fileLong;
+                let m_dynamic = subscribe[i].m_dynamic.split("file")[1];
+                let dynamic = "/file"+m_dynamic;
+                _html +=`   <li>
+                <div class="pic">
+                    <a href="#">
+                        <img src="${baseurl}`+file+`" alt=""/>
+                        <i></i>
+                    </a>
+                </div>
+                <div class="txt">
+                    <img src="${baseurl}`+dynamic+`">
+                </div>
+                <div class="product_name">
+                    <span class="h4">`+subscribe[i].m_name+`</span><br><span class="h5"></span><span class="h5">订阅量：333</span>
+                </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default">价格:`+subscribe[i].m_price+`元</button>
+                    </div>
+                    <div class="subscribe btn-group" role="group">
+                        <span style="display: none">`+subscribe[i].m_id+`</span>`;
+
+                  if(subscribe[i].s_whether == 1){
+                      _html += `<input type="button" class="btn btn-warning"  value="已订阅|`+subscribe[i].m_id+`"  onclick='aa(this)'/>`;
+                  }else{
+                      _html +=`<input type="button" class="btn btn-warning"  value="订阅|`+subscribe[i].m_id+`"  onclick='aa(this)'/>`;
+                  }
+                      _html +=`</div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger">购买</button>
+                    </div>
+                </div>
+            </li>`;
+            }
+            $("#model").html(_html);
+        });
+
+    });
+    function aa(obj) {
+        console.log(obj.value)
+        let valee1 = obj.value.split("|")[0];
+        let valee2 = obj.value.split("|")[1];
+
+        //判断是否有session
+        $.post("${baseurl}/CustomLogin/session", function (data) {
+            if (data.haveSession) {
+                let sWhether = 0;
+                let customId = data.user.cId;
+                if ( valee1=="订阅" ) {
+                    obj.value = "已订阅|"+valee2;
+                    sWhether = 1;
                 } else {
-                    location.href = "${baseurl}/page/frontLogin";
+                    obj.value = "订阅|"+valee2;
+                    sWhether = 2;
                 }
-            });
+                $.post("${baseurl}/CustomLogin/Subscribe", {sWhether: sWhether,customId:customId,modelId:valee2}, function (data) {
+
+                });
+            } else {
+                location.href = "${baseurl}/page/frontLogin";
+            }
+        });
+    }
+    $(".subscribe input").click(function () {
+
+        let hasclazz = $(this).hasClass("btn-default");
+        let thiz = $(this);
+        let modelId = $(this).siblings('span').text();
+        //判断是否有session
+        $.post("${baseurl}/CustomLogin/session", function (data) {
+            if (data.haveSession) {
+                let sWhether = 0;
+                let customId = data.user.cId;
+                if (hasclazz) {
+                    thiz.val("已订阅").addClass("btn-warning").removeClass("btn-default");
+                    sWhether = 1;
+                } else {
+                    thiz.val("订阅").addClass("btn-default").removeClass("btn-warning");
+                    sWhether = 2;
+                }
+                $.post("${baseurl}/CustomLogin/Subscribe", {sWhether: sWhether,customId:customId,modelId:modelId}, function (data) {
+
+                });
+            } else {
+                location.href = "${baseurl}/page/frontLogin";
+            }
         });
     });
-
 </script>
 <script src="${baseurl}/public/js/public.js" type="text/javascript" charset="utf-8"></script>
 <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
