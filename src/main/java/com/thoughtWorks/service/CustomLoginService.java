@@ -1,6 +1,7 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.entity.Custom;
+import com.thoughtWorks.entity.Subscribe;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,4 +16,11 @@ public interface CustomLoginService {
      * @return
      */
     Custom login (Custom custom) throws Exception;
+
+    /**
+     * 订阅和取消订阅
+     * @param subscribe
+     * @throws Exception
+     */
+    void subscribe(Subscribe subscribe)throws Exception;
 }

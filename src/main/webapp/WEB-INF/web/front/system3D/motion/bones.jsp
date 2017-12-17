@@ -17,7 +17,8 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/jquery.mmenu.all.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
-    <link href="${baseurl}/public/font-awesome-4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css' media="all"/>
+    <link href="${baseurl}/public/font-awesome-4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'
+          media="all"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/animate.css"/>
     <script src="${baseurl}/public/js/jquery.min.js"></script>
     <!--[if lt IE 9]>
@@ -25,12 +26,12 @@
     <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-        .glyphicon{
+        .glyphicon {
             height: 20px;
         }
-        .cs{
-            color: rgb(240, 173, 78)
-        ;;
+
+        .cs {
+            color: rgb(240, 173, 78);;
         }
     </style>
 </head>
@@ -47,11 +48,12 @@
             </div>
         </div>
         <%--<div class="top_nav">--%>
-            <%--<a href=""><span>色 系</span></a><a href=""><span>风 格</span></a><a href="" class="active"><span>分 类</span></a>--%>
+        <%--<a href=""><span>色 系</span></a><a href=""><span>风 格</span></a><a href="" class="active"><span>分 类</span></a>--%>
         <%--</div>--%>
         <div class="top_nav_er clearfix">
             <ul>
-                <li><a >系统3D</a><li>
+                <li><a>系统3D</a>
+                <li>
                 <li><a href="">全部</a></li>
                 <li><a href="">分类</a></li>
                 <li><a href="">分类</a></li>
@@ -78,6 +80,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none">1</span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -103,6 +106,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none">2</span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -128,6 +132,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none">3</span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -153,6 +158,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none"></span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -178,6 +184,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none"></span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -203,6 +210,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none"></span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -228,7 +236,8 @@
                         <button type="button" class=" btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
-                            <input type="button" class="btn btn-default" value="订阅">
+                        <span style="display: none"></span>
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -253,6 +262,7 @@
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
                     <div class="subscribe btn-group" role="group">
+                        <span style="display: none"></span>
                         <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
@@ -299,26 +309,36 @@
     $(function () {
         $('input, textarea').placeholder();
         let value = ("${param.id}".split(".jsp")[0]).split("-");
-        $.post("${baseurl}/systemDisplay/systemInfo",{
-            oneLevel:value[0],
-            secondLevel:value[1],
-            threeLevel:value[2]
-        },function (data) {
+        $.post("${baseurl}/systemDisplay/systemInfo", {
+            oneLevel: value[0],
+            secondLevel: value[1],
+            threeLevel: value[2]
+        }, function (data) {
             console.log(data)
         });
         $(".subscribe input").click(function () {
-            let sWhether = 0;
-            if($(this).hasClass("btn-default")){
-                $(this).val("已订阅").addClass("btn-warning").removeClass("btn-default");
-                sWhether = 1;
-            }else {
-                $(this).val("订阅").addClass("btn-default").removeClass("btn-warning");
-                sWhether =2;
-            }
-            $.post("",{sWhether:sWhether},function (data) {
+            let hasclazz = $(this).hasClass("btn-default");
+            let thiz = $(this);
+            let modelId = $(this).siblings('span').text();
+            //判断是否有session
+            $.post("${baseurl}/CustomLogin/session", function (data) {
+                if (data.haveSession) {
+                    let sWhether = 0;
+                    let customId = data.user.cId;
+                    if (hasclazz) {
+                        thiz.val("已订阅").addClass("btn-warning").removeClass("btn-default");
+                        sWhether = 1;
+                    } else {
+                        thiz.val("订阅").addClass("btn-default").removeClass("btn-warning");
+                        sWhether = 2;
+                    }
+                    $.post("${baseurl}/CustomLogin/Subscribe", {sWhether: sWhether,customId:customId,modelId:modelId}, function (data) {
 
+                    });
+                } else {
+                    location.href = "${baseurl}/page/frontLogin";
+                }
             });
-
         });
     });
 

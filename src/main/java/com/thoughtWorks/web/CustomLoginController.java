@@ -1,7 +1,7 @@
 package com.thoughtWorks.web;
 
-import com.thoughtWorks.dao.CustomLoginDao;
 import com.thoughtWorks.entity.Custom;
+import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomLoginService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.authc.LockedAccountException;
@@ -25,6 +25,12 @@ public class CustomLoginController {
     @Autowired
     private CustomLoginService customLoginService;
 
+    /**
+     * 登录
+     * @param custom
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "login")
     @ResponseBody
     private Map<String, Object> login(Custom custom,HttpServletRequest request) {
@@ -52,6 +58,11 @@ public class CustomLoginController {
         return data;
     }
 
+    /**
+     * 注销登录
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "loginOut")
     @ResponseBody
     private Map<String, Object> loginOut(HttpServletRequest request) {
@@ -61,7 +72,12 @@ public class CustomLoginController {
         data.put("msg",Constant.LOGIN_OUT);
         return data;
     }
-    //判断是否有session
+
+    /**
+     * 判断是否有session
+     * @param session
+     * @return
+     */
     @RequestMapping("/session")
     @ResponseBody
     public Map<String, Object> session(HttpSession session) {
@@ -80,17 +96,24 @@ public class CustomLoginController {
 
         return data;
     }
-    //订阅和取消订阅
+
+    /**
+     * 订阅和取消订阅
+     * @param subscribe
+     * @return
+     */
     @RequestMapping("/Subscribe")
     @ResponseBody
-    public Map<String, Object> Subscribe(HttpSession session) {
+    public Map<String, Object> Subscribe(Subscribe subscribe) {
         Map<String, Object> data = new HashMap<String, Object>();
         try {
-
+                customLoginService.subscribe(subscribe);
+            data.put("result",true);
+            data.put("msg",Constant.SUBSCRIBE_SUCCESS);
         } catch (Exception e) {
+            data.put("msg",Constant.UPDATE_FAILURE);
             e.printStackTrace();
         }
-
         return data;
     }
 

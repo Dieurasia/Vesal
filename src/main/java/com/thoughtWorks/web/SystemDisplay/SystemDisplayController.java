@@ -46,6 +46,12 @@ public class SystemDisplayController {
         return "../../front/system3D/motion/bones";
     }
 
+    /**
+     * 根据所有的级别 查找模型信息
+     * @param level 级别信息
+     * @param session 取出用户id 方便在v_subscribe查出用户订阅的信息
+     * @return
+     */
     @RequestMapping("/systemInfo")
     @ResponseBody
     public Map<String, Object> systemInfo(Level level, HttpSession session) {
