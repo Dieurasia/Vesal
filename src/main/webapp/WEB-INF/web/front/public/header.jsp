@@ -54,7 +54,7 @@
                     <li><a href="#">手绘分享</a></li>
                     <li><a href="#">软件下载</a></li>
                     <li><a href="#">关于我们</a>
-                    <li><a href="" onclick="session()">用户中心 </a></li>
+                    <li><a style="cursor:hand" onclick="session()">用户中心 </a></li>
                 </ul>
             </nav>
             <%
@@ -65,7 +65,7 @@
                     <span class="glyphicon glyphicon-user"></span>
                     <span class="h5" style="margin-right: 20px">登录</span>
                 </a>
-                <a href="#">
+                <a href="${baseurl}/page/register">
                     <span class="glyphicon glyphicon-log-in "></span>
                     <span class="h5" style="margin-right: 20px">注册</span>
                 </a>

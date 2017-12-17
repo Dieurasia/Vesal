@@ -23,4 +23,8 @@ public class PageController {
     public String personal(){
         return "front/personal/personal";
     }
+    @RequestMapping("register")
+    public String register(){
+        return "front/register";
+    }
 }

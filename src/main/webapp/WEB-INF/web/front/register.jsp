@@ -8,13 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <title>维萨里展示网</title>
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/login_front.css">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/register_front.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
 </head>
 <body>
 <div class="htmleaf-container">
-
+    <div id="logo">
+        <a href="${baseurl}/page/index">
+            <img id="img" src="${baseurl}/public/images/favicon.ico"/>
+            <span id="title">维萨里展示网</span>
+        </a>
+    </div>
     <div class="wrapper">
         <div class="container">
             <h1 style="color: white">用户注册</h1>
@@ -22,11 +27,25 @@
                 <input type="text" placeholder="请输入用户名">
                 <input type="password" placeholder="请输入密码">
                 <input type="password" placeholder="请确认密码">
+                <input type="text" placeholder="请输入客户编码">
+                <select id="userSet" style="color: #FFFFFF">
+                    <option>请选择用户职业</option>
+                    <option value="教师">教师</option>
+                    <option value="医生">医生</option>
+                    <option value="管理人员">管理人员</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input type="text" placeholder="请输入联系电话" style="margin-top: 10px">
+                <input type="text" placeholder="请输入电子邮箱">
+                <input type="text" placeholder="请输入所在城市">
+                <input type="hidden">
                 <button type="submit" id="login-button">注册信息</button>
             </form>
         </div>
 
         <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
             <li></li>
             <li></li>
             <li></li>
