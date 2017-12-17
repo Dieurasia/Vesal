@@ -1,9 +1,9 @@
 package com.thoughtWorks.web;
 
 import com.thoughtWorks.util.Constants;
-import com.thoughtWorks.util.FileUtil;
-import com.thoughtWorks.util.UnZipFileUtil;
-import com.thoughtWorks.util.ZipUtil;
+import com.thoughtWorks.util.file.FileUtil;
+import com.thoughtWorks.util.file.ReadFileUtil;
+import com.thoughtWorks.util.file.UnZipFileUtil;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -21,10 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author Vincent.wang
- *
  */
 @Controller
 @RequestMapping(value = "upload")
@@ -39,30 +42,54 @@ public class UploadController {
 
     @RequestMapping(value = "/spring", method = RequestMethod.POST)
     public String springupload(@RequestParam("uploadfile") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
-        String realPath = request.getServletContext().getRealPath("file") + Constants.PATH;
-        String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH;
-        FileUtil.isDirectory(realPath, true,request);
-        FileUtil.isDirectory(unRealPath, true,request);
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
+        String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
+        FileUtil.isDirectory(realPath, true, request);
+        FileUtil.isDirectory(unRealPath, true, request);
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {
             if (file.isEmpty()) {
-                return null;
+                model.addAttribute("msg", "没有文件！");
+                return "moduleOne/moduleOne/moduleOne";
             } else {
                 //file.getOriginalFilename()是得到上传时的文件名
                 originalFilename = file.getOriginalFilename();
                 log.warn("# originalFilename=[{}] , name=[{}] , size=[{}] , contentType=[{}] ", originalFilename, file.getName(), file.getSize(), file.getContentType());
                 try {
-                    CommonsMultipartFile cf= (CommonsMultipartFile)file;
-                    DiskFileItem fi = (DiskFileItem)cf.getFileItem();
+                    //获取文件后缀名
+                    String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+
+                    CommonsMultipartFile cf = (CommonsMultipartFile) file;
+                    DiskFileItem fi = (DiskFileItem) cf.getFileItem();
                     File oldFile = fi.getStoreLocation();
                     UnZipFileUtil.unZipFiles(oldFile, unRealPath);
-                    System.out.println("文件123456789123456789："+file);
                     FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
+
+                    ReadFileUtil readFileUtil = new ReadFileUtil();
+                    Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
+                    System.out.println("fileInfo:" + fileInfo);
+                    for (String key : fileInfo.keySet()) {
+                        if (key.equals("txt")) {
+                            System.out.println("000000000000000000000000000000000000" + ReadFileUtil.readTxtFileIntoStringArrList((String) fileInfo.get(key)));
+                            System.out.println("000000000000000000000000000000000000" + ReadFileUtil.readTxtFileIntoStringArrList((String) fileInfo.get(key)).size());
+                            List txtInfo = ReadFileUtil.readTxtFileIntoStringArrList((String) fileInfo.get(key));
+                            Map<String, Object> zipFileInfo = new HashMap<>();
+                            for (int i = 0; i < txtInfo.size(); i++) {
+                                String line = (String) txtInfo.get(i);
+                                String[] items = line.split("：");
+                                if (items.length > 1) {
+                                    zipFileInfo.put(items[0], items[1]);
+                                }
+                            }
+                        }
+                    }
                 } catch (IOException e) {
                     log.error("# upload fail . error message={}", e.getMessage());
                     e.printStackTrace();
-                    return null;
+                    model.addAttribute("msg", "上传失败！");
+                    return "moduleOne/moduleOne/moduleOne";
                 }
             }
         }
@@ -79,7 +106,7 @@ public class UploadController {
     @ResponseBody
     public String ajaxupload(@RequestParam("ajaxuploadfile") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response) {
         String realPath = Constants.PATH;
-        FileUtil.isDirectory(realPath, true,request);
+        FileUtil.isDirectory(realPath, true, request);
         response.setContentType("text/plain; charset=d-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {

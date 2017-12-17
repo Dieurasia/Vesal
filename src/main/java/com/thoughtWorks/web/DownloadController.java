@@ -1,8 +1,8 @@
 package com.thoughtWorks.web;
 
 import com.thoughtWorks.util.Constants;
-import com.thoughtWorks.util.FileUtil;
-import com.thoughtWorks.util.ZipUtil;
+import com.thoughtWorks.util.file.FileUtil;
+import com.thoughtWorks.util.file.ZipUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,14 +50,11 @@ public class DownloadController {
     @RequestMapping(value = "/zip", method = RequestMethod.GET)
     public String download(Model model, HttpServletRequest request) {
         String realPath = request.getServletContext().getRealPath("file") + Constants.PATH;
-        System.out.println("realPath:" + realPath);
-        System.out.println("存放文件的地址：" + request.getServletContext().getRealPath("file") + Constants.PATH);
         FileUtil.isDirectory(realPath, true, request);
         File file = new File(realPath);
         List<File> files = new ArrayList<File>();
         getFiles(file, files);
         model.addAttribute("files", files);
-        System.out.println("文件列表：" + files);
         // 加载这个目录下所有的文件
         return "moduleOne/moduleOne/moduleOne";
     }
