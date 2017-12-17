@@ -22,7 +22,8 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
     private SystemDisplayDao systemDisplayDao;
 
     @Override
-    public List<Model> systemInfo(Level level) throws Exception {
+    public List<Map<String,Object>> systemInfo(Level level) throws Exception {
+
         return systemDisplayDao.systemInfo(level);
     }
 }

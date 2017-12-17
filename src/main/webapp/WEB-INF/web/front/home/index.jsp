@@ -46,87 +46,87 @@
         </div>
         <div class="pro_com">
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/胸骨.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/胸骨.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
                     <a href="pro"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品01</span><span class="tt1">骨骼系统</span><span class="tt2">骨骼系统</span>
+                        <a href="#"><span class="num">热门产品01</span><span class="tt1">骨骼系统</span><span class="tt2">骨骼系统</span>
                             <p>
                                 骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/前臂后肌群.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/前臂后肌群.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
-                    <a href="${baseurl}/web/public/case.jsp"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
+                    <a href="#"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品02</span><span class="tt1">肌肉系统</span><span class="tt2">肌肉系统</span>
+                        <a href="#"><span class="num">热门产品02</span><span class="tt1">肌肉系统</span><span class="tt2">肌肉系统</span>
                             <p>
                                 肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
 
             </div>
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/胃.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/胃.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
-                    <a href="${baseurl}/web/public/case.jsp"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
+                    <a href="#"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品03</span><span class="tt1">器官系统</span><span class="tt2">器官系统</span>
+                        <a href="#"><span class="num">热门产品03</span><span class="tt1">器官系统</span><span class="tt2">器官系统</span>
                             <p>
                                 器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/上颌骨.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/上颌骨.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
                     <a href="pro"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品04</span><span class="tt1">骨骼系统</span><span class="tt2">骨骼系统</span>
+                        <a href="#"><span class="num">热门产品04</span><span class="tt1">骨骼系统</span><span class="tt2">骨骼系统</span>
                             <p>
                                 骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列骨骼系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/前臂后肌群.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/前臂后肌群.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
-                    <a href="${baseurl}/web/public/case.jsp"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
+                    <a href="#"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品05</span><span class="tt1">肌肉系统</span><span class="tt2">肌肉系统</span>
+                        <a href="#"><span class="num">热门产品05</span><span class="tt1">肌肉系统</span><span class="tt2">肌肉系统</span>
                             <p>
                                 肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列肌肉系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="pic"><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/十二指肠.png" alt=""/><i></i></a></div>
+                <div class="pic"><a href="#"><img src="${baseurl}/public/organ/十二指肠.png" alt=""/><i></i></a></div>
                 <div class="text-wrap">
-                    <a href="${baseurl}/web/public/case.jsp"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
+                    <a href="#"><span class="num"></span><span class="tt1"></span><span class="tt2"></span></a>
                     <div class="txt">
-                        <a href="${baseurl}/web/public/case.jsp"><span class="num">热门产品06</span><span class="tt1">器官系统</span><span class="tt2">器官系统</span>
+                        <a href="#"><span class="num">热门产品06</span><span class="tt1">器官系统</span><span class="tt2">器官系统</span>
                             <p>
                                 器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列器官系列
                             </p>
                         </a>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </div>
                 </div>
 
@@ -182,12 +182,12 @@
         <section class="company">
             <div class="container">
                 <ul class="clearfix">
-                    <li><a href="${baseurl}/web/public/case.jsp"><img src="${baseurl}/public/organ/运动系统.png" alt="" class="vcenter"/><i></i></a></li>
+                    <li><a href="#"><img src="${baseurl}/public/organ/运动系统.png" alt="" class="vcenter"/><i></i></a></li>
                     <li>
-                        <a href="${baseurl}/web/public/case.jsp" class="a_t">人体器官</a>
+                        <a href="#" class="a_t">人体器官</a>
                         <span class="font_en">人体器官</span>
                         <p>由多种组织构成的能行使一（特）定功能的结构单位叫做器官。器官的组织结构特点跟它的功能相适应。我们一般都比较容易注意到一些组织集中的直观的器官</p>
-                        <a href="${baseurl}/web/public/case.jsp" class="more"></a>
+                        <a href="#" class="more"></a>
                     </li>
                     <li>
                         <a href="../../news.html" class="a_t">人体器官</a>

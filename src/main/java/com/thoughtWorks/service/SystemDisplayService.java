@@ -17,5 +17,5 @@ public interface SystemDisplayService {
      * @param level
      * @return
      */
-    List<Model> systemInfo(Level level) throws Exception;
+    List<Map<String,Object>> systemInfo(Level level) throws Exception;
 }

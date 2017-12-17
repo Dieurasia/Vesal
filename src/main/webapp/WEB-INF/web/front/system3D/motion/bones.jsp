@@ -24,6 +24,15 @@
     <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
     <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .glyphicon{
+            height: 20px;
+        }
+        .cs{
+            color: rgb(240, 173, 78)
+        ;;
+        }
+    </style>
 </head>
 <body>
 
@@ -68,10 +77,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -95,10 +102,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -122,10 +127,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -149,10 +152,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -176,10 +177,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -203,10 +202,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -228,12 +225,10 @@
                 </div>
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">价格:20元</button>
+                        <button type="button" class=" btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                            <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -257,10 +252,8 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default">价格:20元</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true">已订阅</span>
-                        </button>
+                    <div class="subscribe btn-group" role="group">
+                        <input type="button" class="btn btn-default" value="订阅">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger">购买</button>
@@ -313,7 +306,22 @@
         },function (data) {
             console.log(data)
         });
+        $(".subscribe input").click(function () {
+            let sWhether = 0;
+            if($(this).hasClass("btn-default")){
+                $(this).val("已订阅").addClass("btn-warning").removeClass("btn-default");
+                sWhether = 1;
+            }else {
+                $(this).val("订阅").addClass("btn-default").removeClass("btn-warning");
+                sWhether =2;
+            }
+            $.post("",{sWhether:sWhether},function (data) {
+
+            });
+
+        });
     });
+
 </script>
 <script src="${baseurl}/public/js/public.js" type="text/javascript" charset="utf-8"></script>
 <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->

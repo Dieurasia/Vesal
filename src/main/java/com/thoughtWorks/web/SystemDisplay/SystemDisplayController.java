@@ -1,5 +1,6 @@
 package com.thoughtWorks.web.SystemDisplay;
 
+import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Level;
 import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.service.SystemDisplayService;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,10 +48,14 @@ public class SystemDisplayController {
 
     @RequestMapping("/systemInfo")
     @ResponseBody
-    public Map<String, Object> systemInfo(Level level) {
+    public Map<String, Object> systemInfo(Level level, HttpSession session) {
         Map<String, Object> data = new HashMap<String, Object>();
+        Custom user = (Custom) session.getAttribute("custom");
         try {
-            List<Model> list = systemDisplayService.systemInfo(level);
+            if(user != null){
+                level.setCustomId(user.getcId());
+            }
+            List<Map<String,Object>> list = systemDisplayService.systemInfo(level);
             data.put("info", list);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);

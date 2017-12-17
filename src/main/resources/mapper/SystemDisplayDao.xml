@@ -4,21 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.SystemDisplayDao">
 
-    <select id="systemInfo" resultType="Model" parameterType="Level">
-        select * from v_model m,
-        (select model_code from v_model_grade
+    <select id="systemInfo" resultType="map" parameterType="Level">
+        select am.*,su.s_whether from (SELECT *
+        FROM v_model m,
+        (SELECT model_code
+        FROM v_model_grade
         <where>
-            <if test="oneLevel !='' ">
-                and one_level = #{oneLevel}
+            <if test="oneLevel != ''">
+                AND one_level = #{oneLevel}
             </if>
-            <if test="secondLevel !='' ">
-                and  second_level = #{secondLevel}
+            <if test="secondLevel !=''">
+                AND second_level = #{secondLevel}
             </if>
             <if test="threeLevel !='' ">
-                and three_level=#{threeLevel}
+                AND three_level = #{threeLevel}
             </if>
         </where>
-        ) g where g.model_code = m.m_code
+        ) g
+        WHERE g.model_code = m.m_code) am LEFT JOIN v_subscribe su on am.m_id = su.model_id
+        <if test="customId !='' ">
+            and su.custom_id = #{customId}
+        </if>
     </select>
-
 </mapper>

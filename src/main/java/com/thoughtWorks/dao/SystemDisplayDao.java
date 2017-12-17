@@ -4,6 +4,7 @@ import com.thoughtWorks.entity.Level;
 import com.thoughtWorks.entity.Model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -13,9 +14,12 @@ import java.util.List;
 public interface SystemDisplayDao {
 
     /**
-     *  系统解剖各菜单信息查询
+     * 系统解剖各菜单信息查询
      * @param level
      * @return
+     * @throws Exception
      */
-    List<Model> systemInfo(Level level) throws Exception;
+    List<Map<String,Object>> systemInfo(Level level) throws Exception;
+
+//    List<Map<String,Object>> systemModelInfoByCustom(Level level)throws Exception;
 }

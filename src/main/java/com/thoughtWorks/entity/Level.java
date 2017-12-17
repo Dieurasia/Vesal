@@ -1,13 +1,24 @@
 package com.thoughtWorks.entity;
 
 /**
- * Created by 马欢欢 on 2017/12/15.
+ *
+ * @author 马欢欢
+ * @date 2017/12/15
  */
 public class Level {
     private String modelCode;
     private String oneLevel;
     private String secondLevel;
     private String threeLevel;
+    private Integer customId;
+
+    public Integer getCustomId() {
+        return customId;
+    }
+
+    public void setCustomId(Integer customId) {
+        this.customId = customId;
+    }
 
     public String getModelCode() {
         return modelCode;

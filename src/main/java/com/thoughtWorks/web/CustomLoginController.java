@@ -80,5 +80,18 @@ public class CustomLoginController {
 
         return data;
     }
+    //订阅和取消订阅
+    @RequestMapping("/Subscribe")
+    @ResponseBody
+    public Map<String, Object> Subscribe(HttpSession session) {
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
 
 }
