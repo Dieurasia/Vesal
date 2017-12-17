@@ -7,6 +7,9 @@ import com.thoughtWorks.service.CustomLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author ubuntu
  */
@@ -27,5 +30,10 @@ public class CustomLoginServiceImpl implements CustomLoginService{
         }else {
             customLoginDao.deleteSubscribe(subscribe);
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> personalSubscription(Custom custom) throws Exception {
+        return customLoginDao.personalSubscription(custom);
     }
 }

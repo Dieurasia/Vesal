@@ -35,7 +35,7 @@
 <div class="page index" data-reactroot="">
     <div class="userexinfo-container">
         <div class="clearfix">
-            <div style="float:left">
+            <div style="float:left" >
                 <div class="orders-link-box">
                     <div class="link-group"><p class="title"><a
                             href="#">个人主页</a></p>
@@ -53,6 +53,9 @@
                     <div class="link-group"><p class="title"><a
                             href="#">个人信息</a>
                     </p>
+                        <p class="title">
+                            <a href="${baseurl}/page/subscriptions">我的订阅</a>
+                        </p>
                         <ul class="link-ul">
                             <li><a href="#">账户设置</a><span
                                     class="num"></span><i class="icon-right"></i></li>
@@ -70,14 +73,15 @@
                             <div class="nick-name"><a><p class="nick-name-txt" id="cName">用户名<i
                                     class="iconfont iconfont_level icon-lable_level_0"></i></p></a>
                                 <p class="user-money">我的余额：￥0 ·
-                                    <a href="#" target="_blank">普通会员</a>
+                                    <a href="#" target="_blank">个人用户</a>
                                 </p></div>
                             <a href="#" target="_blank"
                                class="user-setting">个人信息设置 &gt;</a></div>
                         <div class="userfn-ls">
                             <ul class="userfn-ul clearfix">
-                                <li><a href="#">
-                                    <i><img src="${baseurl}/public/images/subscribe.png" style="width: 40px"></i><span>订阅栏目</span></a>
+                                <li><a href="${baseurl}/page/subscriptions">
+                                    <i><img src="${baseurl}/public/images/subscribe.png" style="width: 40px"></i>
+                                    <span>我的订阅</span></a>
                                 </li>
                                 <li><a href="#"><i
                                 ><img src="${baseurl}/public/images/daiban.png"
@@ -98,13 +102,15 @@
 </div>
 <jsp:include page="../public/footer.jsp"/>
 <script>
-    $.post("${baseurl}/CustomLogin/session", function (data) {
-        if (!data.haveSession) {
-            location.href = "${baseurl}/page/frontLogin";
-        } else {
-            let cName = data.user.cName;
-            $("#cName").html(cName);
-        }
+    $(function () {
+        $.post("${baseurl}/CustomLogin/session", function (data) {
+            if (!data.haveSession) {
+                location.href = "${baseurl}/page/frontLogin";
+            } else {
+                let cName = data.user.cName;
+                $("#cName").html(cName);
+            }
+        });
     });
 </script>
 </body>
