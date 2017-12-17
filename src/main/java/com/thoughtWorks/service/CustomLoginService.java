@@ -35,4 +35,6 @@ public interface CustomLoginService {
      * @throws Exception
      */
     List<Map<String,Object>> personalSubscription (Custom custom)throws Exception;
+
+    void customRegister(Custom custom);
 }

@@ -1,5 +1,6 @@
 package com.thoughtWorks.web;
 
+import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomLoginService;
@@ -145,6 +146,22 @@ public class CustomLoginController {
         }
 
         return data;
+    }
+
+    @RequestMapping(value = "/customRegister")
+    @ResponseBody
+    public Result customRegister(Custom custom) {
+        try {
+            System.out.println("传进来的参数："+custom);
+
+            customLoginService.customRegister(custom);
+
+            return Result.success(null, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return Result.failure(null, Constant.SEARCH_FAILURE);
+        }
     }
 
 }

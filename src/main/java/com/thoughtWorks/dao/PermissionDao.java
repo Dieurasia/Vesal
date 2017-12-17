@@ -1,6 +1,7 @@
 package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Permission;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,4 +48,6 @@ public interface PermissionDao {
     void deletePermissionsByIds(@Param("ids") List<String> ids);
 
     void deleteHasPermissionsByIds(@Param("ids") List<String> ids);
+
+
 }

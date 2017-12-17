@@ -2,6 +2,7 @@ package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.PermissionDao;
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Permission;
 import com.thoughtWorks.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +125,8 @@ public class PermissionServiceImpl implements PermissionService {
         permission.setAvailable("1");
         addPermission(permission);
     }
+
+
 
     private void addPermission(Permission permission) {
         permissionDao.addPermission(permission);

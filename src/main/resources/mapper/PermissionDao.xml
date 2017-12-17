@@ -129,4 +129,5 @@
                        FROM t_role_permission) role ON role.sys_role_id = #{roleId}
         WHERE permission.id = role.sys_permission_id AND parentid = #{parentId}
     </select>
+
 </mapper>

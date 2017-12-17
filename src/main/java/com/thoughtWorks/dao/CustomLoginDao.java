@@ -3,6 +3,7 @@ package com.thoughtWorks.dao;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.entity.Subscribe;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -41,4 +42,6 @@ public interface CustomLoginDao{
      * @throws Exception
      */
     List<Map<String,Object>> personalSubscription (Custom custom)throws Exception;
+
+    void customRegister(@Param("custom") Custom custom);
 }

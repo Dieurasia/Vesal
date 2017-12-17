@@ -1,6 +1,7 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Permission;
 
 import java.util.List;
@@ -33,4 +34,5 @@ public interface PermissionService {
     void deleteSecondMenu(String id)throws Exception;
 
     void addPer(Permission permission)throws Exception;
+
 }

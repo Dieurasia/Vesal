@@ -36,4 +36,9 @@ public class CustomLoginServiceImpl implements CustomLoginService{
     public List<Map<String, Object>> personalSubscription(Custom custom) throws Exception {
         return customLoginDao.personalSubscription(custom);
     }
+
+    @Override
+    public void customRegister(Custom custom) {
+        customLoginDao.customRegister(custom);
+    }
 }
