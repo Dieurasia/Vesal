@@ -5,6 +5,7 @@ import com.thoughtWorks.util.Constants;
 import com.thoughtWorks.util.file.FileUtil;
 import com.thoughtWorks.util.file.ReadFileUtil;
 import com.thoughtWorks.util.file.UnZipFileUtil;
+import com.thoughtWorks.util.file.ZipUtil;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -48,7 +49,7 @@ public class UploadController {
         String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
         String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
         FileUtil.isDirectory(realPath, true, request);
-        FileUtil.isDirectory(unRealPath, true, request);
+//        FileUtil.isDirectory(unRealPath, true, request);
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {
@@ -66,13 +67,15 @@ public class UploadController {
                     CommonsMultipartFile cf = (CommonsMultipartFile) file;
                     DiskFileItem fi = (DiskFileItem) cf.getFileItem();
                     File oldFile = fi.getStoreLocation();
+                    //解压文件操作
                     UnZipFileUtil.unZipFiles(oldFile, unRealPath);
                     FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
 
                     ReadFileUtil readFileUtil = new ReadFileUtil();
                     Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
                     //提取zip里面的信息,并封装到map集合中,并传入Service层
-                    uploadService.addZipInfo(extractZipInfo(fileInfo));
+                    Map<String, Object> dataInfo = extractZipInfo(fileInfo);
+                    uploadService.addZipInfo(dataInfo);
                 } catch (IOException e) {
                     log.error("# upload fail . error message={}", e.getMessage());
                     e.printStackTrace();
