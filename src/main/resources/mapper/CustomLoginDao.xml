@@ -16,7 +16,12 @@
     <select id="personalSubscription" resultType="map" parameterType="Custom">
         select v_model.* from v_model,(select model_id from v_subscribe where custom_id = #{cId}) sub where sub.model_id = v_model.m_id
     </select>
-
+    <select id="personalSubscription" resultType="map" parameterType="Custom">
+        select v_model.* from v_model,(select model_id from v_subscribe where custom_id = #{cId}) sub where sub.model_id = v_model.m_id
+    </select>
+    <select id="queryCustomByName" resultType="Custom" parameterType="string">
+          select * from v_custom where c_name = #{cName}
+    </select>
     <insert id="customRegister" parameterType="com.thoughtWorks.entity.Custom">
         insert into
         v_custom (c_name, c_password, c_code, c_occupation, c_phone, c_email, c_city,c_ip)

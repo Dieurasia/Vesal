@@ -43,5 +43,18 @@ public interface CustomLoginDao{
      */
     List<Map<String,Object>> personalSubscription (Custom custom)throws Exception;
 
-    void customRegister(@Param("custom") Custom custom);
+    /**
+     * 根据用户名查找信息
+     * @param cName
+     * @return
+     * @throws Exception
+     */
+    Custom queryCustomByName(String cName) throws  Exception;
+
+    /**
+     * 注册信息
+     * @param custom
+     * @throws Exception
+     */
+    void customRegister(@Param("custom") Custom custom) throws  Exception;
 }

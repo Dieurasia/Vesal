@@ -99,74 +99,82 @@
         let checkPass = /^(\w){6,20}$/;
         //邮箱：
         let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-        //
+        //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
-        if (username == "" || password == "" || passwordAgain == "" || userSet == "" || userPhone == "" || userEmail == "" || userCity == "") {
-            layer.msg("信息不能为空", {
-                time: 2000
-            });
-        } else if (!checkName.test(username)) {
-            layer.msg("用户名不合格：5-20个以字母开头的字母、数字", {
-                time: 2000
-            });
-        } else if (!checkPass.test(password)) {
-            layer.msg("密码格式不正确：6-20个字母、数字", {
-                time: 2000
-            });
-        } else if (password !== passwordAgain) {
-            layer.msg("两次填写的密码不相同", {
-                time: 2000
-            });
-        } else if (!(checkPhone.test(userPhone) || checkTelephone.test(userPhone))) {
-            layer.msg("手机/电话填写有误", {
-                time: 2000
-            });
-        } else if (!checkEmail.test(userEmail)) {
-            layer.msg("邮箱填写有误", {
-                time: 2000
-            });
-        } else if (!checkChinese.test(userCity)) {
-            layer.msg("地址输入不正确", {
-                time: 2000
-            });
-        } else {
-            $.post("${baseurl}/CustomLogin/customRegister",
-                {
-                    cName: username,
-                    cPassword: password,
-                    cOccupation: userOccupation,
-                    cPhone: userPhone,
-                    cEmail: userEmail,
-                    cCity: userCity,
-                    cIp:ipCustom
-                }, function (data) {
-                    if (data.result) {
-                        <%--location.href("${baseurl}/WEB-INF/web/front/login.jsp");--%>
-                        layer.msg("注冊成功", {
-                            time: 1000
-                        },function () {
-                            window.location.href = "${baseurl}/page/frontLogin";
-                        });
-                    }
-                })
-        }
+        let customNameIsNo = true;
+        $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username}, function (data) {
+            customNameIsNo = data.result;
+            if (!customNameIsNo) {
+                layer.msg("用户名已经存在", {
+                    time: 2000
+                });
+            } else if (username == "" || password == "" || passwordAgain == "" || userSet == "" || userPhone == "" || userEmail == "" || userCity == "") {
+                layer.msg("信息不能为空", {
+                    time: 2000
+                });
+            } else if (!checkName.test(username)) {
+                layer.msg("用户名不合格：5-20个以字母开头的字母、数字", {
+                    time: 2000
+                });
+            } else if (!checkPass.test(password)) {
+                layer.msg("密码格式不正确：6-20个字母、数字", {
+                    time: 2000
+                });
+            } else if (password !== passwordAgain) {
+                layer.msg("两次填写的密码不相同", {
+                    time: 2000
+                });
+            } else if (!(checkPhone.test(userPhone) || checkTelephone.test(userPhone))) {
+                layer.msg("手机/电话填写有误", {
+                    time: 2000
+                });
+            } else if (!checkEmail.test(userEmail)) {
+                layer.msg("邮箱填写有误", {
+                    time: 2000
+                });
+            } else if (!checkChinese.test(userCity)) {
+                layer.msg("地址输入不正确", {
+                    time: 2000
+                });
+            } else {
+                $.post("${baseurl}/CustomLogin/customRegister",
+                    {
+                        cName: username,
+                        cPassword: password,
+                        cOccupation: userOccupation,
+                        cPhone: userPhone,
+                        cEmail: userEmail,
+                        cCity: userCity,
+                        cIp: ipCustom
+                    }, function (data) {
+                        if (data.result) {
+                            <%--location.href("${baseurl}/WEB-INF/web/front/login.jsp");--%>
+                            layer.msg("注冊成功", {
+                                time: 1000
+                            }, function () {
+                                window.location.href = "${baseurl}/page/frontLogin";
+                            });
+                        }
+                    })
+            }
+        });
     });
 
     <%--if (username !== null && password !== null && passwordAgain !== null && userSet !== null && userPhone !== null && userEmail !== null && userCity !== null) {--%>
     //            if (password === passwordAgain) {
 
-//    } else
-//    {
-//        $("#showMsg").show();
-//        $("#showMsg").val("两次密码输入不一致！！！");
-//    }
-//    } else
-//    {
-//        $("#showMsg").show();
-//        $("#showMsg").val("请填写完整信息！！！");
-//    }
-//    })
-//    ;
+    //    } else
+    //    {
+    //        $("#showMsg").show();
+    //        $("#showMsg").val("两次密码输入不一致！！！");
+    //    }
+    //    } else
+    //    {
+    //        $("#showMsg").show();
+    //        $("#showMsg").val("请填写完整信息！！！");
+    //    }
+    //    })
+    //    ;
 </script>
 
 </body>

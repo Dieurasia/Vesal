@@ -148,7 +148,19 @@ public class CustomLoginController {
         return data;
     }
 
-    @RequestMapping(value = "/customRegister")
+    @RequestMapping(value = "/queryCustomByName")
+    @ResponseBody
+    public  Map<String, Object> queryCustomByName(String cName) {
+        Map<String, Object> data = new HashMap<>();
+        try {
+            boolean result= customLoginService.queryCustomByName(cName);
+            data.put("result",result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+        @RequestMapping(value = "/customRegister")
     @ResponseBody
     public Result customRegister(Custom custom) {
         try {
