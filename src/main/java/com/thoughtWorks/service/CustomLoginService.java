@@ -36,5 +36,18 @@ public interface CustomLoginService {
      */
     List<Map<String,Object>> personalSubscription (Custom custom)throws Exception;
 
-    void customRegister(Custom custom);
+    /**
+     * 根据用户名查找信息
+     * @param cName
+     * @return
+     * @throws Exception
+     */
+    boolean queryCustomByName(String cName) throws  Exception;
+
+    /**
+     * 注册信息
+     * @param custom
+     * @throws Exception
+     */
+    void customRegister(Custom custom) throws Exception;
 }

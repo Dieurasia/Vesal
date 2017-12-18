@@ -39,7 +39,16 @@ public class CustomLoginServiceImpl implements CustomLoginService {
     }
 
     @Override
-    public void customRegister(Custom custom) {
+    public boolean queryCustomByName(String cName) throws Exception {
+        Custom custom = customLoginDao.queryCustomByName(cName);
+            if(custom == null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void customRegister(Custom custom) throws Exception{
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
         customLoginDao.customRegister(custom);
