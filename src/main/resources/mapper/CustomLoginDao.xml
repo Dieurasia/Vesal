@@ -19,7 +19,7 @@
 
     <insert id="customRegister" parameterType="com.thoughtWorks.entity.Custom">
         insert into
-        v_custom (c_name, c_password, c_code, c_occupation, c_phone, c_email, c_city)
-        values (#{custom.cName},#{custom.cPassword},#{custom.cCode},#{custom.cOccupation},#{custom.cPhone},#{custom.cEmail},#{custom.cCity});
+        v_custom (c_name, c_password, c_code, c_occupation, c_phone, c_email, c_city,c_ip)
+        values (#{custom.cName},#{custom.cPassword},#{custom.cCode},#{custom.cOccupation},#{custom.cPhone},#{custom.cEmail},#{custom.cCity},#{custom.cIp});
     </insert>
 </mapper>
