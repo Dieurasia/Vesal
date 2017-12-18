@@ -9,25 +9,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author ubuntu
  */
 @Service
-public class CustomLoginServiceImpl implements CustomLoginService{
+public class CustomLoginServiceImpl implements CustomLoginService {
     @Autowired
     private CustomLoginDao customLoginDao;
 
     @Override
-    public Custom login(Custom custom) throws Exception{
+    public Custom login(Custom custom) throws Exception {
         return customLoginDao.login(custom);
     }
 
     @Override
     public void subscribe(Subscribe subscribe) throws Exception {
-        if(subscribe.getsWhether() == 1){
+        if (subscribe.getsWhether() == 1) {
             customLoginDao.addSubscribe(subscribe);
-        }else {
+        } else {
             customLoginDao.deleteSubscribe(subscribe);
         }
     }
@@ -39,6 +40,8 @@ public class CustomLoginServiceImpl implements CustomLoginService{
 
     @Override
     public void customRegister(Custom custom) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        custom.setcCode(uuid);
         customLoginDao.customRegister(custom);
     }
 }

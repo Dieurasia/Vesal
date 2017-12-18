@@ -41,7 +41,7 @@
                 /systemDisplay/** = anon
                 /CustomLogin/** = anon
                 <!--表示所有请求url必须通过认证-->
-                /**=  authc
+                /back/**=  authc
                 <!--请求logout，shrio擦除sssion-->
                 /logout=logout
 

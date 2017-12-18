@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/register_front.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
+    <script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
+
 </head>
 <body>
 <div class="htmleaf-container">
@@ -22,14 +25,14 @@
     </div>
     <div class="wrapper">
         <div class="container">
-            <h1 style="color: white">用户注册</h1>
+            <h1 style="color: white ;margin-bottom: 20px;">用户注册</h1>
             <form class="form" action="javascript:null;">
                 <input type="text" name="username" placeholder="请输入用户名">
                 <input type="password" name="password" placeholder="请输入密码">
                 <input type="password" name="passwordAgain" placeholder="请确认密码">
-                <input type="text" name="userCode" placeholder="请输入客户编码">
+                <%--<input type="text" name="userCode" placeholder="请输入客户编码">--%>
                 <select id="userSet" style="color: #FFFFFF">
-                    <option>请选择用户职业</option>
+                    <option value="">请选择用户职业</option>
                     <option value="教师">教师</option>
                     <option value="医生">医生</option>
                     <option value="管理人员">管理人员</option>
@@ -70,46 +73,100 @@
     </div>
 </div>
 <script src="${baseurl}/public/js/jquery.min.js"></script>
-<script>
-    $('#submit-button').click(function (event) {
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript">
+    $('#submit-button').click(function () {
         // event.preventDefault();
         // $('form').fadeOut(500);
         // $('.wrapper').addClass('form-success');
         let username = $("input[name='username']").val();
         let password = $("input[name='password']").val();
         let passwordAgain = $("input[name='passwordAgain']").val();
-        let userCode = $("input[name='userCode']").val();
-        let userSet = $("#userSet").val();
+//        let userCode = $("input[name='userCode']").val();
+        let userOccupation = $("#userSet").val();
         let userPhone = $("input[name='userPhone']").val();
         let userEmail = $("input[name='userEmail']").val();
         let userCity = $("input[name='userCity']").val();
-
-        if (username !== null && password !== null && passwordAgain !== null && userCode !== null && userSet !== null && userPhone !== null && userEmail !== null && userCity !== null) {
-            if (password === passwordAgain) {
-                $.post("${baseurl}/CustomLogin/customRegister",
-                    {
-                        cName:username,
-                        cPassword:password,
-                        cCode:userCode,
-                        cOccupation:userSet,
-                        cPhone:userPhone,
-                        cEmail:userEmail,
-                        cCity:userCity
-                    },function (data) {
+        //活取ip
+        let ipCustom = returnCitySN.cip;
+        //手机验证规则
+        let checkPhone = /^1[3|4|5|7|8][0-9]{9}$/;
+        //电话号码：区号+号码，区号以0开头，3位或4位 号码由7位或8位数字组成
+        let checkTelephone = /^0\d{2,3}-?\d{7,8}$/;
+        //用户名：校验用户名 只能输入5-20个以字母开头、可带数字、“_”、“.”的字串
+        let checkName = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
+        //密码：只能输入6-20个字母、数字、下划线
+        let checkPass = /^(\w){6,20}$/;
+        //邮箱：
+        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        //
+        let checkChinese = /^[\u4e00-\u9fa5]+$/;
+        if (username == "" || password == "" || passwordAgain == "" || userSet == "" || userPhone == "" || userEmail == "" || userCity == "") {
+            layer.msg("信息不能为空", {
+                time: 2000
+            });
+        } else if (!checkName.test(username)) {
+            layer.msg("用户名不合格：5-20个以字母开头的字母、数字", {
+                time: 2000
+            });
+        } else if (!checkPass.test(password)) {
+            layer.msg("密码格式不正确：6-20个字母、数字", {
+                time: 2000
+            });
+        } else if (password !== passwordAgain) {
+            layer.msg("两次填写的密码不相同", {
+                time: 2000
+            });
+        } else if (!(checkPhone.test(userPhone) || checkTelephone.test(userPhone))) {
+            layer.msg("手机/电话填写有误", {
+                time: 2000
+            });
+        } else if (!checkEmail.test(userEmail)) {
+            layer.msg("邮箱填写有误", {
+                time: 2000
+            });
+        } else if (!checkChinese.test(userCity)) {
+            layer.msg("地址输入不正确", {
+                time: 2000
+            });
+        } else {
+            $.post("${baseurl}/CustomLogin/customRegister",
+                {
+                    cName: username,
+                    cPassword: password,
+                    cOccupation: userOccupation,
+                    cPhone: userPhone,
+                    cEmail: userEmail,
+                    cCity: userCity,
+                    cIp:ipCustom
+                }, function (data) {
                     if (data.result) {
                         <%--location.href("${baseurl}/WEB-INF/web/front/login.jsp");--%>
-                        window.location.href = "${baseurl}/page/frontLogin";
+                        layer.msg("注冊成功", {
+                            time: 1000
+                        },function () {
+                            window.location.href = "${baseurl}/page/frontLogin";
+                        });
                     }
-                    })
-            } else {
-                $("#showMsg").show();
-                $("#showMsg").val("两次密码输入不一致！！！");
-            }
-        } else {
-            $("#showMsg").show();
-            $("#showMsg").val("请填写完整信息！！！");
+                })
         }
     });
+
+    <%--if (username !== null && password !== null && passwordAgain !== null && userSet !== null && userPhone !== null && userEmail !== null && userCity !== null) {--%>
+    //            if (password === passwordAgain) {
+
+//    } else
+//    {
+//        $("#showMsg").show();
+//        $("#showMsg").val("两次密码输入不一致！！！");
+//    }
+//    } else
+//    {
+//        $("#showMsg").show();
+//        $("#showMsg").val("请填写完整信息！！！");
+//    }
+//    })
+//    ;
 </script>
 
 </body>

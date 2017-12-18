@@ -25,7 +25,7 @@
     </div>
     <div class="wrapper">
         <div class="container">
-            <h1 style="color: white">用户登录</h1>
+            <h1 style="color: white;margin-bottom: 20px;">用户登录</h1>
             <form class="form">
                 <input type="text" placeholder="Username" id="username">
                 <input type="password" placeholder="Password" id="password">
@@ -70,7 +70,7 @@
             cPassword: password
         }, function (data) {
             if (data.result) {
-                location.href="/page/index";
+                location.href="${baseurl}/page/index";
             } else {
                 layer.msg(data.msg, {
                     time: 1000

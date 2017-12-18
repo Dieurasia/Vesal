@@ -131,7 +131,7 @@ public class CustomLoginController {
      */
     @RequestMapping("/personal")
     @ResponseBody
-    public Map<String, Object> personalSubscription(Custom custom,HttpSession session) {
+    public Map<String, Object> personalSubscription(Custom custom, HttpSession session) {
         Map<String, Object> data = new HashMap<>();
         Custom user = (Custom) session.getAttribute("custom");
         try {
@@ -152,7 +152,6 @@ public class CustomLoginController {
     @ResponseBody
     public Result customRegister(Custom custom) {
         try {
-            System.out.println("传进来的参数："+custom);
 
             customLoginService.customRegister(custom);
 
