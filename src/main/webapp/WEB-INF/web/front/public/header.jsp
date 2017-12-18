@@ -14,7 +14,7 @@
                 <ul class="clearfix">
                     <li><a href="${baseurl}/page/index">首页</a></li>
                     <li>
-                        <a>系统解刨</a>
+                        <a>系统解剖</a>
                         <ul>
                             <li><a><b>运动系统</b></a></li>
                             <li><a href="${baseurl}/systemDisplay/bone">骨学</a></li>
