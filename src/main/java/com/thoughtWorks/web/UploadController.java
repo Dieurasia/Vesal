@@ -105,14 +105,19 @@ public class UploadController {
                 }
             }
 
+
             if (key.equals("imgStr")) {
                 List<String> imgs = (List<String>) fileInfo.get(key);
-                if (imgs.size() == 1 && null != imgs) {
-                    zipFileInfo.put("imgStr", imgs.get(0));
+
+
+
+                if (imgs.size() == 1) {
+
+                    zipFileInfo.put("imgStr", splitStr(imgs.get(0)));
                 } else if (imgs.size() > 1) {
                     String imgMore = "";
                     for (int i = 0; i < imgs.size(); i++) {
-                        imgMore += imgs.get(i) + "###";
+                        imgMore += splitStr(imgs.get(i)) + "###";
                     }
                     zipFileInfo.put("imgStr", imgMore);
                 }
@@ -120,12 +125,12 @@ public class UploadController {
 
             if (key.equals("gifStr")) {
                 List<String> gifs = (List<String>) fileInfo.get(key);
-                if (gifs.size() == 1 && null != gifs) {
-                    zipFileInfo.put("gifStr", gifs.get(0));
+                if (gifs.size() == 1) {
+                    zipFileInfo.put("gifStr", splitStr(gifs.get(0)));
                 } else if (gifs.size() > 1) {
                     String gifMore = "";
                     for (int i = 0; i < gifs.size(); i++) {
-                        gifMore += gifs.get(i) + "###";
+                        gifMore += splitStr(gifs.get(i)) + "###";
                     }
                     zipFileInfo.put("gifStr", gifMore);
                 }
@@ -133,18 +138,25 @@ public class UploadController {
 
             if (key.equals("assetbundleStr")) {
                 List<String> assetbundles = (List<String>) fileInfo.get(key);
-                if (assetbundles.size() == 1 && null != assetbundles) {
-                    zipFileInfo.put("assetbundleStr", assetbundles.get(0));
+                if (assetbundles.size() == 1) {
+                    zipFileInfo.put("assetbundleStr", splitStr(assetbundles.get(0)));
                 } else if (assetbundles.size() > 1) {
                     String gifMore = "";
                     for (int i = 0; i < assetbundles.size(); i++) {
-                        gifMore += assetbundles.get(i) + "###";
+                        gifMore += splitStr(assetbundles.get(i)) + "###";
                     }
                 }
             }
         }
 
         return zipFileInfo;
+    }
+
+    public String splitStr(String str) {
+        if (str.length() != -1) {
+            return ("\\home" + str.split("home")[1]);
+        }
+        return str;
     }
 
     @RequestMapping(value = "/ajax", method = RequestMethod.GET)
