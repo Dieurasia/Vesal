@@ -70,7 +70,7 @@
             cPassword: password
         }, function (data) {
             if (data.result) {
-                location.href="/page/index";
+                location.href="${baseurl}/page/index";
             } else {
                 layer.msg(data.msg, {
                     time: 1000
