@@ -26,7 +26,7 @@
     <div class="wrapper">
         <div class="container">
             <h1 style="color: white ;margin-bottom: 20px;">用户注册</h1>
-            <form class="form" action="javascript:null;">
+            <form class="form">
                 <input type="text" name="username" placeholder="请输入用户名">
                 <input type="password" name="password" placeholder="请输入密码">
                 <input type="password" name="passwordAgain" placeholder="请确认密码">
@@ -42,7 +42,7 @@
                 <input type="text" name="userEmail" placeholder="请输入电子邮箱">
                 <input type="text" name="userCity" placeholder="请输入所在城市">
                 <input style="display: none" type="text" id="showMsg">
-                <button type="submit" id="submit-button">注册信息</button>
+                <button type="button" id="submit-button">注册信息</button>
             </form>
         </div>
 
@@ -73,22 +73,15 @@
     </div>
 </div>
 <script src="${baseurl}/public/js/jquery.min.js"></script>
-<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">
     $('#submit-button').click(function () {
-        // event.preventDefault();
-        // $('form').fadeOut(500);
-        // $('.wrapper').addClass('form-success');
         let username = $("input[name='username']").val();
         let password = $("input[name='password']").val();
         let passwordAgain = $("input[name='passwordAgain']").val();
-//        let userCode = $("input[name='userCode']").val();
         let userOccupation = $("#userSet").val();
         let userPhone = $("input[name='userPhone']").val();
         let userEmail = $("input[name='userEmail']").val();
         let userCity = $("input[name='userCity']").val();
-        //活取ip
-        let ipCustom = returnCitySN.cip;
         //手机验证规则
         let checkPhone = /^1[3|4|5|7|8][0-9]{9}$/;
         //电话号码：区号+号码，区号以0开头，3位或4位 号码由7位或8位数字组成
@@ -102,6 +95,7 @@
         //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
         let customNameIsNo = true;
+        alert(111)
         $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username}, function (data) {
             customNameIsNo = data.result;
             if (!customNameIsNo) {
@@ -145,10 +139,8 @@
                         cPhone: userPhone,
                         cEmail: userEmail,
                         cCity: userCity,
-                        cIp: ipCustom
                     }, function (data) {
                         if (data.result) {
-                            <%--location.href("${baseurl}/WEB-INF/web/front/login.jsp");--%>
                             layer.msg("注冊成功", {
                                 time: 1000
                             }, function () {
@@ -159,22 +151,6 @@
             }
         });
     });
-
-    <%--if (username !== null && password !== null && passwordAgain !== null && userSet !== null && userPhone !== null && userEmail !== null && userCity !== null) {--%>
-    //            if (password === passwordAgain) {
-
-    //    } else
-    //    {
-    //        $("#showMsg").show();
-    //        $("#showMsg").val("两次密码输入不一致！！！");
-    //    }
-    //    } else
-    //    {
-    //        $("#showMsg").show();
-    //        $("#showMsg").val("请填写完整信息！！！");
-    //    }
-    //    })
-    //    ;
 </script>
 
 </body>

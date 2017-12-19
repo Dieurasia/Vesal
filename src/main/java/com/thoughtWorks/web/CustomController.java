@@ -161,9 +161,10 @@ public class CustomController {
     }
         @RequestMapping(value = "/customRegister")
     @ResponseBody
-    public Result customRegister(Custom custom) {
+    public Result customRegister(Custom custom ,HttpServletRequest request) {
         try {
-
+            String ip = getLocalIp(request);
+            custom.setcIp(ip);
             customService.customRegister(custom);
 
             return Result.success(null, Constant.SEARCH_SUCCESS);
@@ -174,4 +175,33 @@ public class CustomController {
         }
     }
 
+    /**
+     * 获取IP
+     * @param request
+     * @return
+     */
+    public static String getLocalIp(HttpServletRequest request) {
+        String remoteAddr = request.getRemoteAddr();
+        String forwarded = request.getHeader("X-Forwarded-For");
+        String realIp = request.getHeader("X-Real-IP");
+
+        String ip = null;
+        if (realIp == null) {
+            if (forwarded == null) {
+                ip = remoteAddr;
+            } else {
+                ip = remoteAddr + "/" + forwarded.split(",")[0];
+            }
+        } else {
+            if (realIp.equals(forwarded)) {
+                ip = realIp;
+            } else {
+                if(forwarded != null){
+                    forwarded = forwarded.split(",")[0];
+                }
+                ip = realIp + "/" + forwarded;
+            }
+        }
+        return ip;
+    }
 }

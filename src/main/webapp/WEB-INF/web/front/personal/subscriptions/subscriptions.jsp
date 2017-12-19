@@ -81,9 +81,6 @@
                 location.href = "${baseurl}/page/frontLogin";
             }
         });
-        $.post("${baseurl}/CustomLogin/personal", function (data) {
-            console.log(data)
-        });
     });
 
     $.post("${baseurl}/CustomLogin/personal", function (data) {
@@ -148,15 +145,12 @@
                             time: 2000
                         });
                     }
-                    alert(sWhether)
-                    alert(customId)
-                    alert(modelId)
                     $.post("${baseurl}/CustomLogin/Subscribe", {
                         sWhether: sWhether,
                         customId: customId,
                         modelId: modelId
                     }, function (data) {
-
+                        location.reload();
                     });
                 } else {
                     location.href = "${baseurl}/page/frontLogin";
