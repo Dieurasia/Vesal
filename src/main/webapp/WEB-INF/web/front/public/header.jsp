@@ -6,8 +6,8 @@
     <div class="container clearfix navbar navbar-default navbar-fixed-top" style="background-color: white">
         <div class="logo">
             <a href="${baseurl}/page/index">
-                <img src="${baseurl}/public/images/logo.png" alt=""/><span style="margin-left: 10px ;color: #096d96 "
-                                                                           class="h4">维萨里产品展示网</span></a>
+                <img src="${baseurl}/public/images/logo.png" alt=""/>
+                <span style="margin-left: 10px ;color: #096d96 " class="h4">维萨里产品展示网</span></a>
         </div>
         <div class="nav_right">
             <nav>
@@ -17,9 +17,9 @@
                         <a>系统解剖</a>
                         <ul>
                             <li><a><b>运动系统</b></a></li>
-                            <li><a href="${baseurl}/systemDisplay/bone">骨学</a></li>
-                            <li><a href="${baseurl}/front/SystemDisplay">关节学</a></li>
-                            <li><a href="${baseurl}/front/SystemDisplay">肌学</a></li>
+                            <li><a href="${baseurl}/page/bone">骨学</a></li>
+                            <li><a href="${baseurl}/page/modelShow">关节学</a></li>
+                            <li><a href="${baseurl}/page/bone">肌学</a></li>
                             <li role="separator" class="divider">
                                 <hr>
                             </li>

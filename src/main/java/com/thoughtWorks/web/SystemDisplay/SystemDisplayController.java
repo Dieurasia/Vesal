@@ -26,26 +26,6 @@ public class SystemDisplayController {
     @Resource
     private SystemDisplayService systemDisplayService;
 
-    @RequestMapping("/bone")
-    public String bone() {
-        return "front/system3D/motion/bones.jsp?id=1-1-1";
-    }
-
-    @RequestMapping("/skull")
-    public String skull() {
-        return "../front/system3D/motion/bones";
-    }
-
-    @RequestMapping("/upperLimb")
-    public String upperLimb() {
-        return "../front/system3D/motion/bones";
-    }
-
-    @RequestMapping("/lowerLimb")
-    public String lowerLimb() {
-        return "../../front/system3D/motion/bones";
-    }
-
     /**
      * 根据所有的级别 查找模型信息
      * @param level 级别信息

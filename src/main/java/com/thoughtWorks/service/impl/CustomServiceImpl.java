@@ -35,20 +35,27 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public List<Map<String, Object>> personalSubscription(Custom custom) throws Exception {
-        return customDao.personalSubscription(custom);
+        List<Map<String, Object>> data = customDao.personalSubscription(custom);
+        for (Map<String, Object> map : data) {
+            String m_thumbnail = (String) map.get("m_thumbnail");
+            String m_dynamic = (String) map.get("m_dynamic");
+            map.put("m_thumbnail", m_thumbnail.replaceAll("\\\\", "/"));
+            map.put("m_dynamic", m_dynamic.replaceAll("\\\\", "/"));
+        }
+        return data;
     }
 
     @Override
     public boolean queryCustomByName(String cName) throws Exception {
         Custom custom = customDao.queryCustomByName(cName);
-            if(custom == null){
+        if (custom == null) {
             return true;
         }
         return false;
     }
 
     @Override
-    public void customRegister(Custom custom) throws Exception{
+    public void customRegister(Custom custom) throws Exception {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
         customDao.customRegister(custom);

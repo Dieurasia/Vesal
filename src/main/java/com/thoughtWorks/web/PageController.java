@@ -31,4 +31,17 @@ public class PageController {
     public String subscriptions(){
         return "front/personal/subscriptions/subscriptions";
     }
+
+    /**
+     *  点击菜单显示页面
+     * @return
+     */
+    @RequestMapping("modelShow")
+    public String modelShow() {
+        return "front/modelShow/model.jsp?id=1-1-1";
+    }
+    @RequestMapping("bone")
+    public String bone() {
+        return "front/modelShow/model.jsp?id=1-1-1";
+    }
 }
