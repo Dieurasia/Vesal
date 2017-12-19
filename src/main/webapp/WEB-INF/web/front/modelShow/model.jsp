@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>WeiSaLi</title>
+    <title>维萨里产品展示网</title>
 
     <link rel="stylesheet" href="${baseurl}/public/css/show_list.css">
     <link rel="stylesheet" href="${baseurl}/public/css/show_style.css" type="text/css">
@@ -46,11 +46,10 @@
                             <a href="javascript:;" class="categoryItem ">消化系统</a>
                             <a href="javascript:;" class="categoryItem ">呼吸系统</a>
                             <a href="javascript:;" class="categoryItem ">泌尿系统</a>
-                            <a href="javascript:;" class="categoryItem ">男性生殖系统</a>
-                            <a href="javascript:;" class="categoryItem ">女性生殖系统</a>
-                            <a href="javascript:;" class="categoryItem ">心血管系统</a>
-                            <a href="javascript:;" class="categoryItem ">淋巴系统</a>
-                            <a href="javascript:;" class="categoryItem ">感觉器系统</a>
+                            <a href="javascript:;" class="categoryItem ">生殖系统</a>
+                            <a href="javascript:;" class="categoryItem ">脉管系统(心血管系)</a>
+                            <a href="javascript:;" class="categoryItem ">脉管系统(淋巴系)</a>
+                            <a href="javascript:;" class="categoryItem ">感觉器</a>
                             <a href="javascript:;" class="categoryItem ">神经系统</a>
                             <a href="javascript:;" class="categoryItem ">内分泌系统</a>
                         </div>
