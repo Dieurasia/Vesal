@@ -94,9 +94,9 @@
         let subscribe = data.customs;
         let _html = "";
         for (let i = 0; i < subscribe.length; i++) {
-            let fileLong = subscribe[i].m_thumbnail.split("file")[1];
+            let fileLong = subscribe[i].m_thumbnail;
             let file = "/file" + fileLong;
-            let m_dynamic = subscribe[i].m_dynamic.split("file")[1];
+            let m_dynamic = subscribe[i].m_dynamic;
             let dynamic = "/file" + m_dynamic;
             _html += `   <li>
                 <div class="pic">
