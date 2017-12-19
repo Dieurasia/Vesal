@@ -11,7 +11,7 @@ import java.util.Map;
  * @author 马欢欢
  */
 @Service
-public interface CustomLoginService {
+public interface CustomService {
 
     /**
      * 客户登录

@@ -3,7 +3,7 @@ package com.thoughtWorks.web;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
-import com.thoughtWorks.service.CustomLoginService;
+import com.thoughtWorks.service.CustomService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -23,13 +23,12 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/CustomLogin")
-public class CustomLoginController {
+public class CustomController {
     @Autowired
-    private CustomLoginService customLoginService;
+    private CustomService customService;
 
     /**
-     * 登录
-     *
+     * 用户登录
      * @param custom
      * @param request
      * @return
@@ -39,7 +38,7 @@ public class CustomLoginController {
     private Map<String, Object> login(Custom custom, HttpServletRequest request) {
         Map<String, Object> data = new HashMap<>();
         try {
-            Custom custom1 = customLoginService.login(custom);
+            Custom custom1 = customService.login(custom);
             if (custom1 != null) {
                 request.getSession().setAttribute("custom", custom1);
                 data.put("result", true);
@@ -113,7 +112,7 @@ public class CustomLoginController {
     public Map<String, Object> Subscribe(Subscribe subscribe) {
         Map<String, Object> data = new HashMap<String, Object>();
         try {
-            customLoginService.subscribe(subscribe);
+            customService.subscribe(subscribe);
             data.put("result", true);
             data.put("msg", Constant.SUBSCRIBE_SUCCESS);
         } catch (Exception e) {
@@ -136,7 +135,7 @@ public class CustomLoginController {
         Custom user = (Custom) session.getAttribute("custom");
         try {
             custom.setcId(user.getcId());
-            List<Map<String, Object>> customs = customLoginService.personalSubscription(custom);
+            List<Map<String, Object>> customs = customService.personalSubscription(custom);
             data.put("customs", customs);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
@@ -153,7 +152,7 @@ public class CustomLoginController {
     public  Map<String, Object> queryCustomByName(String cName) {
         Map<String, Object> data = new HashMap<>();
         try {
-            boolean result= customLoginService.queryCustomByName(cName);
+            boolean result= customService.queryCustomByName(cName);
             data.put("result",result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,7 +164,7 @@ public class CustomLoginController {
     public Result customRegister(Custom custom) {
         try {
 
-            customLoginService.customRegister(custom);
+            customService.customRegister(custom);
 
             return Result.success(null, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

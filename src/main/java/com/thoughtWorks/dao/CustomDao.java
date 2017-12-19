@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * @author ubuntu
  */
-public interface CustomLoginDao{
+public interface CustomDao{
 
     /**
      * 客户登录

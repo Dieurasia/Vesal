@@ -1,9 +1,9 @@
 package com.thoughtWorks.service.impl;
 
-import com.thoughtWorks.dao.CustomLoginDao;
+import com.thoughtWorks.dao.CustomDao;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
-import com.thoughtWorks.service.CustomLoginService;
+import com.thoughtWorks.service.CustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,32 +15,32 @@ import java.util.UUID;
  * @author ubuntu
  */
 @Service
-public class CustomLoginServiceImpl implements CustomLoginService {
+public class CustomServiceImpl implements CustomService {
     @Autowired
-    private CustomLoginDao customLoginDao;
+    private CustomDao customDao;
 
     @Override
     public Custom login(Custom custom) throws Exception {
-        return customLoginDao.login(custom);
+        return customDao.login(custom);
     }
 
     @Override
     public void subscribe(Subscribe subscribe) throws Exception {
         if (subscribe.getsWhether() == 1) {
-            customLoginDao.addSubscribe(subscribe);
+            customDao.addSubscribe(subscribe);
         } else {
-            customLoginDao.deleteSubscribe(subscribe);
+            customDao.deleteSubscribe(subscribe);
         }
     }
 
     @Override
     public List<Map<String, Object>> personalSubscription(Custom custom) throws Exception {
-        return customLoginDao.personalSubscription(custom);
+        return customDao.personalSubscription(custom);
     }
 
     @Override
     public boolean queryCustomByName(String cName) throws Exception {
-        Custom custom = customLoginDao.queryCustomByName(cName);
+        Custom custom = customDao.queryCustomByName(cName);
             if(custom == null){
             return true;
         }
@@ -51,6 +51,6 @@ public class CustomLoginServiceImpl implements CustomLoginService {
     public void customRegister(Custom custom) throws Exception{
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
-        customLoginDao.customRegister(custom);
+        customDao.customRegister(custom);
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thoughtWorks.dao.CustomLoginDao">
+<mapper namespace="com.thoughtWorks.dao.CustomDao">
 
     <select id="login" resultType="Custom" parameterType="Custom">
         select * from v_custom where c_name = #{cName} AND c_password = #{cPassword}
