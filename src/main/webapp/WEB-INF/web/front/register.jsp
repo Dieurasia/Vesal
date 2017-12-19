@@ -95,7 +95,6 @@
         //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
         let customNameIsNo = true;
-        alert(111)
         $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username}, function (data) {
             customNameIsNo = data.result;
             if (!customNameIsNo) {
