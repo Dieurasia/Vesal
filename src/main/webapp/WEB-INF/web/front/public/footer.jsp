@@ -40,6 +40,7 @@
                     <a href="${baseurl}/front/public/case.jsp" class="a_tit">关于我们</a>
                     <a href="${baseurl}/front/public/case.jsp">公司介绍</a>
                     <a href="${baseurl}/front/public/case.jsp">产品介绍</a>
+                    <a href="${baseurl}/back/toLogin">后端入口</a>
                 </li>
             </ul>
             <div class="ul_2">

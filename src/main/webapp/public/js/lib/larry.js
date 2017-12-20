@@ -42,9 +42,9 @@ layui.define(['jquery', 'layer', 'element', 'common'], function (exports) {
         if (typeof(_config.elem) === 'object') {
             $container = _config.elem;
         }
-        if ($container.length === 0) {
-            common.cmsError('LarryCMS Nav error:找不到elem参数配置的容器，请检查.', '容器参数配置出错');
-        }
+        // if ($container.length === 0) {
+        //     common.cmsError('LarryCMS Nav error:找不到elem参数配置的容器，请检查.', '容器参数配置出错');
+        // }
         if (_config.data === undefined && _config.url === undefined) {
             common.cmsError('LarryCMS Nav error:请为Nav配置数据源.', '数据源配置出错')
         }
