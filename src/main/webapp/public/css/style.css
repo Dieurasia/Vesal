@@ -203,7 +203,7 @@ ul li {
 .header .container .nav_right nav ul li ul {
   position: absolute;
   z-index: 9999;
-  background: #DEDDBD;
+  background: #fff;
   width: 500px;
   text-align: center;
   font-size: 12px;

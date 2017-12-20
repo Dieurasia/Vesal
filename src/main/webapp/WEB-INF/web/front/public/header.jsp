@@ -30,7 +30,7 @@
         /*display: inline;//让li横向排列*/
     }
     #menuli li  .clearA a:hover{
-        background-color: #DEDDBD;
+        background-color: white;
         color: black;
     }
 </style>
