@@ -1,4 +1,4 @@
-package com.thoughtWorks.web;
+package com.thoughtWorks.web.custom;
 
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
