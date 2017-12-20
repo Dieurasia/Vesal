@@ -1,2 +1,2 @@
-# System
-SSM(Spring + SpringMVC + MaBatis)+shiro框架后台模板框架
+# 项目：维萨里产品展示网
+
