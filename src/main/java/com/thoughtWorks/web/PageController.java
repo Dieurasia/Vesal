@@ -41,7 +41,8 @@ public class PageController {
         return "front/modelShow/model.jsp?id=1-1-1";
     }
     @RequestMapping("bone")
-    public String bone() {
-        return "front/modelShow/model.jsp?id=1-1-1";
+    public String bone(String model) {
+        return "front/modelShow/model.jsp?id="+model;
     }
+
 }

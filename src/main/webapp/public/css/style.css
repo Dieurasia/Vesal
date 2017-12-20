@@ -203,15 +203,15 @@ ul li {
 .header .container .nav_right nav ul li ul {
   position: absolute;
   z-index: 9999;
-  background: #fff;
-  width: 100%;
+  background: #DEDDBD;
+  width: 500px;
   text-align: center;
   font-size: 12px;
   display: none;
 }
 .header .container .nav_right nav ul li ul li {
   background: no-repeat;
-  float: none;
+  float: left;
 }
 .header .container .nav_right nav ul li ul li a {
   font-size: 12px;
