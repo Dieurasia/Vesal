@@ -58,7 +58,7 @@
         menu = {
             list: function () {
                 $.ajax({
-                    url: baseUrl + "menu/list",
+                    url: baseUrl + "/back/menu/list",
                     type: "post",
                     success: function (data) {
                         if (data.result) {
@@ -80,7 +80,7 @@
             },
             addMenuAjax: function () {
                 let data = $("#menu-add").serialize();
-                $.post('${baseurl}/menu/addFirstMenu', data, (data) => {
+                $.post('${baseurl}/back/menu/addFirstMenu', data, (data) => {
                         layer.msg(data.msg);
                         if (data.result) {
                             setTimeout('location.reload()', 500);
@@ -91,7 +91,7 @@
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "/menu/delete", {id: id}, function (data) {
+                    $.post(baseUrl + "/back/menu/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
                         setTimeout("location.reload()", 500);
                     })
@@ -110,7 +110,7 @@
             },
             updateMenuAjax: function () {
                 let data = $("#update_form").serialize();
-                $.post('${baseurl}/menu/updateMenu', data, (data) => {
+                $.post('${baseurl}/back/menu/updateMenu', data, (data) => {
                         layer.msg(data.msg);
                         if (data.result) {
                             setTimeout('location.reload()', 500);
@@ -120,7 +120,7 @@
             },
             subMenu: function (id) {
                 currentMenuId = id;
-                $.post('${baseurl}/menu/secondMenus', {id: id}, (data) => {
+                $.post('${baseurl}/back/menu/secondMenus', {id: id}, (data) => {
                     if (data.result) {
                         menu.fillMenus(data.data);
 
@@ -142,7 +142,7 @@
             },
             addSecondMenuAjax: function () {
                 let data = $("#secondMenu-add-form").serialize() + `&parentId=` + currentMenuId;
-                $.post('${baseurl}/menu/addSecondMenu', data, (data) => {
+                $.post('${baseurl}/back/menu/addSecondMenu', data, (data) => {
                         layer.msg(data.msg);
                     }
                 )
@@ -161,7 +161,7 @@
             },
             updateSecondMenuAjax: function () {
                 let data = $("#secondMenu-update-form").serialize();
-                $.post('${baseurl}/menu/updateMenu', data, (data) => {
+                $.post('${baseurl}/back/menu/updateMenu', data, (data) => {
                         layer.msg(data.msg);
                     }
                 )
@@ -177,7 +177,7 @@
             },
             addPermissionAjax: function () {
                 let data = $("#permission-add-form").serialize();
-                $.post('${baseurl}/menu/addPermission', data, (data) => {
+                $.post('${baseurl}/back/menu/addPermission', data, (data) => {
                         layer.msg(data.msg);
                     }
                 )
@@ -186,7 +186,7 @@
                 event.preventDefault();
                 layer.confirm('确定删除(同时将该菜单下所有的权限一起删除)？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "/menu/deleteSecondMenu", {id: id}, function (data) {
+                    $.post(baseUrl + "/back/menu/deleteSecondMenu", {id: id}, function (data) {
                         layer.msg(data.msg);
                     })
                 });
@@ -203,7 +203,7 @@
             },
             updatePermissionAjax:function () {
                 let data = $("#permission-update-form").serialize();
-                $.post(baseUrl + "/menu/updatePermission", data, function (data) {
+                $.post(baseUrl + "/back/menu/updatePermission", data, function (data) {
                     layer.msg(data.msg);
                 })
             },

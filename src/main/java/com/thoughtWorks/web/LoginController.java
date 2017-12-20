@@ -23,7 +23,7 @@ import java.util.Map;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/back")
 public class LoginController {
     @Autowired
     private PermissionService permissionService;

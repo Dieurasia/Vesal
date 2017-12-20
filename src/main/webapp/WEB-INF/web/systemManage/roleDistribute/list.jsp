@@ -127,7 +127,7 @@
             list: function () {
                 let keyWork = $("#keyWork").val();
                 $.ajax({
-                    url: baseUrl + "/roleDistribute/list",
+                    url: baseUrl + "/back/roleDistribute/list",
                     type:"post",
                     data: {currentIndex: currentIndex, pageSize: pageSize, name: keyWork},
                     success: function (data) {
@@ -153,7 +153,7 @@
             form.on('select(role_select)', function (data) {
                 let userName = $(data.elem).prop("name");
                 let roleId = data.value
-                $.post(baseUrl + "/roleDistribute/updateUserRole", {userName: userName, roleId}, function (data) {
+                $.post(baseUrl + "/back//roleDistribute/updateUserRole", {userName: userName, roleId}, function (data) {
                     layer.msg(data.msg)
                 });
             });

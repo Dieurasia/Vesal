@@ -110,7 +110,7 @@
             </div>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe class="larry-iframe" data-id='0' name="ifr_0" id='ifr0' src="${baseurl}/main"></iframe>
+                    <iframe class="larry-iframe" data-id='0' name="ifr_0" id='ifr0' src="${baseurl}/back/main"></iframe>
                 </div>
             </div>
         </div>

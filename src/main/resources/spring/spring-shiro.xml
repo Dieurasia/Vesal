@@ -26,21 +26,22 @@
         <!--过滤定义，从上而下，蒋匿名的anon放最下面-->
         <property name="filterChainDefinitions">
             <value>
-                <!--静态资源通过-->
-                /file/** =anon
-                /page/** = anon
-                /login = anon
-                /getValidateCode = anon  <!--验证码-->
+<!--********************静态资源通过********************-->
+                <!--/getValidateCode = anon  &lt;!&ndash;验证码&ndash;&gt;-->
                 /js/** = anon
                 /images/** = anon
                 /styles/** = anon
                 /public/** = anon
-                /toLogin = anon   <!--登录页面的地址-->
                 /noPermission/** = anon <!--跳转没有权限的页面-->
-                <!--前端页面匿名访问-->
+<!--********************前端页面匿名访问********************-->
+                /file/** =anon
+                /page/** = anon
                 /systemDisplay/** = anon
                 /CustomLogin/** = anon
-                <!--表示所有请求url必须通过认证-->
+<!--********************后端登录*********************************-->
+                /back/toLogin = anon   <!--登录页面的地址-->
+                /back/login = anon
+<!--********************表示所有请求url必须通过认证********************-->
                 /back/**=  authc
                 <!--请求logout，shrio擦除sssion-->
                 /logout=logout

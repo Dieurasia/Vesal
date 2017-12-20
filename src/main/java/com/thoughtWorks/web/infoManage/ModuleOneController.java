@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author ubuntu
  */
 @Component
-@RequestMapping("/moduleOne")
+@RequestMapping("/back/moduleOne")
 public class ModuleOneController {
 
     @RequestMapping()

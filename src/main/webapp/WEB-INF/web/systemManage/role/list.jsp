@@ -90,7 +90,7 @@
             },
             list: function () {
                 $.ajax({
-                    url: baseUrl + "userRole/list",
+                    url: baseUrl + "/back/userRole/list",
                     type:"post",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
@@ -118,7 +118,7 @@
             },
             viewRole: function (id) {
                 $.ajax({
-                    url: baseUrl + "userRole/query",
+                    url: baseUrl + "/back/userRole/query",
                     type:"post",
                     data: {roleId: id},
                     success: function (data) {
@@ -140,7 +140,7 @@
             },
             updateRole: function () {
                 let data = $("#update_form").serialize();
-                $.post(baseUrl + "/userRole/update", data, function (data) {
+                $.post(baseUrl + "/back/userRole/update", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
                         setTimeout("location.reload()", 500);
@@ -149,7 +149,7 @@
             },
             viewPermission: function (roleId) {
                 $.ajax({
-                    url: baseUrl + "/userRole/viewPermission",
+                    url: baseUrl + "/back/userRole/viewPermission",
                     type:"post",
                     data: {roleId: roleId},
                     success: function (data) {
@@ -168,7 +168,7 @@
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.ajax({
-                        url: baseUrl + "/userRole/deletePermission",
+                        url: baseUrl + "/back/userRole/deletePermission",
                         type:"post",
                         data: {roleId: roleId},
                         success: function (data) {
@@ -202,7 +202,7 @@
                                 updatePermissions += $(allNodes[i]).val() + ",";
                             }
                         }
-                        $.post(baseUrl + "/userRole/updateRolePermissions", {
+                        $.post(baseUrl + "/back/userRole/updateRolePermissions", {
                             hasPers: hasPermission.toString(),
                             updatePers: updatePermissions,
                             roleId: roleid
@@ -290,7 +290,7 @@
 
             form.on('submit(role-add)', function (data) {
                 $.ajax({
-                    url: baseUrl + "userRole/add",
+                    url: baseUrl + "/back/userRole/add",
                     type:"post",
                     data: $("#role-add").serialize(),
                     success: function (data) {
@@ -304,7 +304,7 @@
                 return false;
             })
             form.on('switch(role-available)', function (data) {
-                $.post(baseUrl + "/userRole/updateAvailable", {
+                $.post(baseUrl + "/back/userRole/updateAvailable", {
                     available: data.elem.checked,
                     id: data.value
                 }, function (data) {

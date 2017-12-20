@@ -33,7 +33,7 @@
         <%--</div>--%>
     <%--</div>--%>
     <div class="layui-submit larry-login">
-        <button  onclick="login()"  class="submit_btn">立即登录</button>
+        <button  onclick="login()"   class="submit_btn">立即登录</button>
     </div>
 
     <div class="layui-login-text">
@@ -49,11 +49,11 @@
         let userName = $("#userName").val();
         let password = $("#password").val();
         $.ajax({
-            url: "${baseurl}/login",
+            url: "${baseurl}/back/login",
             data: {userName: userName, password: password},
             success: function (data) {
                 if (data.result) {
-                    location.href = "${baseurl}/index";
+                    location.href = "${baseurl}/back/index";
                 } else {
                     layer.msg(data.msg);
                 }

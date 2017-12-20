@@ -81,7 +81,7 @@
             },
             list: function () {
                 $.ajax({
-                    url: baseUrl + "userRole/list",
+                    url: baseUrl + "/back/userRole/list",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {

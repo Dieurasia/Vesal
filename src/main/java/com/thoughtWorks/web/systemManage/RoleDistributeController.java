@@ -19,7 +19,7 @@ import java.util.Map;
  * @author ubuntu
  */
 @Component
-@RequestMapping("/roleDistribute")
+@RequestMapping("/back/roleDistribute")
 public class RoleDistributeController {
 
     @Autowired

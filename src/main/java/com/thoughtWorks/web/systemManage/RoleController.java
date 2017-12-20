@@ -18,7 +18,7 @@ import java.util.Map;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/userRole")
+@RequestMapping("/back/userRole")
 public class RoleController {
     @Resource
     private RoleService roleService;

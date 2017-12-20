@@ -17,7 +17,7 @@ import java.util.Map;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/back/menu")
 public class MenuController {
     @Resource
     private PermissionService permissionService;
