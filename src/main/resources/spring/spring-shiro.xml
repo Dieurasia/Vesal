@@ -38,6 +38,7 @@
                 /page/** = anon
                 /systemDisplay/** = anon
                 /CustomLogin/** = anon
+                /interface/** = anon
 <!--********************后端登录*********************************-->
                 /back/toLogin = anon   <!--登录页面的地址-->
                 /back/login = anon
