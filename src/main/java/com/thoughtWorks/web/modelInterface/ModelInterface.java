@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/interface")
-public class ModelInterface {
+public class    ModelInterface {
     @Autowired
     private ModelInterfaceService modelInterfaceService;
 
