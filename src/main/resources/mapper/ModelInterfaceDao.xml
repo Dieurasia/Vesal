@@ -5,12 +5,25 @@
 <mapper namespace="com.thoughtWorks.dao.ModelInterfaceDao">
 
     <select id="aClassify" resultType="map" parameterType="Classify">
-          select b_name from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a where a.a_id = v_bclassify.b_aid
+          select b_name,b_id,a.a_id from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a
+          LEFT JOIN (SELECT * FROM v_model_grade) model_grade ON model_grade.second_level IS NULL
+          where a.a_id = v_bclassify.b_aid
     </select>
     <select id="bClassify" resultType="map" parameterType="Classify">
-        select c_name FROM v_cclassify,(select b_id,b_name from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a where a.a_id = v_bclassify.b_aid and b_name = #{bclassify}) b where b.b_id = v_cclassify.c_bid
+        select c_name FROM v_cclassify,(select b_id,b_name from v_bclassify ,
+        (select a_id from v_aclassify where a_name = #{aclassify}) a
+        where a.a_id = v_bclassify.b_aid and b_name = #{bclassify}) b
+        where b.b_id = v_cclassify.c_bid
     </select>
     <select id="modelAll" resultType="map" parameterType="Classify">
-        select m.* from v_model m ,(select model_code from v_model_grade,(select b.a_id,b.b_id,c_id FROM v_cclassify,(select b_id,a.a_id,b_name from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a where a.a_id = v_bclassify.b_aid and b_name = #{bclassify}) b where b.b_id = v_cclassify.c_bid and c_name=#{cclassify}) classify where classify.a_id = one_level and b_id = second_level and c_id = three_level) grade where m.m_code = grade.model_code
+        select m.* from v_model m ,
+        (select model_code from v_model_grade,
+        (select b.a_id,b.b_id,c_id FROM v_cclassify,
+        (select b_id,a.a_id,b_name from v_bclassify ,
+        (select a_id from v_aclassify where a_name = #{aclassify}) a
+         where a.a_id = v_bclassify.b_aid and b_name = #{bclassify}) b
+         where b.b_id = v_cclassify.c_bid and c_name=#{cclassify}) classify
+         where classify.a_id = one_level and b_id = second_level and c_id = three_level) grade
+         where m.m_code = grade.model_code
     </select>
 </mapper>
