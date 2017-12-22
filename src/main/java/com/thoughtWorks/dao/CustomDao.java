@@ -1,7 +1,6 @@
 package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.Custom;
-import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.entity.Subscribe;
 import org.apache.ibatis.annotations.Param;
 

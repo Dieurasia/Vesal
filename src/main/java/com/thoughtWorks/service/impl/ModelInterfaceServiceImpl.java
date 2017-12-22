@@ -6,6 +6,7 @@ import com.thoughtWorks.service.ModelInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,22 +21,26 @@ public class ModelInterfaceServiceImpl implements ModelInterfaceService {
 
 
     @Override
-    public List<Map<String, Object>> modelinterface(String[] modelInterface) throws Exception {
+    public List<Map<String, Object>> modelInterface(String[] modelInterface) throws Exception {
         Classify classify = new Classify();
+        List<Map<String, Object>> list = new ArrayList<>();
+        int numberA =1;
+        int numberB = 2;
+        int numberC = 3;
 
-        if (modelInterface.length == 1) {
+        if (modelInterface.length == numberA) {
             classify.setAclassify(modelInterface[0]);
-            return modelInterfaceDao.aClassify(classify);
-        } else if (modelInterface.length == 2) {
+            list = modelInterfaceDao.aClassify(classify);
+        } else if (modelInterface.length == numberB) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
-            return modelInterfaceDao.bClassify(classify);
-        } else if (modelInterface.length == 3) {
+            list = modelInterfaceDao.bClassify(classify);
+        } else if (modelInterface.length == numberC) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             classify.setCclassify(modelInterface[2]);
-            return modelInterfaceDao.modelAll(classify);
+            list = modelInterfaceDao.modelAll(classify);
         }
-        return null;
+        return list;
     }
 }

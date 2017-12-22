@@ -13,5 +13,5 @@ public interface ModelInterfaceService {
      * @return
      * @throws Exception
      */
-    List<Map<String, Object>> modelinterface(String[] modelInterface) throws Exception;
+    List<Map<String, Object>> modelInterface(String[] modelInterface) throws Exception;
 }

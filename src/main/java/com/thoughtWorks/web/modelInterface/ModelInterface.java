@@ -21,16 +21,17 @@ public class    ModelInterface {
 
     @RequestMapping()
     @ResponseBody
-    public void modelInterface(String model) {
-        List<Map<String,Object>> list ;
+    public List<Map<String,Object>> modelInterface(String model) {
+        List<Map<String,Object>> list = null;
        int count = countStringIncludeChar(model,"-");
        String [] modelName = model.split("-");
         try {
-            list = modelInterfaceService.modelinterface(modelName);
+            list = modelInterfaceService.modelInterface(modelName);
             System.out.println(list);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return list;
     }
 
     public int countStringIncludeChar(String str, String ch){
