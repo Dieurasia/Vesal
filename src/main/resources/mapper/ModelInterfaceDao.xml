@@ -5,19 +5,19 @@
 <mapper namespace="com.thoughtWorks.dao.ModelInterfaceDao">
 
     <select id="aClassify" resultType="map" parameterType="Classify">
-          select b_name name,0 type from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a
+          select b_name name,0 type,null price,null introduce,null thumbnail,null dynamic,null unity from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a
           where a.a_id = v_bclassify.b_aid
           UNION
-          SELECT m_name,1 FROM v_model model,(select a_id from v_aclassify where a_name = #{aclassify}) b
+          SELECT m_name,1,m_price,m_introduce,m_thumbnail,m_dynamic,m_unity FROM v_model model,(select a_id from v_aclassify where a_name = #{aclassify}) b
           WHERE model.m_code in  (select model_code from v_model_grade WHERE one_level = b.a_id AND  three_level IS NULL AND  second_level IS NULL )
     </select>
     <select id="bClassify" resultType="map" parameterType="Classify">
-        select c_name name,0 type FROM v_cclassify,(select b_id,b_name from v_bclassify ,
+        select b_name name,0 type,null price,null introduce,null thumbnail,null dynamic,null unity FROM v_cclassify,(select b_id,b_name from v_bclassify ,
         (select a_id from v_aclassify where a_name = #{aclassify}) a
         where a.a_id = v_bclassify.b_aid and b_name = #{bclassify}) b
         where b.b_id = v_cclassify.c_bid
         UNION
-        select m_name,1 from v_model model,
+        select m_name,1,m_price,m_introduce,m_thumbnail,m_dynamic,m_unity from v_model model,
         (select a_id from v_aclassify where a_name = #{aclassify}) ac,
         (select b_id,b_name from v_bclassify ,
         (select a_id from v_aclassify where a_name = #{aclassify}) a
