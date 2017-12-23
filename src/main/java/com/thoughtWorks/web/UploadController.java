@@ -49,7 +49,7 @@ public class UploadController {
         String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
         String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
         FileUtil.isDirectory(realPath, true, request);
-//        FileUtil.isDirectory(unRealPath, true, request);
+        
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {
@@ -64,9 +64,11 @@ public class UploadController {
                     //获取文件后缀名
                     String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
 
+                    //转换为原始文件
                     CommonsMultipartFile cf = (CommonsMultipartFile) file;
                     DiskFileItem fi = (DiskFileItem) cf.getFileItem();
                     File oldFile = fi.getStoreLocation();
+                    
                     //解压文件操作
                     UnZipFileUtil.unZipFiles(oldFile, unRealPath);
                     FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));

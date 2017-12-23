@@ -24,22 +24,26 @@ public class ModelInterfaceServiceImpl implements ModelInterfaceService {
     public List<Map<String, Object>> modelInterface(String[] modelInterface) throws Exception {
         Classify classify = new Classify();
         List<Map<String, Object>> list = new ArrayList<>();
-        int numberA =1;
+        int numberA = 1;
         int numberB = 2;
         int numberC = 3;
 
         if (modelInterface.length == numberA) {
             classify.setAclassify(modelInterface[0]);
             list = modelInterfaceDao.aClassify(classify);
+            System.out.println("数据库查询出来的数据：" + list);
+
         } else if (modelInterface.length == numberB) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             list = modelInterfaceDao.bClassify(classify);
+            System.out.println("数据库查询出来的数据：" + list);
         } else if (modelInterface.length == numberC) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             classify.setCclassify(modelInterface[2]);
             list = modelInterfaceDao.modelAll(classify);
+            System.out.println("数据库查询出来的数据：" + list);
         }
         return list;
     }

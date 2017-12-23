@@ -5,9 +5,26 @@
 <mapper namespace="com.thoughtWorks.dao.ModelInterfaceDao">
 
     <select id="aClassify" resultType="map" parameterType="Classify">
-          select b_name,b_id,a.a_id from v_bclassify ,(select a_id from v_aclassify where a_name = #{aclassify}) a
-          LEFT JOIN (SELECT * FROM v_model_grade) model_grade ON model_grade.second_level IS NULL
-          where a.a_id = v_bclassify.b_aid
+ /* SELECT b_name,model.* FROM v_bclassify, (SELECT a_id
+                   FROM v_aclassify
+                   WHERE a_name = #{aclassify}) a
+  INNER JOIN (SELECT *
+              FROM v_model) model ON model.m_code IN
+                                     (SELECT model_code
+                                      FROM v_model_grade
+                                      WHERE one_level = a.a_id AND three_level = "" AND second_level = "")
+WHERE a.a_id = v_bclassify.b_aid;*/
+
+
+        SELECT b_name name, 0 type
+        FROM v_bclassify, (SELECT a_id FROM v_aclassify WHERE a_name = #{aclassify}) a
+        WHERE a.a_id = v_bclassify.b_aid
+        UNION
+        SELECT m_name,1
+        FROM v_model model, (SELECT a_id FROM v_aclassify WHERE a_name = #{aclassify}) b
+        WHERE model.m_code IN
+        (SELECT model_code FROM v_model_grade WHERE one_level = b.a_id AND three_level IS NULL AND second_level IS NULL)
+
     </select>
     <select id="bClassify" resultType="map" parameterType="Classify">
         select c_name FROM v_cclassify,(select b_id,b_name from v_bclassify ,
