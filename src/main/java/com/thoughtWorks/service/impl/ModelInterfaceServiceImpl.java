@@ -31,19 +31,15 @@ public class ModelInterfaceServiceImpl implements ModelInterfaceService {
         if (modelInterface.length == numberA) {
             classify.setAclassify(modelInterface[0]);
             list = modelInterfaceDao.aClassify(classify);
-            System.out.println("数据库查询出来的数据：" + list);
-
         } else if (modelInterface.length == numberB) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             list = modelInterfaceDao.bClassify(classify);
-            System.out.println("数据库查询出来的数据：" + list);
         } else if (modelInterface.length == numberC) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             classify.setCclassify(modelInterface[2]);
             list = modelInterfaceDao.modelAll(classify);
-            System.out.println("数据库查询出来的数据：" + list);
         }
         return list;
     }
