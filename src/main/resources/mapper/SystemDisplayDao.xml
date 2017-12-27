@@ -6,23 +6,20 @@
 
     <select id="systemInfo" resultType="map" parameterType="Level">
         select am.*,su.s_whether from (SELECT *
-        FROM v_model m,
-        (SELECT model_code
-        FROM v_model_grade
+        FROM v_model
         <where>
             <if test="oneLevel != ''">
-                AND one_level = #{oneLevel}
+                AND m_aclassify = #{oneLevel}
             </if>
             <if test="secondLevel !=''">
-                AND second_level = #{secondLevel}
+                AND m_bclassify = #{secondLevel}
             </if>
             <if test="threeLevel !='' ">
-                AND three_level = #{threeLevel}
+                AND m_cclassify = #{threeLevel}
             </if>
         </where>
-        ) g
-        WHERE g.model_code = m.m_code) am LEFT JOIN v_subscribe su on am.m_id = su.model_id
-        <if test="customId !='' ">
+        ) am LEFT JOIN v_subscribe su on am.m_id = su.model_id
+        <if test="customId !=''">
             and su.custom_id = #{customId}
         </if>
     </select>
