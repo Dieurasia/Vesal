@@ -18,34 +18,33 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public void addZipInfo(Map<String, Object> zipFile) {
         String code = (String) zipFile.get("code");
-        uploadDao.addZipInfo(zipFile);
         //提取关于类型的信息
         Map<String, Object> data = extractFileInformation(zipFile);
 
-        uploadDao.addModelGrade(getModelGrade(code, data));
 
+        Map<String,Object> zipData = getModelGrade(code, zipFile,data);
+
+
+        uploadDao.addZipInfo(zipData);
     }
 
-    private Map<String,Object> getModelGrade(String code, Map<String, Object> data) {
+    private Map<String, Object> getModelGrade(String code, Map<String, Object> zipFiles, Map<String, Object> data) {
         Map<String, Object> modelGradeInfo = new HashMap<>();
-        String oneId = null;
-        String twoId = null;
-        String thrId = null;
-        modelGradeInfo.put("code", code);
+        zipFiles.put("code", code);
         if (data.get("count0") != "") {
-            oneId = uploadDao.getModelGradeOne(data.get("count0"));
-            modelGradeInfo.put("oneId", oneId);
+            String oneId = uploadDao.getModelGradeOne((String) data.get("count0"));
+            zipFiles.put("oneId", oneId);
         }
         if (data.get("count1") != "") {
-            twoId = uploadDao.getModelGradeTwo(data.get("count1"));
-            modelGradeInfo.put("twoId", twoId);
+            String twoId = uploadDao.getModelGradeTwo((String) data.get("count1"));
+            zipFiles.put("twoId", twoId);
         }
         if (data.get("count2") != "") {
-            thrId = uploadDao.getModelGradeThr(data.get("count2"));
-            modelGradeInfo.put("thrId", thrId);
+            String thrId = uploadDao.getModelGradeThr((String) data.get("count2"));
+            zipFiles.put("thrId", thrId);
         }
 
-        return modelGradeInfo;
+        return zipFiles;
     }
 
     private Map<String, Object> extractFileInformation(Map<String, Object> zipFile) {
@@ -60,16 +59,15 @@ public class UploadServiceImpl implements UploadService {
             for (int j = 0; j < 2; j++) {
                 modelGrade.put("count" + j, types[j]);
             }
-            modelGrade.put("count3", "no");
+            modelGrade.put("count3", "");
         } else if (types.length == 1) {
             for (int j = 0; j < 1; j++) {
                 modelGrade.put("count" + j, types[j]);
             }
-            modelGrade.put("count2", "no");
-            modelGrade.put("count3", "no");
-        } else {
-            System.out.println("存入数据错误!!!");
+            modelGrade.put("count2", "");
+            modelGrade.put("count3", "");
         }
+
         return modelGrade;
     }
 }

@@ -110,11 +110,7 @@ public class UploadController {
 
             if (key.equals("imgStr")) {
                 List<String> imgs = (List<String>) fileInfo.get(key);
-
-
-
                 if (imgs.size() == 1) {
-
                     zipFileInfo.put("imgStr", splitStr(imgs.get(0)));
                 } else if (imgs.size() > 1) {
                     String imgMore = "";
@@ -147,7 +143,13 @@ public class UploadController {
                     for (int i = 0; i < assetbundles.size(); i++) {
                         gifMore += splitStr(assetbundles.get(i)) + "###";
                     }
+                    zipFileInfo.put("assetbundleStr", gifMore);
                 }
+            }
+
+            if (key.equals("xml")) {
+                String path = splitStr((String) fileInfo.get(key));
+                zipFileInfo.put("xml", path);
             }
         }
 
@@ -156,9 +158,11 @@ public class UploadController {
 
     public String splitStr(String str) {
         if (str.length() != -1) {
-            return ("\\home" + str.split("home")[1]);
+            str = "\\home" + str.split("home")[1];
         }
-        return str;
+        String newPath = str.replaceAll("\\\\", "/");
+
+        return newPath;
     }
 
     @RequestMapping(value = "/ajax", method = RequestMethod.GET)
