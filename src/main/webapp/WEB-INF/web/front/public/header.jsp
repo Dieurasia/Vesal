@@ -2,19 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../public/tag.jsp" %>
 <style type="text/css">
-    /*#menu {*/
-        /*font-size: 12px;*/
-        /*font-weight: bolder;*/
-    /*}*/
-    /*#menu li{*/
-        /*list-style-image: none;*/
-        /*list-style-type: none;*/
-        /*background-color: #999999;*/
-        /*border-right-width: 1px;*/
-        /*border-right-style: solid;*/
-        /*border-right-color: #000000;*/
-        /*float: left;*/
-    /*}*/
     #menuli li a{
         color: black;
         text-decoration: none;
@@ -25,9 +12,6 @@
     #menuli li a:hover{
         background-color: #0099CC;
         color: white;
-    }
-    .miniui li{
-        /*display: inline;//让li横向排列*/
     }
     #menuli li  .clearA a:hover{
         background-color: white;
@@ -95,7 +79,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a >局部3D</a>
+                        <a >局部解剖</a>
                         <ul >
                             <li style="clear: both" class="clearA"><a><b>头部:</b></a></li>
                             <li><a href="#">颅部</a></li>
@@ -167,7 +151,7 @@
         <a href="#" class="phone-nav"><i class="fa fa-list"></i></a>
     </div>
     <div style="width: 100%;height: 83px;"></div>
-    <script>
+    <script type="text/javascript">
         function loginOut() {
             $.post("${baseurl}/CustomLogin/loginOut", function (data) {
                 location.reload();
@@ -183,5 +167,9 @@
                 }
             });
         }
+
+        $(function () {
+            $.post();
+        });
     </script>
 </header>

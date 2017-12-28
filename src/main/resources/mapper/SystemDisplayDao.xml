@@ -8,19 +8,42 @@
         select am.*,su.s_whether from (SELECT *
         FROM v_model
         <where>
-            <if test="oneLevel != ''">
+            <if test="oneLevel ==null " >
+                AND m_aclassify IS NULL
+            </if>
+            <if test="oneLevel != null">
                 AND m_aclassify = #{oneLevel}
             </if>
-            <if test="secondLevel !=''">
+            <if test="secondLevel ==null " >
+                AND m_bclassify IS NULL
+            </if>
+            <if test="secondLevel !=null">
                 AND m_bclassify = #{secondLevel}
             </if>
-            <if test="threeLevel !='' ">
-                AND m_cclassify = #{threeLevel}
+            <if test="threeLevel ==null " >
+                AND m_cclassify IS NULL
+            </if>
+            <if test="threeLevel !=null ">
+                AND m_cclassify =  #{threeLevel}
             </if>
         </where>
         ) am LEFT JOIN v_subscribe su on am.m_id = su.model_id
         <if test="customId !=''">
             and su.custom_id = #{customId}
         </if>
+    </select>
+
+    <select id="modelMenuClassify" resultType="map">
+         SELECT
+          ac.*,
+          bcc.b_id,
+          bcc.b_name,
+          bcc.c_id,
+          bcc.c_name
+        FROM v_aclassify ac, (SELECT *
+                              FROM v_bclassify bc, (SELECT *
+                                                    FROM v_cclassify) cc
+                              WHERE cc.c_bid = bc.b_id) bcc
+        WHERE bcc.b_aid = ac.a_id
     </select>
 </mapper>

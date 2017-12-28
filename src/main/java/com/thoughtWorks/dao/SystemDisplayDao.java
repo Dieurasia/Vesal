@@ -21,5 +21,10 @@ public interface SystemDisplayDao {
      */
     List<Map<String,Object>> systemInfo(Level level) throws Exception;
 
-//    List<Map<String,Object>> systemModelInfoByCustom(Level level)throws Exception;
+    /**
+     * 模型菜单类别
+     * @return
+     * @throws Exception
+     */
+   List<Map<String,Object>> modelMenuClassify()throws Exception;
 }
