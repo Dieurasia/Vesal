@@ -23,24 +23,36 @@ public class ModelInterfaceServiceImpl implements ModelInterfaceService {
     @Override
     public List<Map<String, Object>> modelInterface(String[] modelInterface) throws Exception {
         Classify classify = new Classify();
-        List<Map<String, Object>> list = new ArrayList<>();
+        List<Map<String, Object>> data = new ArrayList<>();
         int numberA = 1;
         int numberB = 2;
         int numberC = 3;
 
         if (modelInterface.length == numberA) {
             classify.setAclassify(modelInterface[0]);
-            list = modelInterfaceDao.aClassify(classify);
+            data = modelInterfaceDao.aClassify(classify);
+            for (Map<String, Object> map : data) {
+                String img = (String) map.get("img");
+                map.put("img",img.replaceAll("\\\\","/"));
+            }
         } else if (modelInterface.length == numberB) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
-            list = modelInterfaceDao.bClassify(classify);
+            data = modelInterfaceDao.bClassify(classify);
+            for (Map<String, Object> map : data) {
+                String img = (String) map.get("img");
+                map.put("img",img.replaceAll("\\\\","/"));
+            }
         } else if (modelInterface.length == numberC) {
             classify.setAclassify(modelInterface[0]);
             classify.setBclassify(modelInterface[1]);
             classify.setCclassify(modelInterface[2]);
-            list = modelInterfaceDao.modelAll(classify);
+            data = modelInterfaceDao.modelAll(classify);
+            for (Map<String, Object> map : data) {
+                String img = (String) map.get("img");
+                map.put("img",img.replaceAll("\\\\","/"));
+            }
         }
-        return list;
+        return data;
     }
 }
