@@ -86,6 +86,7 @@
 <script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
 <script type="text/javascript">
     $(function () {
+        //查找信息，并查看是否订阅
         let value = ("${param.id}".split(".jsp")[0]).split("-");
         $.post("${baseurl}/systemDisplay/systemInfo", {
             oneLevel: value[0],
@@ -168,6 +169,19 @@
                     }
                 });
             });
+        });
+    });
+
+    //等级菜单动态显示
+    $(function () {
+       alert((document.location.href).split("=")[1]);
+       let model = (document.location.href).split("=")[1];
+       let aModel = model.split("-")[0];
+       let bModel = model.split("-")[1];
+       let cModel = model.split("-")[2];
+        //一级菜单
+        $.post("${baseurl}/systemDisplay/modelMenuAClassify",function (data) {
+            console.log(data);
         });
     });
 </script>

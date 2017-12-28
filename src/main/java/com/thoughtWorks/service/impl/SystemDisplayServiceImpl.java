@@ -52,4 +52,19 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
         }
         return aClassify;
     }
+
+    @Override
+    public List<Map<String, Object>> modelMenuAClassify() throws Exception {
+        return  systemDisplayDao.modelMenuAClassify();
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuBClassify(int b_aid) throws Exception {
+        return systemDisplayDao.modelMenuBClassify(b_aid);
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuCClassify(int c_bid) throws Exception {
+        return systemDisplayDao.modelMenuCClassify(c_bid);
+    }
 }

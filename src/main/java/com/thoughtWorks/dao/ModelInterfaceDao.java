@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author ubuntu
  */
-public interface ModelInterfaceDao {
+public interface    ModelInterfaceDao {
 
     /**
      * 查询二级菜单

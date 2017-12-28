@@ -69,4 +69,55 @@ public class SystemDisplayController {
         }
         return data;
     }
+
+    @RequestMapping("modelMenuAClassify")
+    @ResponseBody
+    public Map<String,Object> modelMenuAClassify(){
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+            List<Map<String,Object>> list = systemDisplayService.modelMenuAClassify();
+            data.put("AClassify", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    @RequestMapping("modelMenuBClassify")
+    @ResponseBody
+    public Map<String,Object> modelMenuBClassify(int b_aid){
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+            List<Map<String,Object>> list = systemDisplayService.modelMenuBClassify(b_aid);
+            data.put("BClassify", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    @RequestMapping("modelMenuCClassify")
+    @ResponseBody
+    public Map<String,Object> modelMenuCClassify(int c_bid){
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+            List<Map<String,Object>> list = systemDisplayService.modelMenuCClassify(c_bid);
+            data.put("CClassify", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
 }
