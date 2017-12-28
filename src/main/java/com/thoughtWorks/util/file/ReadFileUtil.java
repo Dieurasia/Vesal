@@ -18,6 +18,7 @@ public class ReadFileUtil {
      * @param filePath
      */
     public Map<String, Object> readallfile(String filePath) {
+        String oldFilePath = filePath;
         File f = null;
         f = new File(filePath);
         // 得到f文件夹下面的所有文件。
@@ -36,13 +37,16 @@ public class ReadFileUtil {
             String suffix = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf(".") + 1);
 
             if (suffix.equals("assetbundle")) {
-                assetbundleStr.add(file.getAbsolutePath());
+                assetbundleStr.add(getStringObjectMap(oldFilePath, file,"assetbundleFile"));
             }
             if (suffix.equals("png") || suffix.equals("jpg")) {
-                imgStr.add(file.getAbsolutePath());
+                imgStr.add(getStringObjectMap(oldFilePath, file,"imgFile"));
             }
             if (suffix.equals("gif")) {
-                gifStr.add(file.getAbsolutePath());
+                gifStr.add(getStringObjectMap(oldFilePath, file,"gifFile"));
+            }
+            if (suffix.equals("xml")) {
+                fileType.put("xml", file.getAbsolutePath());
             }
             if (suffix.equals("txt")) {
                 fileType.put("txt", file.getAbsolutePath());
@@ -53,6 +57,17 @@ public class ReadFileUtil {
         fileType.put("gifStr", gifStr);
 
         return fileType;
+    }
+
+    //移动文件
+    private String getStringObjectMap(String oldFilePath, File file,String fileType) {
+        File assetbundleFile = new File(oldFilePath + "/" + fileType);
+        if (!assetbundleFile.exists()) {
+            assetbundleFile.mkdir();
+        }
+        File fileItem = new File(file.getAbsolutePath());
+        fileItem.renameTo(new File(assetbundleFile + "/" + fileItem.getName()));
+        return assetbundleFile + "/" + fileItem.getName();
     }
 
     /**
