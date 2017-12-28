@@ -7,13 +7,10 @@ import java.util.Map;
 public interface UploadDao {
     void addZipInfo(@Param("zipFile") Map<String, Object> zipFile);
 
-    Map<String,Object> getModelGrade(@Param("data") Map<String, Object> data);
+    String getModelGradeOne(String count0);
 
-    String getModelGradeOne(@Param("count0") Object count0);
+    String getModelGradeTwo(String count1);
 
-    String getModelGradeTwo(@Param("count1") Object count1);
+    String getModelGradeThr(String count2);
 
-    String getModelGradeThr(@Param("count2") Object count2);
-
-    void addModelGrade(@Param("modelGrade") Map<String, Object> modelGrade);
 }
