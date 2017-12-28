@@ -32,92 +32,6 @@
                 <ul class="clearfix " id="menuli">
                     <li><a href="${baseurl}/page/index">首页</a></li>
                     <span id="menu">
-                    <li>
-                        <a>系统解剖</a>
-                        <ul class="miniui">
-                            <li style="clear: both" class="clearA"><a><b>运动系统:</b></a></li>
-                            <li><a href="${baseurl}/page/bone?model=1-1-1">骨学</a></li>
-                            <li><a href="${baseurl}/page/bone?model=1-1-1">关节学</a></li>
-                            <li><a href="${baseurl}/page/bone?model=1-1-1">肌学</a></li>
-
-                            <li style="clear: both" class="clearA"><a><b>消化系统:</b></a></li>
-                            <li><a href="#">消化管</a></li>
-                            <li><a href="#">消化腺</a></li>
-
-                            <li style="clear: both" class="clearA"><a><b>呼吸系统:</b></a></li>
-                            <li><a href="#">呼吸道</a></li>
-                            <li><a href="#">肺</a></li>
-                            <li><a href="#">胸膜和纵膈</a></li>
-                            <li style="clear: both" class="clearA"><a><b>泌尿系统:</b></a></li>
-                            <li><a href="#">肾</a></li>
-                            <li><a href="#">输尿管</a></li>
-                            <li><a href="#">膀胱</a></li>
-                            <li><a href="#">尿道</a></li>
-                            <li style="clear: both" class="clearA"><a><b>生殖系统:</b></a></li>
-                            <li><a href="#">男性生殖系统</a></li>
-                            <li><a href="#">女性生殖系统</a></li>
-                            <li><a href="#">腹膜</a></li>
-                            <li style="clear: both" class="clearA"><a><b>脉管系统(心血管系):</b></a></li>
-                            <li><a href="#">心</a></li>
-                            <li><a href="#">动脉</a></li>
-                            <li><a href="#">静脉</a></li>
-                            <li style="clear: both" class="clearA"><a><b>脉管系统(淋巴系):</b></a></li>
-                            <li><a href="#">淋巴管道</a></li>
-                            <li><a href="#">淋巴器官</a></li>
-                            <li><a href="#">淋巴组织</a></li>
-                            <li style="clear: both" class="clearA"><a><b>感觉器:</b></a></li>
-                            <li><a href="#">视器</a></li>
-                            <li><a href="#">前庭蜗器</a></li>
-                            <li><a href="#">其他感觉器</a></li>
-                            <li style="clear: both" class="clearA"><a><b>感觉器:</b></a></li>
-                            <li><a href="#">视器</a></li>
-                            <li><a href="#">前庭蜗器</a></li>
-                            <li><a href="#">其他感觉器</a></li>
-                            <li style="clear: both" class="clearA"><a><b>神经系统:</b></a></li>
-                            <li><a href="#">中枢神经系统</a></li>
-                            <li><a href="#">周围神经系统</a></li>
-                            <li style="clear: both" class="clearA"><a><b>内分泌系统:</b></a></li>
-                            <li><a href="#">内分泌腺</a></li>
-                            <li><a href="#">内分泌组织</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>局部解剖</a>
-                        <ul>
-                            <li style="clear: both" class="clearA"><a><b>头部:</b></a></li>
-                            <li><a href="#">颅部</a></li>
-                            <li><a href="#">面部</a></li>
-                            <li style="clear: both" class="clearA"><a><b>颈部:</b></a></li>
-                            <li><a href="#">固有颈部</a></li>
-                            <li><a href="#">项部</a></li>
-                            <li style="clear: both" class="clearA"><a><b>胸部:</b></a></li>
-                            <li><a href="#">胸壁</a></li>
-                            <li><a href="#">胸腔</a></li>
-                            <li style="clear: both" class="clearA"><a><b>腹壁:</b></a></li>
-                            <li><a href="#">腹腔</a></li>
-                            <li><a href="#">腹腔内容物</a></li>
-                            <li style="clear: both" class="clearA"><a><b>盆部与会阴:</b></a></li>
-                            <li><a href="#">盆部</a></li>
-                            <li><a href="#">会阴</a></li>
-                            <li style="clear: both" class="clearA"><a><b>脊柱区:</b></a></li>
-                            <li><a href="#">项区</a></li>
-                            <li><a href="#">胸背区</a></li>
-                            <li><a href="#">腰区</a></li>
-                            <li><a href="#">骶尾区</a></li>
-                            <li style="clear: both" class="clearA"><a><b>上肢:</b></a></li>
-                            <li><a href="#">肩部</a></li>
-                            <li><a href="#">臂部</a></li>
-                            <li><a href="#">肘部</a></li>
-                            <li><a href="#">前臂部</a></li>
-                            <li><a href="#">腕和手</a></li>
-                            <li style="clear: both" class="clearA"><a><b>下肢:</b></a></li>
-                            <li><a href="#">臀部</a></li>
-                            <li><a href="#">股部</a></li>
-                            <li><a href="#">膝部</a></li>
-                            <li><a href="#">小腿部</a></li>
-                            <li><a href="#">足与踝部</a></li>
-                        </ul>
-                    </li>
                     </span>
                     <li><a href="#">手绘分享</a></li>
                     <li><a href="#">软件下载</a></li>
@@ -171,11 +85,42 @@
                 }
             });
         }
-
+    //拼接菜单
         $(function () {
             $.post("${baseurl}/systemDisplay/modelMenuClassify", function (data) {
                 console.log(data);
+                let _html = "";
+                let AClassify = data.AClassify;
+                let model = "";
+                //拼接一级菜单
+                for(let i = 0; i<AClassify.length;i++){
+                    let modelA = model;
+                    model +=AClassify[i].a_id;
+                    let BClassify = AClassify[i].BClassify;
 
+                    _html += `<li>
+                        <a>`+AClassify[i].a_name+`</a><ul class="miniui">`;
+                    //拼接二级菜单
+                    for(let j = 0; j<BClassify.length;j++){
+                        let modelB = model;
+                        model +="-"+BClassify[j].b_id;
+                        let CClassify = BClassify[j].CClassify;
+
+                        _html += `<li style="clear: both" class="clearA"><a><b>`+BClassify[j].b_name+`:</b></a></li>`;
+                        //拼接三级菜单
+                        for(let k = 0; k<CClassify.length;k++) {
+                            let modelC = model;
+                            model += "-"+CClassify[k].c_id;
+                            let modelHref = "${baseurl}//page/bone?model="+model;
+                            _html += `<li><a href="`+modelHref+`">`+CClassify[k].c_name+`</a></li>`;
+                            model = modelC;
+                        }
+                        model = modelB;
+                    }
+                       _html +=`</ul></li>`;
+                    model = modelA;
+                }
+                $("#menu").html(_html);
             });
         });
     </script>
