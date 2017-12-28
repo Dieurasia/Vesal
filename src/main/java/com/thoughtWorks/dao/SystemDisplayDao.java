@@ -22,9 +22,24 @@ public interface SystemDisplayDao {
     List<Map<String,Object>> systemInfo(Level level) throws Exception;
 
     /**
-     * 模型菜单类别
+     * 一级模型菜单类别
      * @return
      * @throws Exception
      */
-   List<Map<String,Object>> modelMenuClassify()throws Exception;
+    List<Map<String,Object>> modelMenuAClassify()throws Exception;
+    /**
+     * 二级模型菜单类别
+     *  @param b_aid
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuBClassify(int b_aid)throws Exception;
+
+    /**
+     * 三级模型菜单类别
+     * @param c_bid
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuCClassify(int c_bid)throws Exception;
 }

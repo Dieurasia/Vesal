@@ -2,18 +2,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../public/tag.jsp" %>
 <style type="text/css">
-    #menuli li a{
+    #menuli li a {
         color: black;
         text-decoration: none;
         margin: 0px;
         padding-top: 8px;
         display: block; /* 作为一个块 */
     }
-    #menuli li a:hover{
+
+    #menuli li a:hover {
         background-color: #0099CC;
         color: white;
     }
-    #menuli li  .clearA a:hover{
+
+    #menuli li .clearA a:hover {
         background-color: white;
         color: black;
     }
@@ -27,8 +29,9 @@
         </div>
         <div class="nav_right">
             <nav>
-                <ul class="clearfix " id="menuli" >
+                <ul class="clearfix " id="menuli">
                     <li><a href="${baseurl}/page/index">首页</a></li>
+                    <span id="menu">
                     <li>
                         <a>系统解剖</a>
                         <ul class="miniui">
@@ -37,16 +40,16 @@
                             <li><a href="${baseurl}/page/bone?model=1-1-1">关节学</a></li>
                             <li><a href="${baseurl}/page/bone?model=1-1-1">肌学</a></li>
 
-                            <li style="clear: both" class="clearA"><a ><b>消化系统:</b></a></li>
+                            <li style="clear: both" class="clearA"><a><b>消化系统:</b></a></li>
                             <li><a href="#">消化管</a></li>
                             <li><a href="#">消化腺</a></li>
 
                             <li style="clear: both" class="clearA"><a><b>呼吸系统:</b></a></li>
-                            <li ><a href="#">呼吸道</a></li>
+                            <li><a href="#">呼吸道</a></li>
                             <li><a href="#">肺</a></li>
                             <li><a href="#">胸膜和纵膈</a></li>
                             <li style="clear: both" class="clearA"><a><b>泌尿系统:</b></a></li>
-                            <li ><a href="#">肾</a></li>
+                            <li><a href="#">肾</a></li>
                             <li><a href="#">输尿管</a></li>
                             <li><a href="#">膀胱</a></li>
                             <li><a href="#">尿道</a></li>
@@ -79,8 +82,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a >局部解剖</a>
-                        <ul >
+                        <a>局部解剖</a>
+                        <ul>
                             <li style="clear: both" class="clearA"><a><b>头部:</b></a></li>
                             <li><a href="#">颅部</a></li>
                             <li><a href="#">面部</a></li>
@@ -115,6 +118,7 @@
                             <li><a href="#">足与踝部</a></li>
                         </ul>
                     </li>
+                    </span>
                     <li><a href="#">手绘分享</a></li>
                     <li><a href="#">软件下载</a></li>
                     <li><a href="#">关于我们</a>
@@ -169,7 +173,10 @@
         }
 
         $(function () {
-            $.post();
+            $.post("${baseurl}/systemDisplay/modelMenuClassify", function (data) {
+                console.log(data);
+
+            });
         });
     </script>
 </header>

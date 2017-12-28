@@ -52,4 +52,21 @@ public class SystemDisplayController {
         }
         return data;
     }
+
+    @RequestMapping("modelMenuClassify")
+    @ResponseBody
+    public Map<String,Object> modelMenuClassify(){
+        Map<String, Object> data = new HashMap<String, Object>();
+        try {
+            List<Map<String,Object>> list = systemDisplayService.modelMenuClassify();
+            data.put("AClassify", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
 }
