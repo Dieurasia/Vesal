@@ -11,6 +11,7 @@ public class ReadFileUtil {
     List<String> assetbundleStr = new ArrayList<>();
     List<String> imgStr = new ArrayList<>();
     List<String> gifStr = new ArrayList<>();
+    List<String> xmlStr = new ArrayList<>();
 
     /**
      * 读取一个文件夹下所有文件及子文件夹下的所有文件
@@ -47,6 +48,8 @@ public class ReadFileUtil {
                 gifStr.add(getStringObjectMap(oldFilePath, file,"gifFile"));
             }
             if (suffix.equals("xml")) {
+                String parent = new File(new File(new File(file.getParent()).getParent()).getParent()).getParent();
+                xmlStr.add(getStringObjectMap(parent, file,"xmlFile"));
                 fileType.put("xml", file.getAbsolutePath());
             }
             if (suffix.equals("txt")) {
