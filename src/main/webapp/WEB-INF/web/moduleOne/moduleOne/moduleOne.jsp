@@ -239,7 +239,6 @@
         <%--loadFile: function () {--%>
         <%--$.post("${baseurl}/download/zip");--%>
         <%--}--%>
-        <%--}--%>
     });
 
     $(function () {
