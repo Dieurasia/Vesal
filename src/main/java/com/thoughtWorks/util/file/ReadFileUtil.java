@@ -71,6 +71,7 @@ public class ReadFileUtil {
         }
         File fileItem = new File(file.getAbsolutePath());
         fileItem.renameTo(new File(assetbundleFile + "/" + fileItem.getName()));
+        file.delete();
         return assetbundleFile + "/" + fileItem.getName();
     }
 

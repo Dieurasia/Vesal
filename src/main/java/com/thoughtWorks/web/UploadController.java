@@ -45,7 +45,7 @@ public class UploadController {
     }
 
     @RequestMapping(value = "/spring", method = RequestMethod.POST)
-    public String springupload(@RequestParam("uploadfile") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String springupload(@RequestParam("demo") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
         ReadFileUtil readFileUtil = new ReadFileUtil();
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
@@ -75,8 +75,11 @@ public class UploadController {
 
                     //解压文件操作
                     UnZipFileUtil.unZipFiles(oldFile, unRealPath);
-                    FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
+                    //复制压缩包
+//                    FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
 
+//                    Thread.currentThread().sleep(2000);//毫秒
+                    System.out.println("0.0.0.0.0.0.0.0.0.0.0.0.0" + unRealPath);
                     Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
                     //提取zip里面的信息,并封装到map集合中,并传入Service层
                     Map<String, Object> dataInfo = extractZipInfo(fileInfo);
