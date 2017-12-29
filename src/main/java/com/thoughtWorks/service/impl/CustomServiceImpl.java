@@ -4,6 +4,7 @@ import com.thoughtWorks.dao.CustomDao;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
+import com.thoughtWorks.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public Custom login(Custom custom) throws Exception {
+        custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
+
         return customDao.login(custom);
     }
 
@@ -56,6 +59,7 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public void customRegister(Custom custom) throws Exception {
+        custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
         customDao.customRegister(custom);
