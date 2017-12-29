@@ -312,41 +312,41 @@
                 _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
             }
 
-            $(".itemTag").click(function () {
-                let hasclazz = $(this).hasClass("new");
-                let thiz = $(this);
-                let modelId = $(this).siblings('span').text();
+            <%--$(".itemTag").click(function () {--%>
+                <%--let hasclazz = $(this).hasClass("new");--%>
+                <%--let thiz = $(this);--%>
+                <%--let modelId = $(this).siblings('span').text();--%>
 
-                //判断是否有session
-                $.post("${baseurl}/CustomLogin/session", function (data) {
-                    if (data.haveSession) {
-                        let sWhether = 0;
-                        let customId = data.user.cId;
-                        if (hasclazz) {
-                            thiz.text("已订阅").addClass("attribute").removeClass("new");
-                            sWhether = 1;
-                            layer.msg("订阅成功", {
-                                time: 2000
-                            });
-                        } else {
-                            thiz.text("+订阅").addClass("new").removeClass("attribute");
-                            sWhether = 2;
-                            layer.msg("取消订阅", {
-                                time: 2000
-                            });
-                        }
-                        $.post("${baseurl}/CustomLogin/Subscribe", {
-                            sWhether: sWhether,
-                            customId: customId,
-                            modelId: modelId
-                        }, function (data) {
+                <%--//判断是否有session--%>
+                <%--$.post("${baseurl}/CustomLogin/session", function (data) {--%>
+                    <%--if (data.haveSession) {--%>
+                        <%--let sWhether = 0;--%>
+                        <%--let customId = data.user.cId;--%>
+                        <%--if (hasclazz) {--%>
+                            <%--thiz.text("已订阅").addClass("attribute").removeClass("new");--%>
+                            <%--sWhether = 1;--%>
+                            <%--layer.msg("订阅成功", {--%>
+                                <%--time: 2000--%>
+                            <%--});--%>
+                        <%--} else {--%>
+                            <%--thiz.text("+订阅").addClass("new").removeClass("attribute");--%>
+                            <%--sWhether = 2;--%>
+                            <%--layer.msg("取消订阅", {--%>
+                                <%--time: 2000--%>
+                            <%--});--%>
+                        <%--}--%>
+                        <%--$.post("${baseurl}/CustomLogin/Subscribe", {--%>
+                            <%--sWhether: sWhether,--%>
+                            <%--customId: customId,--%>
+                            <%--modelId: modelId--%>
+                        <%--}, function (data) {--%>
 
-                        });
-                    } else {
-                        location.href = "${baseurl}/page/frontLogin";
-                    }
-                });
-            });
+                        <%--});--%>
+                    <%--} else {--%>
+                        <%--location.href = "${baseurl}/page/frontLogin";--%>
+                    <%--}--%>
+                <%--});--%>
+            <%--});--%>
 
         });
     });
