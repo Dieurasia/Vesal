@@ -55,14 +55,17 @@
         <div class="m-detail">
             <div class="detailHd">
                 <div class="m-slide">
-                    <div class="view"><img
-                            src="./WeiSali_files/images/LuGu.gif">
+                    <div class="view" id="modelImg">
+                        <%--<img src="./WeiSali_files/images/LuGu.gif">--%>
+                        <img src="" alt=""
+                             onmouseover="this.src=''"
+                             onmouseout="this.src=''">
                     </div>
 
                 </div>
                 <div class="m-info" style="padding:0">
                     <div class="intro">
-                        <div class="name">人体骨骼</div>
+                        <div class="name" id="modelName"></div>
                         <div class="detailTag">
                             <a class="manufactTag" href="#">维萨里</a>
                         </div>
@@ -71,7 +74,7 @@
                     <div class="price u-formctr">
                         <a href="javascript:;">
                             <div class="j-commentEntry comment">
-                                <span class="f-fz18">33</span><br>
+                                <span class="f-fz18" id="modelCount"></span><br>
                                 <span class="f-fz13">订阅</span>
                             </div>
                         </a>
@@ -79,39 +82,41 @@
                             <span class="label label-1">售价</span>
                             <span class="rp">
                                 <span class="rmb">¥</span>
-                                <span class="num">9.9</span>
+                                <span class="num" id="modelPrice"></span>
                             </span>
                         </div>
-                        <div class="field sale j-sale">
-                            <span class="label label-2">编码</span>
-                            <div class="saleLine">
-                                <a class="link" href="#" target="_parent">
-                                    <span>10件1元任选，全场满288元送赠品</span>
-                                </a>
-                                <div style="clear:both;"></div>
-                            </div>
-                            <div style="clear:both;"></div>
-                        </div>
-
                         <div>
                             <div class="field pointInfo">
                                 <span class="label">原价</span>
                                 <span class="pointCt">
                                 <s>
                                     <span>原价</span>
-                                    <span>9.9</span>
+                                    <span id="modelPrice1"></span>
                                     <span>元</span>
                                 </s>
                                 </span>
                             </div>
                         </div>
+                        <div class="field sale j-sale">
+                            <span class="label label-2">编码</span>
+                            <div class="saleLine">
+                                <a class="link" href="#" target="_parent">
+                                    <span id="modelCode"></span>
+                                </a>
+                                <div style="clear:both;"></div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+
                         <hr>
                         <div class="field server">
                             <div class="field sale j-sale">
                                 <span class="label label-2">版本</span>
                                 <div class="saleLine">
                                     <a class="link" href="#" target="_parent">
-                                        <div class="activityType" style="margin-top: 4px;">1.0版</div>
+                                        <div class="activityType" style="margin-top: 4px;">
+                                            <span id="modelVersion"></span>.0版
+                                        </div>
                                     </a>
                                     <div style="clear:both;"></div>
                                 </div>
@@ -169,28 +174,27 @@
                         </div>
                     </div>
                     <div class="btns">
-                        <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-ghost" href="javascript:;">
+                        <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-ghost"
+                           href="javascript:;">
                             <span><span>立即购买</span></span>
                         </a>
-                        <a  style="line-height: 36px;"  class="btn w-button w-button-xl w-button-primary" href="javascript:;">
+                        <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
+                           href="javascript:;">
                             <span><i class="w-icon-cart cart-detail"></i>
                                 <span>加入购物车</span>
                             </span>
                         </a>
-                        <div class="w-collectZone" title="点击收藏">
-                            <div class="top">
-                                <span class="w-icon-normal icon-normal-collectEpt icon"></span>
-                            </div>
-                            <div class="bottom">
-                                <p>收藏</p>
-                            </div>
-                        </div>
+                            <%--<div class="bd">--%>
+                                <%--<div class="prdtTags">--%>
+                                    <%--<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                     </div>
                 </div>
             </div>
             <div class="m-promContainer j-promContainer"></div>
             <div class="detailBd">
-                <div class="left">
+                <div class="container">
                     <div class="m-detailNavTab j-detailNavTab">
                         <ul class="nav">
                             <li class="item item-active">
@@ -202,88 +206,151 @@
                         </ul>
                     </div>
                     <div class="m-detailHtml">
-                        <ul class="m-attrList" style="visibility: visible;">
-                            <li class="item j-item">
-                                <span class="name">部位</span>
-                                <span class="value">头部</span>
-                            </li>
-                            <li class="item j-item">
-                                <span class="name">款式</span>
-                                <span class="value">块状</span>
-                            </li>
-                            <li class="item j-item">
-                                <span class="name">材料</span>
-                                <span class="value">纳米材料</span>
-                            </li>
-                            <li class="item j-item">
-                                <span class="name">风格</span>
-                                <span class="value">人体1:1</span>
-                            </li>
-                            <li class="item j-item">
-                                <span class="name">工艺</span>
-                                <span class="value">其它</span>
-                            </li>
-                            <li class="item j-item">
-                                <span class="name">图案</span>
-                                <span class="value">纯色</span>
-                            </li>
-                            <li class="item j-item" style="width: 100%;">
-                                <span class="name">尺寸</span>
-                                <span class="value">10cm*10cm</span>
-                            </li>
-                            <li class="item j-item" style="width: 100%; border-bottom: none;">
-                                <span class="name">重量</span>
-                                <span class="value">约4.1kg</span>
-                            </li>
-                        </ul>
+                        <%--<ul class="m-attrList" style="visibility: visible;">--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">部位</span>--%>
+                        <%--<span class="value">头部</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">款式</span>--%>
+                        <%--<span class="value">块状</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">材料</span>--%>
+                        <%--<span class="value">纳米材料</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">风格</span>--%>
+                        <%--<span class="value">人体1:1</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">工艺</span>--%>
+                        <%--<span class="value">其它</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item">--%>
+                        <%--<span class="name">图案</span>--%>
+                        <%--<span class="value">纯色</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item" style="width: 100%;">--%>
+                        <%--<span class="name">尺寸</span>--%>
+                        <%--<span class="value">10cm*10cm</span>--%>
+                        <%--</li>--%>
+                        <%--<li class="item j-item" style="width: 100%; border-bottom: none;">--%>
+                        <%--<span class="name">重量</span>--%>
+                        <%--<span class="value">约4.1kg</span>--%>
+                        <%--</li>--%>
+                        <%--</ul>--%>
                         <div>
                             <p>
                                 <span style="font-size: 20px; font-weight: bold">简介:</span><br>
-                                颅骨（skull）位于脊柱上方，由23块形状和大小不同的扁骨和不规则骨组成。除下颌骨及舌骨外，其余各骨彼此借缝或软骨牢固连结，起着保护和支持脑、感觉器官以及消化器和呼吸器的起始部分的作用。以眶上缘及外耳门上缘连线为分界线，将颅分为脑颅和面颅两部分。脑颅位于颅的后上部，包括成对的顶骨和颞骨，不成对的额骨、蝶骨、枕骨和筛骨，共8块，围成颅腔，容纳脑。面颅为颅的前下部分，包含成对的上颌骨、颧骨、鼻骨、泪骨、腭骨及鼻甲骨，不成对的犁骨、下颌骨、舌骨，共15块，构成眶、鼻腔、口腔和面部的骨性支架。
+                                <span id="modelIntroduce"></span>
                             </p>
-                            <p>
-                                <img data-original="#" class="img-lazyload short img-lazyloaded"
-                                     src="./WeiSali_files/images/JuJueJi.gif">
-                            </p>
+                            <%--<p>--%>
+                            <%--<img data-original="#" class="img-lazyload short img-lazyloaded"--%>
+                            <%--src="./WeiSali_files/images/JuJueJi.gif">--%>
+                            <%--</p>--%>
                         </div>
                     </div>
                 </div>
-                <div class="right">
-                    <div>
-                        <div class="m-hotSell">
-                            <header class="hd">最新上线</header>
-                            <div class="bd">
-                                <ul>
-                                    <li class="item">
-                                        <a href="#" target="_parent"></a>
-                                    </li>
-                                    <li class="item">
-                                        <a href="#" target="_parent">
-                                            <div class="img-wrap">
-                                                <img width="250" height="250"
-                                                     src="./WeiSali_files/images/DaNaoDongMai.PNG">
-                                            </div>
-                                            <div class="content">
-                                                <div class="title">
-                                                    <span class=""></span>
-                                                    <span class="name">大脑动脉</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span>¥</span><span>59</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%--<div class="right">--%>
+                <%--<div>--%>
+                <%--<div class="m-hotSell">--%>
+                <%--<header class="hd">最新上线</header>--%>
+                <%--<div class="bd">--%>
+                <%--<ul>--%>
+                <%--<li class="item">--%>
+                <%--<a href="#" target="_parent"></a>--%>
+                <%--</li>--%>
+                <%--<li class="item">--%>
+                <%--<a href="#" target="_parent">--%>
+                <%--<div class="img-wrap">--%>
+                <%--<img width="250" height="250"--%>
+                <%--src="./WeiSali_files/images/DaNaoDongMai.PNG">--%>
+                <%--</div>--%>
+                <%--<div class="content">--%>
+                <%--<div class="title">--%>
+                <%--<span class=""></span>--%>
+                <%--<span class="name">大脑动脉</span>--%>
+                <%--</div>--%>
+                <%--<div class="price">--%>
+                <%--<span>¥</span><span>59</span>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</a>--%>
+                <%--</li>--%>
+                <%--</ul>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
             </div>
         </div>
     </div>
 </div>
 <jsp:include page="../../public/footer.jsp"/>
 <script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        let m_id = ("${param.id}".split(".jsp")[0]);
+        $.post("${baseurl}/systemDisplay/queryModelById", {modelId: m_id}, function (data) {
+            console.log(data)
+            let modelInfo = data.modelInfo[0];
+            let m_dynamic = "${baseurl}/file/" + modelInfo.m_dynamic;
+            let m_thumbnail = "${baseurl}/file/" + modelInfo.m_thumbnail;
+            $("#modelImg").html(`<img src="` + m_thumbnail + `" alt="` + modelInfo.m_name + `" class="img"
+                                        onmouseover= "this.src='` + m_dynamic + `'" onmouseout="this.src='` + m_thumbnail + `'" >`);
+            $("#modelName").html(modelInfo.m_name)
+            $("#modelPrice").html(modelInfo.m_price)
+            $("#modelPrice1").html(modelInfo.m_price)
+            $("#modelCode").html(modelInfo.m_code)
+            $("#modelIntroduce").html(modelInfo.m_introduce)
+            $("#modelVersion").html(modelInfo.m_version)
+            $("#modelCount").html(modelInfo.count)
+            if (modelInfo.s_whether == 1) {
+                _html += `<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>`;
+            } else {
+                _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
+            }
+
+            $(".itemTag").click(function () {
+                let hasclazz = $(this).hasClass("new");
+                let thiz = $(this);
+                let modelId = $(this).siblings('span').text();
+
+                //判断是否有session
+                $.post("${baseurl}/CustomLogin/session", function (data) {
+                    if (data.haveSession) {
+                        let sWhether = 0;
+                        let customId = data.user.cId;
+                        if (hasclazz) {
+                            thiz.text("已订阅").addClass("attribute").removeClass("new");
+                            sWhether = 1;
+                            layer.msg("订阅成功", {
+                                time: 2000
+                            });
+                        } else {
+                            thiz.text("+订阅").addClass("new").removeClass("attribute");
+                            sWhether = 2;
+                            layer.msg("取消订阅", {
+                                time: 2000
+                            });
+                        }
+                        $.post("${baseurl}/CustomLogin/Subscribe", {
+                            sWhether: sWhether,
+                            customId: customId,
+                            modelId: modelId
+                        }, function (data) {
+
+                        });
+                    } else {
+                        location.href = "${baseurl}/page/frontLogin";
+                    }
+                });
+            });
+
+        });
+    });
+</script>
+this.src=''
 </body>
 </html>

@@ -104,7 +104,7 @@
                 //详情页面
                 let modelDetails = ("${baseurl}/page/modelDetails?id="+subscribe[i].m_id);
                 _html += `<li class="item">
-                            <div class="m-product j-product ">
+                            <div class="m-product j-product">
                                 <div class="hd">
                                     <a href="`+modelDetails+`" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"

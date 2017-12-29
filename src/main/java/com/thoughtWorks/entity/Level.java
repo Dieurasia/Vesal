@@ -6,11 +6,20 @@ package com.thoughtWorks.entity;
  * @date 2017/12/15
  */
 public class Level {
+    private String modelId;
     private String modelCode;
     private String oneLevel;
     private String secondLevel;
     private String threeLevel;
     private Integer customId;
+
+    public String getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
+    }
 
     public Integer getCustomId() {
         return customId;

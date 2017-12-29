@@ -42,4 +42,12 @@ public interface SystemDisplayDao {
      * @throws Exception
      */
     List<Map<String,Object>> modelMenuCClassify(int c_bid)throws Exception;
+
+    /**
+     *根据id查找模型信息
+     * @param  level
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> queryModelById(Level level)throws Exception;
 }

@@ -51,6 +51,10 @@ public class SystemDisplayController {
         return data;
     }
 
+    /**
+     * 查找所有菜单信息并归类
+     * @return
+     */
     @RequestMapping("modelMenuClassify")
     @ResponseBody
     public Map<String,Object> modelMenuClassify(){
@@ -68,6 +72,10 @@ public class SystemDisplayController {
         return data;
     }
 
+    /**
+     * 查找一级菜单
+     * @return
+     */
     @RequestMapping("modelMenuAClassify")
     @ResponseBody
     public Map<String,Object> modelMenuAClassify(){
@@ -85,6 +93,11 @@ public class SystemDisplayController {
         return data;
     }
 
+    /**
+     * 通过一级id查找二级菜单
+     * @param b_aid
+     * @return
+     */
     @RequestMapping("modelMenuBClassify")
     @ResponseBody
     public Map<String,Object> modelMenuBClassify(int b_aid){
@@ -102,6 +115,11 @@ public class SystemDisplayController {
         return data;
     }
 
+    /**
+     * 通过二级id查找三级菜单
+     * @param c_bid
+     * @return
+     */
     @RequestMapping("modelMenuCClassify")
     @ResponseBody
     public Map<String,Object> modelMenuCClassify(int c_bid){
@@ -109,6 +127,32 @@ public class SystemDisplayController {
         try {
             List<Map<String,Object>> list = systemDisplayService.modelMenuCClassify(c_bid);
             data.put("CClassify", list);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    /**
+     * 通过id查找商品信息
+     * @param level
+     * @return
+     */
+    @RequestMapping("queryModelById")
+    @ResponseBody
+    public Map<String,Object> queryModelById(Level level, HttpSession session){
+        Map<String, Object> data = new HashMap<String, Object>();
+        Custom user = (Custom) session.getAttribute("custom");
+        try {
+            if(user != null){
+                level.setCustomId(user.getcId());
+            }
+            List<Map<String,Object>> list = systemDisplayService.queryModelById(level);
+            data.put("modelInfo", list);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
