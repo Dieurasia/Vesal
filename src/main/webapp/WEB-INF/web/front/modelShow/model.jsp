@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../public/tag.jsp" %>
+    <%@ include file="../public/tag.jsp" %>
 <!DOCTYPE html>
 <html class="js rgba opacity cssanimations borderradius boxshadow csstransitions csstransforms textshadow">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>维萨里产品展示网</title>
-
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" href="${baseurl}/public/css/show_list.css">
     <link rel="stylesheet" href="${baseurl}/public/css/show_style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
@@ -100,10 +100,12 @@
                 let file = ("${baseurl}/file/" + fileLong);
                 let m_dynamic = subscribe[i].m_dynamic;
                 let dynamic = ("${baseurl}/file/" + m_dynamic);
+                //详情页面
+                let modelDetails = ("${baseurl}/page/modelDetails");
                 _html += `<li class="item">
                             <div class="m-product j-product ">
                                 <div class="hd">
-                                    <a href="#" title="` + subscribe[i].m_name + `" target="_blank">
+                                    <a href="`+modelDetails+`" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
                                         onmouseover= "this.src='` + dynamic + `'" onmouseout="this.src='` + file + `'" ></a>
                                 </div>
@@ -118,7 +120,7 @@
                            <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
                                     <h4 class="name">
-                                        <a href="#" title="肝" target="_blank"><span>` + subscribe[i].m_name + `</span>
+                                        <a href="`+modelDetails+`"  target="_blank"><span>` + subscribe[i].m_name + `</span>
                                         </a>
                                     </h4>
                                     <p class="price">
@@ -179,7 +181,7 @@
         let bModel = model.split("-")[1];
         let cModel = model.split("-")[2];
         //一级菜单
-        let _html = ` <div class="category"><span class="name">分类：</span>
+        let _html = ` <div class="area"><span class="name">分类：</span>
                         <div class="categoryGroup">`;
         $.post("${baseurl}/systemDisplay/modelMenuAClassify", function (data) {
             let AClassify = data.AClassify;
