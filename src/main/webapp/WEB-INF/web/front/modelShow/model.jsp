@@ -32,7 +32,7 @@
         <!--商品展示区域-->
         <div id="j-goodsAreaWrap">
             <div class="m-goodsArea">
-                <div class="m-sortbar">
+                <div class="m-sortbar" id="modelMenu">
                     <div class="category"><span class="name">分类：</span>
                         <div class="categoryGroup">
                             <a href="javascript:;" class="categoryItem  active">系统解剖</a>
@@ -63,18 +63,18 @@
                         </div>
                     </div>
                     <%--<div class="sorts">--%>
-                        <%--<span class="name">排序：</span>--%>
-                        <%--<a href="javascript:;" class="sort sort-default">默认</a>--%>
-                        <%--<a href="javascript:;" class="sort sort-price active">--%>
-                            <%--<span>价格</span>--%>
-                            <%--<div class="icon">--%>
-                                <%--<i class="w-icon-arrow arrow-up-gold"></i>--%>
-                                <%--<i class="w-icon-arrow arrow-down-gray"></i></div>--%>
-                        <%--</a>--%>
-                       <%--</div>--%>
+                    <%--<span class="name">排序：</span>--%>
+                    <%--<a href="javascript:;" class="sort sort-default">默认</a>--%>
+                    <%--<a href="javascript:;" class="sort sort-price active">--%>
+                    <%--<span>价格</span>--%>
+                    <%--<div class="icon">--%>
+                    <%--<i class="w-icon-arrow arrow-up-gold"></i>--%>
+                    <%--<i class="w-icon-arrow arrow-down-gray"></i></div>--%>
+                    <%--</a>--%>
+                    <%--</div>--%>
                 </div>
                 <div class="m-content">
-                    <ul class="m-itemList f-margin-top-25" id ="model">
+                    <ul class="m-itemList f-margin-top-25" id="model">
 
                     </ul>
                 </div>
@@ -105,16 +105,16 @@
                                 <div class="hd">
                                     <a href="#" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
-                                        onmouseover= "this.src='` + dynamic +`'" onmouseout="this.src='` + file + `'" ></a>
+                                        onmouseover= "this.src='` + dynamic + `'" onmouseout="this.src='` + file + `'" ></a>
                                 </div>
                                 <div class="bd">
                                     <div class="prdtTags">`
                 if (subscribe[i].s_whether == 1) {
                     _html += `<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>`;
-                }else{
+                } else {
                     _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
                 }
-                _html +=` <div class="itemTag ">最新</div>
+                _html += ` <div class="itemTag ">最新</div>
                            <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
                                     <h4 class="name">
@@ -174,14 +174,64 @@
 
     //等级菜单动态显示
     $(function () {
-       let model = (document.location.href).split("=")[1];
-       let aModel = model.split("-")[0];
-       let bModel = model.split("-")[1];
-       let cModel = model.split("-")[2];
+        let model = (document.location.href).split("=")[1];
+        let aModel = model.split("-")[0];
+        let bModel = model.split("-")[1];
+        let cModel = model.split("-")[2];
         //一级菜单
-        $.post("${baseurl}/systemDisplay/modelMenuAClassify",function (data) {
-            console.log(data);
+        let _html = ` <div class="category"><span class="name">分类：</span>
+                        <div class="categoryGroup">`;
+        $.post("${baseurl}/systemDisplay/modelMenuAClassify", function (data) {
+            let AClassify = data.AClassify;
+            let model = "";
+            for(let i = 0;i<AClassify.length;i++){
+                let Amodel = model;
+                model +=AClassify[i].a_id;
+                let modelHref = "${baseurl}//page/bone?model="+model;
+                if(aModel == AClassify[i].a_id){
+                    _html += `<a href="`+modelHref+`" class="categoryItem  active">`+AClassify[i].a_name+`</a>`
+                }else{
+                    _html += `<a href="`+modelHref+`" class="categoryItem ">`+AClassify[i].a_name+`</a>`
+                }
+                model = Amodel;
+            }
+            _html += `</div></div> <div class="area"><span class="name">系统：</span><div class="categoryGroup">`;
+            //二级菜单
+            $.post("${baseurl}/systemDisplay/modelMenuBClassify",{b_aid:aModel},function (data) {
+
+                let BClassify = data.BClassify;
+                let modelHrefAll = "${baseurl}//page/bone?model="+aModel;
+                if(bModel == null){
+                    _html +=`<a href="`+modelHrefAll+`" class="categoryItem active">全部</a>`;
+                }else{
+                    _html +=`<a href="`+modelHrefAll+`" class="categoryItem ">全部</a>`;
+                }
+                for(let i = 0;i<BClassify.length;i++) {
+                    let Bmodel = model;
+                    model +=aModel+"-"+BClassify[i].b_id;
+                    let modelHref = "${baseurl}//page/bone?model="+model;
+                    if(bModel == BClassify[i].b_id){
+                        _html += `<a href="`+modelHref+`" class="categoryItem  active">`+BClassify[i].b_name+`</a>`
+                    }else{
+                        _html += `<a href="`+modelHref+`" class="categoryItem ">`+BClassify[i].b_name+`</a>`
+                    }
+                    model = Bmodel;
+                };
+                _html += `</div></div><div class="area"><span class="name">子分类：</span><div class="categoryGroup">`;
+                $.post("${baseurl}/systemDisplay/modelMenuCClassify",{c_bid:bModel},function (data) {
+                    let CClassify = data.CClassify;
+                    let modelHrefAll = "${baseurl}//page/bone?model="+aModel+"-"+bModel;
+                    if(cModel == null){
+                        _html +=`<a href="`+modelHrefAll+`" class="categoryItem active">全部</a>`;
+                    }else{
+                        _html +=`<a href="`+modelHrefAll+`" class="categoryItem ">全部</a>`;
+                    }
+                    console.log(data);
+                });
+                $("#modelMenu").html(_html);
+            });
         });
+
     });
 </script>
 </body>
