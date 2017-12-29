@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ReadFileUtil {
+
+
     Map<String, Object> fileType = new HashMap<>();
     List<String> assetbundleStr = new ArrayList<>();
-    List<String> imgStr = new ArrayList<>();
-    List<String> gifStr = new ArrayList<>();
     List<String> xmlStr = new ArrayList<>();
+
 
     /**
      * 读取一个文件夹下所有文件及子文件夹下的所有文件
@@ -19,6 +20,7 @@ public class ReadFileUtil {
      * @param filePath
      */
     public Map<String, Object> readallfile(String filePath) {
+
         String oldFilePath = filePath;
         File f = null;
         f = new File(filePath);
@@ -39,17 +41,17 @@ public class ReadFileUtil {
 
             if (suffix.equals("assetbundle")) {
                 String parent = new File(new File(new File(file.getParent()).getParent()).getParent()).getParent();
-                assetbundleStr.add(getStringObjectMap(parent, file,"assetbundleFile"));
+                assetbundleStr.add(getStringObjectMap(parent, file, "assetbundleFile"));
             }
             if (suffix.equals("png") || suffix.equals("jpg")) {
-                imgStr.add(getStringObjectMap(oldFilePath, file,"imgFile"));
+                fileType.put("imgStr", file.getAbsolutePath());
             }
             if (suffix.equals("gif")) {
-                gifStr.add(getStringObjectMap(oldFilePath, file,"gifFile"));
+                fileType.put("gifStr", file.getAbsolutePath());
             }
             if (suffix.equals("xml")) {
                 String parent = new File(new File(new File(file.getParent()).getParent()).getParent()).getParent();
-                xmlStr.add(getStringObjectMap(parent, file,"xmlFile"));
+                xmlStr.add(getStringObjectMap(parent, file, "xmlFile"));
                 fileType.put("xml", file.getAbsolutePath());
             }
             if (suffix.equals("txt")) {
@@ -57,14 +59,12 @@ public class ReadFileUtil {
             }
         }
         fileType.put("assetbundleStr", assetbundleStr);
-        fileType.put("imgStr", imgStr);
-        fileType.put("gifStr", gifStr);
 
         return fileType;
     }
 
     //移动文件
-    private String getStringObjectMap(String oldFilePath, File file,String fileType) {
+    private String getStringObjectMap(String oldFilePath, File file, String fileType) {
         File assetbundleFile = new File(oldFilePath + "/" + fileType);
         if (!assetbundleFile.exists()) {
             assetbundleFile.mkdir();
@@ -139,25 +139,22 @@ public class ReadFileUtil {
 
     /**
      * 读取filePath的文件，将文件中的数据按照行读取到String数组中
-     * @param filePath    文件的路径
-     * @return            文件中一行一行的数据
+     *
+     * @param filePath 文件的路径
+     * @return 文件中一行一行的数据
      */
-    public static String[] readToString(String filePath)
-    {
+    public static String[] readToString(String filePath) {
         File file = new File(filePath);
         // 获取文件长度
         Long filelength = file.length();
         byte[] filecontent = new byte[filelength.intValue()];
-        try
-        {
+        try {
             FileInputStream in = new FileInputStream(file);
             in.read(filecontent);
             in.close();
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

@@ -115,29 +115,13 @@ public class UploadController {
 
 
             if (key.equals("imgStr")) {
-                List<String> imgs = (List<String>) fileInfo.get(key);
-                if (imgs.size() == 1) {
-                    zipFileInfo.put("imgStr", splitStr(imgs.get(0)));
-                } else if (imgs.size() > 1) {
-                    String imgMore = "";
-                    for (int i = 0; i < imgs.size(); i++) {
-                        imgMore += splitStr(imgs.get(i)) + "###";
-                    }
-                    zipFileInfo.put("imgStr", imgMore);
-                }
+                String imgs = (String) fileInfo.get(key);
+                    zipFileInfo.put("imgStr", splitStr(imgs));
             }
 
             if (key.equals("gifStr")) {
-                List<String> gifs = (List<String>) fileInfo.get(key);
-                if (gifs.size() == 1) {
-                    zipFileInfo.put("gifStr", splitStr(gifs.get(0)));
-                } else if (gifs.size() > 1) {
-                    String gifMore = "";
-                    for (int i = 0; i < gifs.size(); i++) {
-                        gifMore += splitStr(gifs.get(i)) + "###";
-                    }
-                    zipFileInfo.put("gifStr", gifMore);
-                }
+                String gifs = (String) fileInfo.get(key);
+                    zipFileInfo.put("gifStr", splitStr(gifs));
             }
 
             if (key.equals("assetbundleStr")) {
