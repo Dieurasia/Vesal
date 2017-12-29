@@ -126,101 +126,106 @@
 </head>
 <body>
 <%--<section class="larry-grid">--%>
-    <%--<div class="larry-personal">--%>
-        <%--<div class="layui-tab">--%>
-            <%--<blockquote class="layui-elem-quote mylog-info-tit">--%>
-                    <%--<div class="container">--%>
-                        <%--<div class="row">--%>
-                            <%--<form role="form" action="${baseurl}/upload/spring" method="post"--%>
-                                  <%--enctype="multipart/form-data">--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="uploadfile">文件</label> <input type="file" multiple="multiple" id="uploadfile"--%>
-                                                                              <%--name="uploadfile">--%>
-                                    <%--<p class="help-block">目前只支持zip文件的上传格式</p>--%>
-                                <%--</div>--%>
-                                <%--<button type="submit" class="btn btn-default">上传</button>--%>
-                            <%--</form>--%>
-                            <%--${msg }--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-            <%--</blockquote>--%>
+<%--<div class="larry-personal">--%>
+<%--<div class="layui-tab">--%>
+<%--<blockquote class="layui-elem-quote mylog-info-tit">--%>
+<%--<div class="container">--%>
+<%--<div class="row">--%>
+<%--<form role="form" action="${baseurl}/upload/spring" method="post"--%>
+<%--enctype="multipart/form-data">--%>
+<%--<div class="form-group">--%>
+<%--<label for="uploadfile">文件</label> <input type="file" multiple="multiple" id="uploadfile"--%>
+<%--name="uploadfile">--%>
+<%--<p class="help-block">目前只支持zip文件的上传格式</p>--%>
+<%--</div>--%>
+<%--<button type="submit" class="btn btn-default">上传</button>--%>
+<%--</form>--%>
+<%--${msg }--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</blockquote>--%>
 
-            <%--<blockquote>--%>
-                <%--<div class="container">--%>
-                    <%--<div class="row">--%>
-                        <%--<div class="table-responsive col-sm-10">--%>
-                            <%--<table class="table">--%>
-                                <%--<thead>--%>
-                                <%--<tr>--%>
-                                    <%--<th>序列</th>--%>
-                                    <%--<th>文件名</th>--%>
-                                    <%--<th>下载</th>--%>
-                                <%--</tr>--%>
-                                <%--</thead>--%>
-                                <%--<tbody id="showInfo">--%>
-                                <%--<c:forEach var="file" items="${files }" varStatus="cur">--%>
-                                    <%--<tr>--%>
-                                        <%--<td>${cur.index+1 }</td>--%>
-                                        <%--<td><a href="javascript:void(0);" class="downloadfile"--%>
-                                               <%--data-file-path="${file.absolutePath }"><strong>${file.name }</strong></a></td>--%>
-                                        <%--<td><a href="javascript:void(0);" class="downloadzipfile"--%>
-                                               <%--data-file-path="${file.absolutePath }"><strong>zip</strong></a></td>--%>
-                                    <%--</tr>--%>
-                                <%--</c:forEach>--%>
-                                <%--</tbody>--%>
-                            <%--</table>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<form id="downloadfile" name="downloadfile" class="hide" method="post"--%>
-                          <%--action="${baseurl }/download/file"--%>
-                          <%--target="downloadFrom">--%>
-                        <%--<input type="hidden" id="filepath" name="filepath" value=""/>--%>
-                    <%--</form>--%>
-                    <%--<form id="downloadzip" name="downloadzip" class="hide" method="post"--%>
-                          <%--action="${baseurl }/download/zip"--%>
-                          <%--target="downloadFrom">--%>
-                        <%--<input type="hidden" id="zippath" name="zippath" value=""/>--%>
-                    <%--</form>--%>
-                    <%--<iframe name="downloadFrom" style="display: none;"></iframe>--%>
-                <%--</div>--%>
-            <%--</blockquote>--%>
-            <%--<div class="larry-separate"></div>--%>
+<%--<blockquote>--%>
+<%--<div class="container">--%>
+<%--<div class="row">--%>
+<%--<div class="table-responsive col-sm-10">--%>
+<%--<table class="table">--%>
+<%--<thead>--%>
+<%--<tr>--%>
+<%--<th>序列</th>--%>
+<%--<th>文件名</th>--%>
+<%--<th>下载</th>--%>
+<%--</tr>--%>
+<%--</thead>--%>
+<%--<tbody id="showInfo">--%>
+<%--<c:forEach var="file" items="${files }" varStatus="cur">--%>
+<%--<tr>--%>
+<%--<td>${cur.index+1 }</td>--%>
+<%--<td><a href="javascript:void(0);" class="downloadfile"--%>
+<%--data-file-path="${file.absolutePath }"><strong>${file.name }</strong></a></td>--%>
+<%--<td><a href="javascript:void(0);" class="downloadzipfile"--%>
+<%--data-file-path="${file.absolutePath }"><strong>zip</strong></a></td>--%>
+<%--</tr>--%>
+<%--</c:forEach>--%>
+<%--</tbody>--%>
+<%--</table>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--<form id="downloadfile" name="downloadfile" class="hide" method="post"--%>
+<%--action="${baseurl }/download/file"--%>
+<%--target="downloadFrom">--%>
+<%--<input type="hidden" id="filepath" name="filepath" value=""/>--%>
+<%--</form>--%>
+<%--<form id="downloadzip" name="downloadzip" class="hide" method="post"--%>
+<%--action="${baseurl }/download/zip"--%>
+<%--target="downloadFrom">--%>
+<%--<input type="hidden" id="zippath" name="zippath" value=""/>--%>
+<%--</form>--%>
+<%--<iframe name="downloadFrom" style="display: none;"></iframe>--%>
+<%--</div>--%>
+<%--</blockquote>--%>
+<%--<div class="larry-separate"></div>--%>
 
-            <%--<div id="demo1"></div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+<%--<div id="demo1"></div>--%>
+<%--</div>--%>
+<%--</div>--%>
 <%--</section>--%>
 
 <div id="app">
     <div class="hello">
         <div class="upload">
-            <div class="upload_warp">
-                <div class="upload_warp_left" @click="fileClick">
-                    <img src="${baseurl}/public/images/update/upload.png">
-                </div>
-                <div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)" @dragover="dragover($event)">
-                    或者将文件拖到此处
-                </div>
-            </div>
-            <div class="upload_warp_text">
-                选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
-            </div>
             <form role="form" action="${baseurl}/upload/spring" method="post" enctype="multipart/form-data">
-                <input @change="fileChange($event)" type="file" id="upload_file" name="upload_file" multiple style="display: none"/>
+                <%--<div class="upload_warp">--%>
+                    <%--<div class="upload_warp_left" @click="fileClick">--%>
+                        <%--<img src="${baseurl}/public/images/update/upload.png">--%>
+                    <%--</div>--%>
+                    <%--<div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)"--%>
+                         <%--@dragover="dragover($event)">--%>
+                        <%--或者将文件拖到此处--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <div class="upload_warp_text">
+                    选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
+                </div>
+                <input type="file" id="upload_file" name="upload_file" multiple
+                       />
+                    <%--<input type="file" id="upload_file" name="upload_file" multiple--%>
+                       <%--@change="fileChange($event)"/>--%>
                 <div class="upload_warp_img" v-show="imgList.length!=0">
                     <div class="upload_warp_img_div" v-for="(item,index) of imgList">
                         <div class="upload_warp_img_div_top">
                             <div class="upload_warp_img_div_text">
                                 {{item.file.name}}
                             </div>
-                            <img src="${baseurl}/public/images/update/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+                            <img src="${baseurl}/public/images/update/del.png" class="upload_warp_img_div_del"
+                                 @click="fileDel(index)">
                         </div>
                         <img :src="item.file.src">
                     </div>
                 </div>
-                <input type="file" name="demo" multiple />
-                <button class="layui-btn">上传文件</button>
-                <button class="layui-btn layui-btn-danger">重置</button>
+                <%--<input type="file" name="demo" multiple/>--%>
+                <button type="submit" onclick="submitZip()" class="layui-btn">上传文件</button>
+                <button type="reset" class="layui-btn layui-btn-danger">重置</button>
             </form>
         </div>
     </div>
@@ -250,7 +255,7 @@
     //  import up from  './src/components/Hello'
     var app = new Vue({
         el: '#app',
-        data () {
+        data() {
             return {
                 imgList: [],
                 size: 0
@@ -347,6 +352,7 @@
             }
         }
     })
+
 </script>
 
 </body>
