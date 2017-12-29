@@ -1,11 +1,10 @@
 package com.thoughtWorks.web;
 
 import com.thoughtWorks.service.UploadService;
-import com.thoughtWorks.util.Constants;
+import com.thoughtWorks.common.Constants;
 import com.thoughtWorks.util.file.FileUtil;
 import com.thoughtWorks.util.file.ReadFileUtil;
 import com.thoughtWorks.util.file.UnZipFileUtil;
-import com.thoughtWorks.util.file.ZipUtil;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;

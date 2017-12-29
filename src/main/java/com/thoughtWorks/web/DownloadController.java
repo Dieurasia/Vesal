@@ -1,6 +1,6 @@
 package com.thoughtWorks.web;
 
-import com.thoughtWorks.util.Constants;
+import com.thoughtWorks.common.Constants;
 import com.thoughtWorks.util.file.FileUtil;
 import com.thoughtWorks.util.file.ZipUtil;
 import org.apache.commons.io.FileUtils;

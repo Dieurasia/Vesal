@@ -3,7 +3,7 @@ package com.thoughtWorks.web.systemManage;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.RoleService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

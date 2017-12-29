@@ -4,7 +4,7 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Map;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/CustomLogin")
+@RequestMapping("/CustomLogin/")
 public class CustomController {
     @Autowired
     private CustomService customService;
