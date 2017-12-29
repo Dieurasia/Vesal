@@ -73,7 +73,7 @@
     </div>
 </div>
 <jsp:include page="../../public/footer.jsp"/>
-<script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
 <script>
     $(function () {
         $.post("${baseurl}/CustomLogin/session", function (data) {

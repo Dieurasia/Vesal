@@ -83,7 +83,7 @@
     </div>
 </div>
 <jsp:include page="../public/footer.jsp"/>
-<script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
 <script type="text/javascript">
     $(function () {
         //查找信息，并查看是否订阅
@@ -174,7 +174,6 @@
 
     //等级菜单动态显示
     $(function () {
-       alert((document.location.href).split("=")[1]);
        let model = (document.location.href).split("=")[1];
        let aModel = model.split("-")[0];
        let bModel = model.split("-")[1];
