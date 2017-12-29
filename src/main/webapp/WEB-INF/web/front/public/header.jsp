@@ -31,7 +31,7 @@
             <nav>
                 <ul class="clearfix " id="menuli">
                     <li><a href="${baseurl}/page/index">首页</a></li>
-                    <span id="menu">
+                    <span id="menuModel">
                     </span>
                     <li><a href="#">手绘分享</a></li>
                     <li><a href="#">软件下载</a></li>
@@ -88,7 +88,6 @@
     //拼接菜单
         $(function () {
             $.post("${baseurl}/systemDisplay/modelMenuClassify", function (data) {
-                console.log(data);
                 let _html = "";
                 let AClassify = data.AClassify;
                 let model = "";
@@ -120,7 +119,7 @@
                        _html +=`</ul></li>`;
                     model = modelA;
                 }
-                $("#menu").html(_html);
+                $("#menuModel").html(_html);
             });
         });
     </script>
