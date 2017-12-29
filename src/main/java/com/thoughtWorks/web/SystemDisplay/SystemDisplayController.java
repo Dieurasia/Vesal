@@ -2,15 +2,13 @@ package com.thoughtWorks.web.SystemDisplay;
 
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Level;
-import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.service.SystemDisplayService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;

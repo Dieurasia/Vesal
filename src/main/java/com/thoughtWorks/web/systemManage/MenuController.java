@@ -4,7 +4,7 @@ import com.thoughtWorks.dao.PermissionDao;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Permission;
 import com.thoughtWorks.service.PermissionService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

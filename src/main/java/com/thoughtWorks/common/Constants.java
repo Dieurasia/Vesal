@@ -1,4 +1,4 @@
-package com.thoughtWorks.util;
+package com.thoughtWorks.common;
 
 /**
  * @author Vincent.wang
