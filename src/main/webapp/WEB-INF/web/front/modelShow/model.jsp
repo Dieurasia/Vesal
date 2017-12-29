@@ -226,9 +226,20 @@
                     }else{
                         _html +=`<a href="`+modelHrefAll+`" class="categoryItem ">全部</a>`;
                     }
-                    console.log(data);
+                    for(let i = 0;i<CClassify.length;i++) {
+                        let Bmodel = model;
+                        model +=+aModel+"-"+bModel+"-"+CClassify[i].c_id;
+                        let modelHref = "${baseurl}//page/bone?model="+model;
+                        if(cModel == CClassify[i].c_id){
+                            _html += `<a href="`+modelHref+`" class="categoryItem  active">`+CClassify[i].c_name+`</a>`
+                        }else{
+                            _html += `<a href="`+modelHref+`" class="categoryItem ">`+CClassify[i].c_name+`</a>`
+                        }
+                        model = Bmodel;
+                    };
+                    $("#modelMenu").html(_html);
                 });
-                $("#modelMenu").html(_html);
+
             });
         });
 
