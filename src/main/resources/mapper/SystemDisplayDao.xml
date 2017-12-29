@@ -8,21 +8,21 @@
         select am.*,su.s_whether from (SELECT *
         FROM v_model
         <where>
-            <if test="oneLevel ==null " >
-                AND m_aclassify IS NULL
-            </if>
+            <!--<if test="oneLevel ==null " >-->
+                <!--AND m_aclassify IS NULL-->
+            <!--</if>-->
             <if test="oneLevel != null">
                 AND m_aclassify = #{oneLevel}
             </if>
-            <if test="secondLevel ==null " >
-                AND m_bclassify IS NULL
-            </if>
+            <!--<if test="secondLevel ==null " >-->
+                <!--AND m_bclassify IS NULL-->
+            <!--</if>-->
             <if test="secondLevel !=null">
                 AND m_bclassify = #{secondLevel}
             </if>
-            <if test="threeLevel ==null " >
-                AND m_cclassify IS NULL
-            </if>
+            <!--<if test="threeLevel ==null " >-->
+                <!--AND m_cclassify IS NULL-->
+            <!--</if>-->
             <if test="threeLevel !=null ">
                 AND m_cclassify =  #{threeLevel}
             </if>
