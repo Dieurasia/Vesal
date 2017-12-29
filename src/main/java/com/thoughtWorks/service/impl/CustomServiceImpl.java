@@ -1,10 +1,12 @@
 package com.thoughtWorks.service.impl;
 
+import com.thoughtWorks.common.ServerResponse;
 import com.thoughtWorks.dao.CustomDao;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
 import com.thoughtWorks.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,16 @@ public class CustomServiceImpl implements CustomService {
     private CustomDao customDao;
 
     @Override
-    public Custom login(Custom custom) throws Exception {
+    public ServerResponse<Custom> login(Custom custom) throws Exception {
         custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
+        Custom custom1 = customDao.login(custom);
 
-        return customDao.login(custom);
+        if (custom1 == null) {
+            return ServerResponse.createByErrorMessage("用户名或密码错误");
+        }
+        custom1.setcPassword(StringUtils.EMPTY);
+
+        return ServerResponse.createBySuccess("登录成功", custom1);
     }
 
     @Override
