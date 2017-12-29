@@ -37,7 +37,8 @@ public class ReadFileUtil {
             String suffix = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf(".") + 1);
 
             if (suffix.equals("assetbundle")) {
-                assetbundleStr.add(getStringObjectMap(oldFilePath, file,"assetbundleFile"));
+                String parent = new File(new File(new File(file.getParent()).getParent()).getParent()).getParent();
+                assetbundleStr.add(getStringObjectMap(parent, file,"assetbundleFile"));
             }
             if (suffix.equals("png") || suffix.equals("jpg")) {
                 imgStr.add(getStringObjectMap(oldFilePath, file,"imgFile"));
@@ -85,6 +86,7 @@ public class ReadFileUtil {
         for (File file : files) {
             list.add(file);
         }
+
         List<String> assetbundleStr = new ArrayList<>();
         List<String> imgStr = new ArrayList<>();
         List<String> gifStr = new ArrayList<>();
