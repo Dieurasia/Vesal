@@ -172,7 +172,7 @@
                         <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-ghost" href="javascript:;">
                             <span><span>立即购买</span></span>
                         </a>
-                        <a class="btn w-button w-button-xl w-button-primary" href="javascript:;">
+                        <a  style="line-height: 36px;"  class="btn w-button w-button-xl w-button-primary" href="javascript:;">
                             <span><i class="w-icon-cart cart-detail"></i>
                                 <span>加入购物车</span>
                             </span>
