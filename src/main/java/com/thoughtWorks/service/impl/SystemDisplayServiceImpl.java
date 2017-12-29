@@ -67,4 +67,9 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
     public List<Map<String, Object>> modelMenuCClassify(int c_bid) throws Exception {
         return systemDisplayDao.modelMenuCClassify(c_bid);
     }
+
+    @Override
+    public List<Map<String, Object>> queryModelById(Level level) throws Exception {
+        return systemDisplayDao.queryModelById(level);
+    }
 }

@@ -94,6 +94,7 @@
             threeLevel: value[2]
         }, function (data) {
             let subscribe = data.info;
+            console.log(subscribe)
             let _html = "";
             for (let i = 0; i < subscribe.length; i++) {
                 let fileLong = subscribe[i].m_thumbnail;
@@ -101,9 +102,9 @@
                 let m_dynamic = subscribe[i].m_dynamic;
                 let dynamic = ("${baseurl}/file/" + m_dynamic);
                 //详情页面
-                let modelDetails = ("${baseurl}/page/modelDetails");
+                let modelDetails = ("${baseurl}/page/modelDetails?id="+subscribe[i].m_id);
                 _html += `<li class="item">
-                            <div class="m-product j-product ">
+                            <div class="m-product j-product">
                                 <div class="hd">
                                     <a href="`+modelDetails+`" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
