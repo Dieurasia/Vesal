@@ -33,45 +33,45 @@
         <div id="j-goodsAreaWrap">
             <div class="m-goodsArea">
                 <div class="m-sortbar" id="modelMenu">
-                    <div class="category"><span class="name">分类：</span>
-                        <div class="categoryGroup">
-                            <a href="javascript:;" class="categoryItem  active">系统解剖</a>
-                            <a href="javascript:;" class="categoryItem ">局部解剖</a>
-                        </div>
-                    </div>
-                    <div class="area"><span class="name">系统：</span>
-                        <div class="categoryGroup">
-                            <a href="javascript:;" class="categoryItem ">全部</a>
-                            <a href="javascript:;" class="categoryItem  active">运动系统</a>
-                            <a href="javascript:;" class="categoryItem ">消化系统</a>
-                            <a href="javascript:;" class="categoryItem ">呼吸系统</a>
-                            <a href="javascript:;" class="categoryItem ">泌尿系统</a>
-                            <a href="javascript:;" class="categoryItem ">生殖系统</a>
-                            <a href="javascript:;" class="categoryItem ">脉管系统(心血管系)</a>
-                            <a href="javascript:;" class="categoryItem ">脉管系统(淋巴系)</a>
-                            <a href="javascript:;" class="categoryItem ">感觉器</a>
-                            <a href="javascript:;" class="categoryItem ">神经系统</a>
-                            <a href="javascript:;" class="categoryItem ">内分泌系统</a>
-                        </div>
-                    </div>
-                    <div class="area"><span class="name">子分类：</span>
-                        <div class="categoryGroup">
-                            <a href="javascript:;" class="categoryItem j-categoryItem">全部</a>
-                            <a href="javascript:;" class="categoryItem j-categoryItem active">骨学</a>
-                            <a href="javascript:;" class="categoryItem j-categoryItem">关节学</a>
-                            <a href="javascript:;" class="categoryItem j-categoryItem">肌学</a>
-                        </div>
-                    </div>
-                    <%--<div class="sorts">--%>
-                    <%--<span class="name">排序：</span>--%>
-                    <%--<a href="javascript:;" class="sort sort-default">默认</a>--%>
-                    <%--<a href="javascript:;" class="sort sort-price active">--%>
-                    <%--<span>价格</span>--%>
-                    <%--<div class="icon">--%>
-                    <%--<i class="w-icon-arrow arrow-up-gold"></i>--%>
-                    <%--<i class="w-icon-arrow arrow-down-gray"></i></div>--%>
-                    <%--</a>--%>
+                    <%--<div class="category"><span class="name">分类：</span>--%>
+                    <%--<div class="categoryGroup">--%>
+                    <%--<a href="javascript:;" class="categoryItem  active">系统解剖</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">局部解剖</a>--%>
                     <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="area"><span class="name">系统：</span>--%>
+                    <%--<div class="categoryGroup">--%>
+                    <%--<a href="javascript:;" class="categoryItem ">全部</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem  active">运动系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">消化系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">呼吸系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">泌尿系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">生殖系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">脉管系统(心血管系)</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">脉管系统(淋巴系)</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">感觉器</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">神经系统</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem ">内分泌系统</a>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="area"><span class="name">子分类：</span>--%>
+                    <%--<div class="categoryGroup">--%>
+                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">全部</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem j-categoryItem active">骨学</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">关节学</a>--%>
+                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">肌学</a>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--&lt;%&ndash;<div class="sorts">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<span class="name">排序：</span>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<a href="javascript:;" class="sort sort-default">默认</a>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<a href="javascript:;" class="sort sort-price active">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<span>价格</span>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<div class="icon">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<i class="w-icon-arrow arrow-up-gold"></i>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<i class="w-icon-arrow arrow-down-gray"></i></div>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                 </div>
                 <div class="m-content">
                     <ul class="m-itemList f-margin-top-25" id="model">
@@ -184,61 +184,66 @@
         $.post("${baseurl}/systemDisplay/modelMenuAClassify", function (data) {
             let AClassify = data.AClassify;
             let model = "";
-            for(let i = 0;i<AClassify.length;i++){
+            for (let i = 0; i < AClassify.length; i++) {
                 let Amodel = model;
-                model +=AClassify[i].a_id;
-                let modelHref = "${baseurl}//page/bone?model="+model;
-                if(aModel == AClassify[i].a_id){
-                    _html += `<a href="`+modelHref+`" class="categoryItem  active">`+AClassify[i].a_name+`</a>`
-                }else{
-                    _html += `<a href="`+modelHref+`" class="categoryItem ">`+AClassify[i].a_name+`</a>`
+                model += AClassify[i].a_id;
+                let modelHref = "${baseurl}//page/bone?model=" + model;
+                if (aModel == AClassify[i].a_id) {
+                    _html += `<a href="` + modelHref + `" class="categoryItem  active">` + AClassify[i].a_name + `</a>`
+                } else {
+                    _html += `<a href="` + modelHref + `" class="categoryItem ">` + AClassify[i].a_name + `</a>`
                 }
                 model = Amodel;
             }
             _html += `</div></div> <div class="area"><span class="name">系统：</span><div class="categoryGroup">`;
             //二级菜单
-            $.post("${baseurl}/systemDisplay/modelMenuBClassify",{b_aid:aModel},function (data) {
+            $.post("${baseurl}/systemDisplay/modelMenuBClassify", {b_aid: aModel}, function (data) {
 
                 let BClassify = data.BClassify;
-                let modelHrefAll = "${baseurl}//page/bone?model="+aModel;
-                if(bModel == null){
-                    _html +=`<a href="`+modelHrefAll+`" class="categoryItem active">全部</a>`;
-                }else{
-                    _html +=`<a href="`+modelHrefAll+`" class="categoryItem ">全部</a>`;
+                let modelHrefAll = "${baseurl}//page/bone?model=" + aModel;
+
+                if (bModel == undefined) {
+                    _html += `<a href="` + modelHrefAll + `" class="categoryItem active">全部</a>`;
+                } else {
+                    _html += `<a href="` + modelHrefAll + `" class="categoryItem ">全部</a>`;
                 }
-                for(let i = 0;i<BClassify.length;i++) {
+                for (let i = 0; i < BClassify.length; i++) {
                     let Bmodel = model;
-                    model +=aModel+"-"+BClassify[i].b_id;
-                    let modelHref = "${baseurl}//page/bone?model="+model;
-                    if(bModel == BClassify[i].b_id){
-                        _html += `<a href="`+modelHref+`" class="categoryItem  active">`+BClassify[i].b_name+`</a>`
-                    }else{
-                        _html += `<a href="`+modelHref+`" class="categoryItem ">`+BClassify[i].b_name+`</a>`
+                    model += aModel + "-" + BClassify[i].b_id;
+                    let modelHref = "${baseurl}//page/bone?model=" + model;
+                    if (bModel == BClassify[i].b_id) {
+                        _html += `<a href="` + modelHref + `" class="categoryItem  active">` + BClassify[i].b_name + `</a>`
+                    } else {
+                        _html += `<a href="` + modelHref + `" class="categoryItem ">` + BClassify[i].b_name + `</a>`
                     }
                     model = Bmodel;
                 };
                 _html += `</div></div><div class="area"><span class="name">子分类：</span><div class="categoryGroup">`;
-                $.post("${baseurl}/systemDisplay/modelMenuCClassify",{c_bid:bModel},function (data) {
-                    let CClassify = data.CClassify;
-                    let modelHrefAll = "${baseurl}//page/bone?model="+aModel+"-"+bModel;
-                    if(cModel == null){
-                        _html +=`<a href="`+modelHrefAll+`" class="categoryItem active">全部</a>`;
-                    }else{
-                        _html +=`<a href="`+modelHrefAll+`" class="categoryItem ">全部</a>`;
-                    }
-                    for(let i = 0;i<CClassify.length;i++) {
-                        let Bmodel = model;
-                        model +=+aModel+"-"+bModel+"-"+CClassify[i].c_id;
-                        let modelHref = "${baseurl}//page/bone?model="+model;
-                        if(cModel == CClassify[i].c_id){
-                            _html += `<a href="`+modelHref+`" class="categoryItem  active">`+CClassify[i].c_name+`</a>`
-                        }else{
-                            _html += `<a href="`+modelHref+`" class="categoryItem ">`+CClassify[i].c_name+`</a>`
+                if (bModel != undefined) {
+                    $.post("${baseurl}/systemDisplay/modelMenuCClassify", {c_bid: bModel}, function (data) {
+                        let CClassify = data.CClassify;
+                        let modelHrefAll = "${baseurl}//page/bone?model=" + aModel + "-" + bModel;
+                        if (cModel == undefined) {
+                            _html += `<a href="` + modelHrefAll + `" class="categoryItem active">全部</a>`;
+                        } else {
+                            _html += `<a href="` + modelHrefAll + `" class="categoryItem ">全部</a>`;
                         }
-                        model = Bmodel;
-                    };
+                        for (let i = 0; i < CClassify.length; i++) {
+                            let Cmodel = model;
+                            model += +aModel + "-" + bModel + "-" + CClassify[i].c_id;
+                            let modelHref = "${baseurl}//page/bone?model=" + model;
+                            if (cModel == CClassify[i].c_id) {
+                                _html += `<a href="` + modelHref + `" class="categoryItem  active">` + CClassify[i].c_name + `</a>`
+                            } else {
+                                _html += `<a href="` + modelHref + `" class="categoryItem ">` + CClassify[i].c_name + `</a>`
+                            }
+                            model = Cmodel;
+                        };
+                        $("#modelMenu").html(_html);
+                    });
+                }else{
                     $("#modelMenu").html(_html);
-                });
+                }
 
             });
         });
