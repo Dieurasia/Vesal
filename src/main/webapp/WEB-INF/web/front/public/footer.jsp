@@ -78,22 +78,21 @@
 
     <div class="copy_z">
         <div class="container">
-            <div class="left">
+            <div class="contact">
                 <span class="co_zi">2017-2018 © Write by Eurasia ThoughtWorks Studio 版权所有</span>
                 <%--<a href="map.html"--%>
                 <%--class="m1">站点地图</a>--%>
-                </di    v>
-
-                <div class="right">
-                    <%--<a href="map.html" class="m2">站点地图</a>--%>
-                    <a href="#" target="_blank"><img src="${baseurl}/public/images/yu.png" alt=""></a>
-                    &nbsp;
-                    <span class="er_show">
-						<img src="${baseurl}/public/images/er.png" alt=""/>
-						<img src="${baseurl}/public/images/twocode.jpg" alt="" class="er_img">
-					</span>
-
                 </div>
+
+                <%--<div class="right">--%>
+                    <%--&lt;%&ndash;<a href="map.html" class="m2">站点地图</a>&ndash;%&gt;--%>
+                    <%--<a href="#" target="_blank"><img src="${baseurl}/public/images/yu.png" alt=""></a>--%>
+                    <%--&nbsp;--%>
+                    <%--<span class="er_show">--%>
+						<%--<img src="${baseurl}/public/images/er.png" alt=""/>--%>
+						<%--<img src="${baseurl}/public/images/twocode.jpg" alt="" class="er_img">--%>
+					<%--</span>--%>
+                <%--</div>--%>
             </div>
         </div>
     </div>

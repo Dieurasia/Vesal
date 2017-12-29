@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>维萨里产品展示网</title>
-
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" href="${baseurl}/public/css/show_list.css">
     <link rel="stylesheet" href="${baseurl}/public/css/show_style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
@@ -179,7 +179,7 @@
         let bModel = model.split("-")[1];
         let cModel = model.split("-")[2];
         //一级菜单
-        let _html = ` <div class="category"><span class="name">分类：</span>
+        let _html = ` <div class="area"><span class="name">分类：</span>
                         <div class="categoryGroup">`;
         $.post("${baseurl}/systemDisplay/modelMenuAClassify", function (data) {
             let AClassify = data.AClassify;
