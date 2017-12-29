@@ -32,13 +32,9 @@
     <select id="modelMenuCClassify" resultType="map" parameterType="int">
       select cc.c_id,cc.c_name from v_cclassify cc where c_bid = #{c_bid}
     </select>
-    <select id="queryModelById" resultType="map" parameterType="int">
-        select am.*,su.s_whether from (SELECT *
-                               FROM v_model where m_id =#{m_id}) am
-                                LEFT JOIN v_subscribe su on am.m_id = su.model_id
-    </select>
     <select id="queryModelById" resultType="map" parameterType="Level">
-        select distinct am.*,su.s_whether,co.* from (select count(*) count from v_subscribe where model_id = #{modelId}) co, (SELECT *
+        select distinct am.*,su.s_whether,co.* from (select count(*) count from v_subscribe where model_id = #{modelId})
+        co, (SELECT *
         FROM v_model where m_id =#{modelId}) am
         LEFT JOIN v_subscribe su on am.m_id = su.model_id
         <if test="customId !=''">
