@@ -31,7 +31,7 @@ import java.util.*;
  * @author Vincent.wang
  */
 @Controller
-@RequestMapping(value = "upload")
+@RequestMapping(value = "/upload/")
 public class UploadController {
     @Autowired
     UploadService uploadService;
@@ -39,13 +39,13 @@ public class UploadController {
     private static final Logger log = LoggerFactory.getLogger(UploadController.class);
 
 
-    @RequestMapping(value = "/spring", method = RequestMethod.GET)
+    @RequestMapping(value = "spring", method = RequestMethod.GET)
     public String spring() {
         return "/upload/spring";
     }
 
-    @RequestMapping(value = "/spring", method = RequestMethod.POST)
-    public String springupload(@RequestParam("demo") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
+    @RequestMapping(value = "spring", method = RequestMethod.POST)
+    public String springupload(@RequestParam("upload_file") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
         ReadFileUtil readFileUtil = new ReadFileUtil();
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
@@ -79,7 +79,6 @@ public class UploadController {
 //                    FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
 
 //                    Thread.currentThread().sleep(2000);//毫秒
-                    System.out.println("0.0.0.0.0.0.0.0.0.0.0.0.0" + unRealPath);
                     Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
                     //提取zip里面的信息,并封装到map集合中,并传入Service层
                     Map<String, Object> dataInfo = extractZipInfo(fileInfo);
