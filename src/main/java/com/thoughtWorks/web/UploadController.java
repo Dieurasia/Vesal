@@ -12,11 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,22 +46,25 @@ public class UploadController {
 
     @RequestMapping(value = "/spring", method = RequestMethod.POST)
     public String springupload(@RequestParam("uploadfile") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
-        String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
-        FileUtil.isDirectory(realPath, true, request);
-        
+        ReadFileUtil readFileUtil = new ReadFileUtil();
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {
+
             if (file.isEmpty()) {
                 model.addAttribute("msg", "没有文件！");
                 return "moduleOne/moduleOne/moduleOne";
             } else {
-                //file.getOriginalFilename()是得到上传时的文件名
-                originalFilename = file.getOriginalFilename();
                 log.warn("# originalFilename=[{}] , name=[{}] , size=[{}] , contentType=[{}] ", originalFilename, file.getName(), file.getSize(), file.getContentType());
                 try {
+
+                    originalFilename = file.getOriginalFilename();
+                    //file.getOriginalFilename()是得到上传时的文件名
+                    String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+                    String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
+                    String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
+                    FileUtil.isDirectory(realPath, true, request);
+
                     //获取文件后缀名
                     String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
 
@@ -67,15 +72,15 @@ public class UploadController {
                     CommonsMultipartFile cf = (CommonsMultipartFile) file;
                     DiskFileItem fi = (DiskFileItem) cf.getFileItem();
                     File oldFile = fi.getStoreLocation();
-                    
+
                     //解压文件操作
                     UnZipFileUtil.unZipFiles(oldFile, unRealPath);
                     FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, originalFilename));
 
-                    ReadFileUtil readFileUtil = new ReadFileUtil();
                     Map<String, Object> fileInfo = readFileUtil.readallfile(unRealPath);
                     //提取zip里面的信息,并封装到map集合中,并传入Service层
                     Map<String, Object> dataInfo = extractZipInfo(fileInfo);
+
                     uploadService.addZipInfo(dataInfo);
                 } catch (IOException e) {
                     log.error("# upload fail . error message={}", e.getMessage());
@@ -91,7 +96,7 @@ public class UploadController {
 
     private Map<String, Object> extractZipInfo(Map<String, Object> fileInfo) {
         Map<String, Object> zipFileInfo = new HashMap<>();
-        zipFileInfo.put("code", UUID.randomUUID().toString().replaceAll("-",""));
+        zipFileInfo.put("code", UUID.randomUUID().toString().replaceAll("-", ""));
         for (String key : fileInfo.keySet()) {
             if (key.equals("txt")) {
                 //读取txt文件的内容
