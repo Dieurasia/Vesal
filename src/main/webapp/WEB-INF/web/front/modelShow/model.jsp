@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../public/tag.jsp" %>
+    <%@ include file="../public/tag.jsp" %>
 <!DOCTYPE html>
 <html class="js rgba opacity cssanimations borderradius boxshadow csstransitions csstransforms textshadow">
 <head>
@@ -100,10 +100,12 @@
                 let file = ("${baseurl}/file/" + fileLong);
                 let m_dynamic = subscribe[i].m_dynamic;
                 let dynamic = ("${baseurl}/file/" + m_dynamic);
+                //详情页面
+                let modelDetails = ("${baseurl}/page/modelDetails");
                 _html += `<li class="item">
                             <div class="m-product j-product ">
                                 <div class="hd">
-                                    <a href="#" title="` + subscribe[i].m_name + `" target="_blank">
+                                    <a href="`+modelDetails+`" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
                                         onmouseover= "this.src='` + dynamic + `'" onmouseout="this.src='` + file + `'" ></a>
                                 </div>
@@ -118,7 +120,7 @@
                            <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
                                     <h4 class="name">
-                                        <a href="#" title="肝" target="_blank"><span>` + subscribe[i].m_name + `</span>
+                                        <a href="`+modelDetails+`"  target="_blank"><span>` + subscribe[i].m_name + `</span>
                                         </a>
                                     </h4>
                                     <p class="price">
