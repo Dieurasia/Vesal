@@ -50,5 +50,5 @@ public interface CustomService {
      * @param custom
      * @throws Exception
      */
-    void customRegister(Custom custom) throws Exception;
+    ServerResponse<String> customRegister(Custom custom) throws Exception;
 }

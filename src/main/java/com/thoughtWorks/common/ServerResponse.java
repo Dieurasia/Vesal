@@ -81,4 +81,13 @@ public class ServerResponse<T> implements Serializable {
     public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode, String errorMessage) {
         return new ServerResponse<T>(errorCode, errorMessage);
     }
+
+    public static <T> ServerResponse<T> createErrorMessageResponse(String msg) {
+        return new ServerResponse<T>(ResponseCode.ERROR.getCode(), msg);
+    }
+
+    //返回msg
+    public static <T> ServerResponse<T> createSuccessMessageResponse(String msg) {
+        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(), msg);
+    }
 }

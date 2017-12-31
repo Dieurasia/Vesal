@@ -35,12 +35,12 @@ public class CustomController {
     @RequestMapping(value = "login")
     @ResponseBody
     private ServerResponse<Custom> login(Custom custom, HttpSession session) {
-        Map<String, Object> data = new HashMap<>();
         try {
             ServerResponse<Custom> response = customService.login(custom);
             if (response.isSuccess()) {
                 session.setAttribute(Constant.CURRENT_USER, response.getData());
             }
+
             return response;
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,20 +149,19 @@ public class CustomController {
         return data;
     }
 
+
     @RequestMapping(value = "/customRegister")
     @ResponseBody
-    public Result customRegister(Custom custom, HttpServletRequest request) {
+    public ServerResponse<String> customRegister(Custom custom, HttpServletRequest request) {
         try {
             String ip = getLocalIp(request);
             custom.setcIp(ip);
-            customService.customRegister(custom);
 
-            return Result.success(null, Constant.SEARCH_SUCCESS);
+            return customService.customRegister(custom);
         } catch (Exception e) {
             e.printStackTrace();
-
-            return Result.failure(null, Constant.SEARCH_FAILURE);
         }
+        return ServerResponse.createByErrorMessage("注册失败！！！");
     }
 
     /**

@@ -13,6 +13,11 @@ public class Constant {
         int ROLE_ADMIN = 1; //管理员
     }
 
+    public interface ValidType{
+        String USERNAME = "username";
+        String EMAIL = "email";
+    }
+
     public static final String SEARCH_SUCCESS = "查询成功";
     public static final String SEARCH_FAILURE = "查询失败";
     public static final String ACCOUNT_NOT_EXIST = "帐号不存在";
