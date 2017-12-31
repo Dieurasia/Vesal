@@ -69,7 +69,7 @@
             cName: username,
             cPassword: password
         }, function (data) {
-            if (data.result) {
+            if (data.status == 0) {
                 location.href="${baseurl}/page/index";
             } else {
                 layer.msg(data.msg, {
