@@ -15,10 +15,10 @@
         color: white;
     }
 
-    #menuli li .clearA a:hover {
-        background-color: white;
-        color: black;
-    }
+    /*#menuli li .clearA a:hover {*/
+        /*background-color: white;*/
+        /*color: black;*/
+    /*}*/
 </style>
 <header class="header">
     <div class="container clearfix navbar navbar-default navbar-fixed-top" style="background-color: white">
@@ -96,24 +96,13 @@
                     let modelA = model;
                     model +=AClassify[i].a_id;
                     let BClassify = AClassify[i].BClassify;
-
-                    _html += `<li>
-                        <a>`+AClassify[i].a_name+`</a><ul class="miniui">`;
+                    _html += `<li><a>`+AClassify[i].a_name+`</a><ul class="miniui">`;
                     //拼接二级菜单
                     for(let j = 0; j<BClassify.length;j++){
                         let modelB = model;
                         model +="-"+BClassify[j].b_id;
-                        let CClassify = BClassify[j].CClassify;
-
-                        _html += `<li style="clear: both" class="clearA"><a><b>`+BClassify[j].b_name+`:</b></a></li>`;
-                        //拼接三级菜单
-                        for(let k = 0; k<CClassify.length;k++) {
-                            let modelC = model;
-                            model += "-"+CClassify[k].c_id;
-                            let modelHref = "${baseurl}//page/bone?model="+model;
-                            _html += `<li><a href="`+modelHref+`">`+CClassify[k].c_name+`</a></li>`;
-                            model = modelC;
-                        }
+                        let modelHref = "${baseurl}//page/bone?model="+model;
+                        _html += `<li  class="clearA"><a href="`+modelHref+`">`+BClassify[j].b_name+`</a></li>`;
                         model = modelB;
                     }
                        _html +=`</ul></li>`;
