@@ -101,7 +101,7 @@
                 layer.msg("用户名已经存在", {
                     time: 2000
                 });
-            } else if (username == "" || password == "" || passwordAgain == "" || userSet == "" || userPhone == "" || userEmail == "" || userCity == "") {
+            } else if (username == "" || password == "" || passwordAgain == "" || userOccupation == "" || userPhone == "" || userEmail == "" || userCity == "") {
                 layer.msg("信息不能为空", {
                     time: 2000
                 });
@@ -139,7 +139,7 @@
                         cEmail: userEmail,
                         cCity: userCity,
                     }, function (data) {
-                        if (data.result) {
+                        if (data.status == 0) {
                             layer.msg("注冊成功", {
                                 time: 1000
                             }, function () {

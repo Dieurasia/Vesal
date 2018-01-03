@@ -81,10 +81,7 @@ public class CustomServiceImpl implements CustomService {
         custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
-        int count = customDao.customRegister(custom);
-        if (count == 0) {
-            return ServerResponse.createErrorMessageResponse("注册失败");
-        }
+        customDao.customRegister(custom);
 
         return ServerResponse.createSuccessMessageResponse("注册成功");
     }
