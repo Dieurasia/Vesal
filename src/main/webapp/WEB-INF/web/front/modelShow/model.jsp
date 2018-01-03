@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ include file="../public/tag.jsp" %>
+<%@ include file="../public/tag.jsp" %>
 <!DOCTYPE html>
 <html class="js rgba opacity cssanimations borderradius boxshadow csstransitions csstransforms textshadow">
 <head>
@@ -102,11 +102,11 @@
                 let m_dynamic = subscribe[i].m_dynamic;
                 let dynamic = ("${baseurl}/file/" + m_dynamic);
                 //详情页面
-                let modelDetails = ("${baseurl}/page/modelDetails?id="+subscribe[i].m_id);
+                let modelDetails = ("${baseurl}/page/modelDetails?id=" + subscribe[i].m_id);
                 _html += `<li class="item">
                             <div class="m-product j-product">
                                 <div class="hd">
-                                    <a href="`+modelDetails+`" title="` + subscribe[i].m_name + `" target="_blank">
+                                    <a href="` + modelDetails + `" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
                                         onmouseover= "this.src='` + dynamic + `'" onmouseout="this.src='` + file + `'" ></a>
                                 </div>
@@ -121,7 +121,7 @@
                            <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
                                     <h4 class="name">
-                                        <a href="`+modelDetails+`"  target="_blank"><span>` + subscribe[i].m_name + `</span>
+                                        <a href="` + modelDetails + `"  target="_blank"><span>` + subscribe[i].m_name + `</span>
                                         </a>
                                     </h4>
                                     <p class="price">
@@ -181,76 +181,30 @@
         let aModel = model.split("-")[0];
         let bModel = model.split("-")[1];
         let cModel = model.split("-")[2];
-        //一级菜单
-        let _html = ` <div class="area"><span class="name">分类：</span>
-                        <div class="categoryGroup">`;
-        $.post("${baseurl}/systemDisplay/modelMenuAClassify", function (data) {
-            let AClassify = data.AClassify;
-            let model = "";
-            for (let i = 0; i < AClassify.length; i++) {
-                let Amodel = model;
-                model += AClassify[i].a_id;
-                let modelHref = "${baseurl}//page/bone?model=" + model;
-                if (aModel == AClassify[i].a_id) {
-                    _html += `<a href="` + modelHref + `" class="categoryItem  active">` + AClassify[i].a_name + `</a>`
-                } else {
-                    _html += `<a href="` + modelHref + `" class="categoryItem ">` + AClassify[i].a_name + `</a>`
-                }
-                model = Amodel;
+        let _html = `<div class="area"><span class="name">子分类：</span><div class="categoryGroup">`;
+        //页面三级菜单
+        $.post("${baseurl}/systemDisplay/modelMenuCClassify", {c_bid: bModel}, function (data) {
+            let CClassify = data.CClassify;
+            let modelHrefAll = "${baseurl}//page/bone?model=" + aModel + "-" + bModel;
+            if (cModel == undefined) {
+                _html += `<a href="` + modelHrefAll + `" class="categoryItem active">全部</a>`;
+            } else {
+                _html += `<a href="` + modelHrefAll + `" class="categoryItem ">全部</a>`;
             }
-            _html += `</div></div> <div class="area"><span class="name">系统：</span><div class="categoryGroup">`;
-            //二级菜单
-            $.post("${baseurl}/systemDisplay/modelMenuBClassify", {b_aid: aModel}, function (data) {
-
-                let BClassify = data.BClassify;
-                let modelHrefAll = "${baseurl}//page/bone?model=" + aModel;
-
-                if (bModel == undefined) {
-                    _html += `<a href="` + modelHrefAll + `" class="categoryItem active">全部</a>`;
+            for (let i = 0; i < CClassify.length; i++) {
+                let Cmodel = model;
+                model = +aModel + "-" + bModel + "-" + CClassify[i].c_id;
+                let modelHref = "${baseurl}//page/bone?model=" + model;
+                if (cModel == CClassify[i].c_id) {
+                    _html += `<a href="` + modelHref + `" class="categoryItem  active">` + CClassify[i].c_name + `</a>`
                 } else {
-                    _html += `<a href="` + modelHrefAll + `" class="categoryItem ">全部</a>`;
+                    _html += `<a href="` + modelHref + `" class="categoryItem ">` + CClassify[i].c_name + `</a>`
                 }
-                for (let i = 0; i < BClassify.length; i++) {
-                    let Bmodel = model;
-                    model += aModel + "-" + BClassify[i].b_id;
-                    let modelHref = "${baseurl}//page/bone?model=" + model;
-                    if (bModel == BClassify[i].b_id) {
-                        _html += `<a href="` + modelHref + `" class="categoryItem  active">` + BClassify[i].b_name + `</a>`
-                    } else {
-                        _html += `<a href="` + modelHref + `" class="categoryItem ">` + BClassify[i].b_name + `</a>`
-                    }
-                    model = Bmodel;
-                };
-                _html += `</div></div><div class="area"><span class="name">子分类：</span><div class="categoryGroup">`;
-                if (bModel != undefined) {
-                    $.post("${baseurl}/systemDisplay/modelMenuCClassify", {c_bid: bModel}, function (data) {
-                        let CClassify = data.CClassify;
-                        let modelHrefAll = "${baseurl}//page/bone?model=" + aModel + "-" + bModel;
-                        if (cModel == undefined) {
-                            _html += `<a href="` + modelHrefAll + `" class="categoryItem active">全部</a>`;
-                        } else {
-                            _html += `<a href="` + modelHrefAll + `" class="categoryItem ">全部</a>`;
-                        }
-                        for (let i = 0; i < CClassify.length; i++) {
-                            let Cmodel = model;
-                            model += +aModel + "-" + bModel + "-" + CClassify[i].c_id;
-                            let modelHref = "${baseurl}//page/bone?model=" + model;
-                            if (cModel == CClassify[i].c_id) {
-                                _html += `<a href="` + modelHref + `" class="categoryItem  active">` + CClassify[i].c_name + `</a>`
-                            } else {
-                                _html += `<a href="` + modelHref + `" class="categoryItem ">` + CClassify[i].c_name + `</a>`
-                            }
-                            model = Cmodel;
-                        };
-                        $("#modelMenu").html(_html);
-                    });
-                }else{
-                    $("#modelMenu").html(_html);
-                }
-
-            });
+                model = Cmodel;
+            }
+            ;
+            $("#modelMenu").html(_html);
         });
-
     });
 </script>
 </body>
