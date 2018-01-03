@@ -204,10 +204,11 @@ ul li {
   position: absolute;
   z-index: 9999;
   background: #fff;
-  width: 500px;
+  width: 400px;
   text-align: center;
   font-size: 12px;
   display: none;
+  border: 1px rgb(234, 234, 234) solid;
 }
 .header .container .nav_right nav ul li ul li {
   background: no-repeat;
