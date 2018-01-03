@@ -27,8 +27,8 @@
         <div class="container">
             <h1 style="color: white;margin-bottom: 20px;">用户登录</h1>
             <form class="form">
-                <input type="text" placeholder="Username" id="username">
-                <input type="password" placeholder="Password" id="password">
+                <input type="text" placeholder="用户名/手机号/邮箱" id="username">
+                <input type="password" placeholder="密码" id="password">
                 <button type="submit" id="login-button">登录</button>
             </form>
         </div>
