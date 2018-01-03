@@ -6,9 +6,11 @@
 
     <insert id="addZipInfo" parameterType="map">
         insert into v_model
-        (m_code, m_name, m_price, m_introduce, m_thumbnail, m_dynamic, m_unity, m_file)
+        (m_code, m_name, m_price, m_introduce, m_thumbnail, m_dynamic, m_unity, m_file,m_version,m_xmlpath,m_aclassify,m_bclassify,m_cclassify)
         values
-        (#{zipFile.code},#{zipFile.name},#{zipFile.price},#{zipFile.introduce},#{zipFile.imgStr},#{zipFile.gifStr},#{zipFile.gifStr},#{zipFile.gifStr});
+        (#{zipFile.code},#{zipFile.name},#{zipFile.price},#{zipFile.introduce},#{zipFile.imgStr},
+        #{zipFile.gifStr},#{zipFile.gifStr},#{zipFile.gifStr},"1",
+        #{zipFile.xml},#{zipFile.oneId},#{zipFile.twoId},#{zipFile.thrId});
     </insert>
 
     <select id="getModelGrade" parameterType="map" resultType="map">
@@ -37,10 +39,4 @@
         select c_id from v_cclassify WHERE v_cclassify.c_name = #{count2};
     </select>
 
-    <insert id="addModelGrade" parameterType="map">
-        insert into v_model_grade
-        (model_code, one_level, second_level, three_level)
-        values
-        (#{modelGrade.code},#{modelGrade.oneId},#{modelGrade.twoId},#{modelGrade.thrId});
-    </insert>
 </mapper>

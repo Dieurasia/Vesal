@@ -24,4 +24,14 @@
         v_custom (c_name, c_password, c_code, c_occupation, c_phone, c_email, c_city,c_ip)
         values (#{custom.cName},#{custom.cPassword},#{custom.cCode},#{custom.cOccupation},#{custom.cPhone},#{custom.cEmail},#{custom.cCity},#{custom.cIp});
     </insert>
+
+    <select id="checkUsername" parameterType="string" resultType="int">
+        select COUNT(1) from v_custom
+        WHERE c_name = #{cName}
+    </select>
+
+    <select id="checkEmail" parameterType="string" resultType="int">
+        select COUNT(1) from v_custom
+        WHERE c_email = #{cEmail}
+    </select>
 </mapper>

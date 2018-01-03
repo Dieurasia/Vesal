@@ -3,9 +3,8 @@ package com.thoughtWorks.web;
 
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.ActiveUser;
-import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.service.PermissionService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;

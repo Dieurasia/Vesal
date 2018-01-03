@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
-    <script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
+    <script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
 
 </head>
 <body>
@@ -69,7 +69,7 @@
             cName: username,
             cPassword: password
         }, function (data) {
-            if (data.result) {
+            if (data.status == 0) {
                 location.href="${baseurl}/page/index";
             } else {
                 layer.msg(data.msg, {

@@ -4,6 +4,7 @@ import com.thoughtWorks.dao.SystemDisplayDao;
 import com.thoughtWorks.entity.Level;
 import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.service.SystemDisplayService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,9 +27,49 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
         for (Map<String, Object> map : data) {
             String m_thumbnail = (String) map.get("m_thumbnail");
             String m_dynamic = (String) map.get("m_dynamic");
-            map.put("m_thumbnail",m_thumbnail.replaceAll("\\\\","/"));
-            map.put("m_dynamic",m_dynamic.replaceAll("\\\\","/"));
+            map.put("m_thumbnail", m_thumbnail.replaceAll("\\\\", "/"));
+            map.put("m_dynamic", m_dynamic.replaceAll("\\\\", "/"));
         }
         return data;
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuClassify() throws Exception {
+        Map<String, Object> map = new HashedMap();
+        //一级菜单
+        List<Map<String, Object>> aClassify = systemDisplayDao.modelMenuAClassify();
+        for (Map<String, Object> aClassifyMap : aClassify) {
+            int b_aid = Integer.valueOf(aClassifyMap.get("a_id").toString());
+            //二级菜单
+            List<Map<String, Object>> bClassify = systemDisplayDao.modelMenuBClassify(b_aid);
+            aClassifyMap.put("BClassify", bClassify);
+            for (Map<String, Object> bClassifyMap : bClassify) {
+                int c_bid = Integer.valueOf(bClassifyMap.get("b_id").toString());
+                //三级菜单
+                List<Map<String, Object>> cClassify = systemDisplayDao.modelMenuCClassify(c_bid);
+                bClassifyMap.put("CClassify", cClassify);
+            }
+        }
+        return aClassify;
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuAClassify() throws Exception {
+        return  systemDisplayDao.modelMenuAClassify();
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuBClassify(int b_aid) throws Exception {
+        return systemDisplayDao.modelMenuBClassify(b_aid);
+    }
+
+    @Override
+    public List<Map<String, Object>> modelMenuCClassify(int c_bid) throws Exception {
+        return systemDisplayDao.modelMenuCClassify(c_bid);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryModelById(Level level) throws Exception {
+        return systemDisplayDao.queryModelById(level);
     }
 }

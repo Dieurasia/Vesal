@@ -45,4 +45,9 @@ public class PageController {
         return "front/modelShow/model.jsp?id="+model;
     }
 
+    @RequestMapping("modelDetails")
+        public String modelDetails(int id ) {
+        return "front/modelShow/details/modelDetails.jsp?id="+id;
+    }
+
 }

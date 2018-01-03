@@ -16,340 +16,220 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
+    <script src="${baseurl}/public/js/vue.min.js"></script>
+    <style>
+        .upload_warp_img_div_del {
+            position: absolute;
+            top: 6px;
+            width: 16px;
+            right: 4px;
+        }
+
+        .upload_warp_img_div_top {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.4);
+            line-height: 30px;
+            text-align: left;
+            color: #fff;
+            font-size: 12px;
+            text-indent: 4px;
+        }
+
+        .upload_warp_img_div_text {
+            white-space: nowrap;
+            width: 80%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .upload_warp_img_div img {
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+        }
+
+        .upload_warp_img_div {
+            position: relative;
+            height: 100px;
+            width: 120px;
+            border: 1px solid #ccc;
+            margin: 0px 30px 10px 0px;
+            float: left;
+            line-height: 100px;
+            display: table-cell;
+            text-align: center;
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .upload_warp_img {
+            border-top: 1px solid #D2D2D2;
+            padding: 14px 0 0 14px;
+            overflow: hidden
+        }
+
+        .upload_warp_text {
+            text-align: left;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            text-indent: 14px;
+            border-top: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .upload_warp_right {
+            float: left;
+            width: 57%;
+            margin-left: 2%;
+            height: 100%;
+            border: 1px dashed #999;
+            border-radius: 4px;
+            line-height: 130px;
+            color: #999;
+        }
+
+        .upload_warp_left img {
+            margin-top: 32px;
+        }
+
+        .upload_warp_left {
+            float: left;
+            width: 40%;
+            height: 100%;
+            border: 1px dashed #999;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .upload_warp {
+            margin: 14px;
+            height: 130px;
+        }
+
+        .upload {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 650px;
+            box-shadow: 0px 1px 0px #ccc;
+            border-radius: 4px;
+        }
+
+        .hello {
+            width: 650px;
+            margin-left: 34%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<section class="larry-grid">
-    <div class="larry-personal">
-        <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off"
-                               placeholder="姓名" class="layui-input">
-                    </div>
-                    <button class="layui-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                    <shiro:hasPermission name="moduleOne:add">
-                        <ul class="layui-tab-title">
-                            <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加教师
-                            </li>
-                        </ul>
-                    </shiro:hasPermission>
-                    <div class="container" style="float: right;">
-                        <div class="row">
-                            <form role="form" action="${baseurl}/upload/spring" method="post"
-                                  enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="uploadfile">文件</label> <input type="file" id="uploadfile"
-                                                                              name="uploadfile">
-                                    <p class="help-block">目前没有对文件类型进行限制</p>
-                                </div>
-                                <button type="submit" class="btn btn-default">上传</button>
-                            </form>
-                            ${msg }
-                        </div>
-                    </div>
-                </div>
-            </blockquote>
+<%--<section class="larry-grid">--%>
+<%--<div class="larry-personal">--%>
+<%--<div class="layui-tab">--%>
+<%--<blockquote class="layui-elem-quote mylog-info-tit">--%>
+<%--<div class="container">--%>
+<%--<div class="row">--%>
+<%--<form role="form" action="${baseurl}/upload/spring" method="post"--%>
+<%--enctype="multipart/form-data">--%>
+<%--<div class="form-group">--%>
+<%--<label for="uploadfile">文件</label> <input type="file" multiple="multiple" id="uploadfile"--%>
+<%--name="uploadfile">--%>
+<%--<p class="help-block">目前只支持zip文件的上传格式</p>--%>
+<%--</div>--%>
+<%--<button type="submit" class="btn btn-default">上传</button>--%>
+<%--</form>--%>
+<%--${msg }--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</blockquote>--%>
 
-            <blockquote>
-                <div class="container">
-                    <div class="row">
-                        <div class="table-responsive col-sm-10">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>序列</th>
-                                    <th>文件名</th>
-                                    <th>下载</th>
-                                </tr>
-                                </thead>
-                                <tbody id="showInfo">
-                                <c:forEach var="file" items="${files }" varStatus="cur">
-                                    <tr>
-                                        <td>${cur.index+1 }</td>
-                                        <td><a href="javascript:void(0);" class="downloadfile"
-                                               data-file-path="${file.absolutePath }"><strong>${file.name }</strong></a></td>
-                                        <td><a href="javascript:void(0);" class="downloadzipfile"
-                                               data-file-path="${file.absolutePath }"><strong>zip</strong></a></td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <form id="downloadfile" name="downloadfile" class="hide" method="post"
-                          action="${baseurl }/download/file"
-                          target="downloadFrom">
-                        <input type="hidden" id="filepath" name="filepath" value=""/>
-                    </form>
-                    <form id="downloadzip" name="downloadzip" class="hide" method="post"
-                          action="${baseurl }/download/zip"
-                          target="downloadFrom">
-                        <input type="hidden" id="zippath" name="zippath" value=""/>
-                    </form>
-                    <iframe name="downloadFrom" style="display: none;"></iframe>
-                </div>
-            </blockquote>
-            <div class="larry-separate"></div>
-            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn"><i class="layui-icon">&#xe621;</i>打印</a>
-                <a class="layui-btn"><i class="layui-icon">&#xe61e;</i>导出</a>
-                <div class="layui-form">
-                    <table class="layui-table">
-                        <colgroup>
-                            <col width="50">
-                            <col width="200">
-                            <col width="200">
-                            <col width="150">
-                            <col width="200">
-                            <col width="280">
-                        </colgroup>
+<%--<blockquote>--%>
+<%--<div class="container">--%>
+<%--<div class="row">--%>
+<%--<div class="table-responsive col-sm-10">--%>
+<%--<table class="table">--%>
+<%--<thead>--%>
+<%--<tr>--%>
+<%--<th>序列</th>--%>
+<%--<th>文件名</th>--%>
+<%--<th>下载</th>--%>
+<%--</tr>--%>
+<%--</thead>--%>
+<%--<tbody id="showInfo">--%>
+<%--<c:forEach var="file" items="${files }" varStatus="cur">--%>
+<%--<tr>--%>
+<%--<td>${cur.index+1 }</td>--%>
+<%--<td><a href="javascript:void(0);" class="downloadfile"--%>
+<%--data-file-path="${file.absolutePath }"><strong>${file.name }</strong></a></td>--%>
+<%--<td><a href="javascript:void(0);" class="downloadzipfile"--%>
+<%--data-file-path="${file.absolutePath }"><strong>zip</strong></a></td>--%>
+<%--</tr>--%>
+<%--</c:forEach>--%>
+<%--</tbody>--%>
+<%--</table>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--<form id="downloadfile" name="downloadfile" class="hide" method="post"--%>
+<%--action="${baseurl }/download/file"--%>
+<%--target="downloadFrom">--%>
+<%--<input type="hidden" id="filepath" name="filepath" value=""/>--%>
+<%--</form>--%>
+<%--<form id="downloadzip" name="downloadzip" class="hide" method="post"--%>
+<%--action="${baseurl }/download/zip"--%>
+<%--target="downloadFrom">--%>
+<%--<input type="hidden" id="zippath" name="zippath" value=""/>--%>
+<%--</form>--%>
+<%--<iframe name="downloadFrom" style="display: none;"></iframe>--%>
+<%--</div>--%>
+<%--</blockquote>--%>
+<%--<div class="larry-separate"></div>--%>
 
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-                            <th>工号</th>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>方向</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>1453265278</td>
-                            <td>张老师</td>
-                            <td>女</td>
-                            <td>金融服务</td>
-                            <td>
-                                <shiro:hasPermission name="moduleOne:update">
-                                    <a class="layui-btn  layui-btn-small layui-btn-normal"
-                                       onclick="updataStudentinfo()"><i
-                                            class="layui-icon">&#xe642;</i> 编辑</a>
-                                </shiro:hasPermission>
-                                <a class="layui-btn  layui-btn-small" onclick="studentInfoPreview()"><i
-                                        class="layui-icon">&#xe60a;</i>预览</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+<%--<div id="demo1"></div>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</section>--%>
+
+<div id="app">
+    <div class="hello">
+        <div class="upload">
+            <form role="form" action="${baseurl}/upload/spring" method="post" enctype="multipart/form-data">
+                <%--<div class="upload_warp">--%>
+                    <%--<div class="upload_warp_left" @click="fileClick">--%>
+                        <%--<img src="${baseurl}/public/images/update/upload.png">--%>
+                    <%--</div>--%>
+                    <%--<div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)"--%>
+                         <%--@dragover="dragover($event)">--%>
+                        <%--或者将文件拖到此处--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <div class="upload_warp_text">
+                    选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
                 </div>
-                <div id="demo7"></div>
-            </div>
-            <div id="demo1"></div>
+                <input type="file" id="upload_file" name="upload_file" multiple
+                       />
+                    <%--<input type="file" id="upload_file" name="upload_file" multiple--%>
+                       <%--@change="fileChange($event)"/>--%>
+                <div class="upload_warp_img" v-show="imgList.length!=0">
+                    <div class="upload_warp_img_div" v-for="(item,index) of imgList">
+                        <div class="upload_warp_img_div_top">
+                            <div class="upload_warp_img_div_text">
+                                {{item.file.name}}
+                            </div>
+                            <img src="${baseurl}/public/images/update/del.png" class="upload_warp_img_div_del"
+                                 @click="fileDel(index)">
+                        </div>
+                        <img :src="item.file.src">
+                    </div>
+                </div>
+                <%--<input type="file" name="demo" multiple/>--%>
+                <button type="submit" onclick="submitZip()" class="layui-btn">上传文件</button>
+                <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+            </form>
         </div>
     </div>
-</section>
-
-<div id="updatainfo" style="display: none;width: auto;">
-    <div>
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">工号</label>
-                <div class="layui-input-inline">
-                    <input name="password" required lay-verify="required" placeholder="学号" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">方向</label>
-                <div class="layui-input-inline">
-                    <select name="modules" lay-verify="required" lay-search="">
-                        <option value="">方向</option>
-                        <option value="1">金融方向</option>
-                        <option value="1">电子信息技术</option>
-                        <option value="2">软件服务</option>
-                        <option value="3">酒店管理</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">姓名</label>
-                <div class="layui-input-inline">
-                    <input name="password" required lay-verify="required" placeholder="姓名" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-inline">
-                    <input name="date" lay-verify="required" placeholder="性别" autocomplete="off"
-                           class="layui-input" type="text">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block " style="margin-left: 24%">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>
-<div id="InfoPreview" style="display: none;width: auto;">
-    <div>
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">工号</label>
-                <div class="layui-input-inline">
-                    <input name="password" required lay-verify="required" placeholder="学号" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">方向</label>
-                <div class="layui-input-inline">
-                    <select name="modules" lay-verify="required" lay-search="">
-                        <option value="">方向</option>
-                        <option value="1">金融方向</option>
-                        <option value="1">电子信息技术</option>
-                        <option value="2">软件服务</option>
-                        <option value="3">酒店管理</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">姓名</label>
-                <div class="layui-input-inline">
-                    <input name="password" required lay-verify="required" placeholder="姓名" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-inline">
-                    <input name="date" lay-verify="required" placeholder="性别" autocomplete="off"
-                           class="layui-input" type="text">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block " style="margin-left: 24%">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-
-    //分页
-    layui.use(['laypage', 'layer'], function () {
-        var laypage = layui.laypage
-            , layer = layui.layer;
-
-        laypage({
-            cont: 'demo1'
-            , pages: 100 //总页数
-            , groups: 5 //连续显示分页数
-        });
-    });
-</script>
-
-<script>
-    //修改老师信息
-    function updataStudentinfo() {
-        layer.open({
-            type: 1,
-            title: '修改老师信息',
-            area: ['420px', '370px'],
-            skin: 'yourclass',
-            content: $('#updatainfo')
-        });
-    }
-
-    function studentInfoPreview() {
-        layer.open({
-            type: 1,
-            title: '预览老师信息',
-            area: ['420px', '370px'],
-            skin: 'yourclass',
-            content: $('#InfoPreview')
-        });
-    }
-</script>
-
-<script>
-    layui.use('layer', function () { //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-
-        //触发事件
-        var active = {
-
-            notice: function () {
-                //示范一个公告层
-                layer.open({
-                    type: 1
-                    ,
-                    title: false //不显示标题栏
-                    ,
-                    closeBtn: false
-                    ,
-                    area: '300px;'
-                    ,
-                    shade: 0.8
-                    ,
-                    id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                    ,
-                    btn: ['火速围观', '残忍拒绝']
-                    ,
-                    moveType: 1 //拖拽模式，0或者1
-                    ,
-                    content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>layer ≠ layui<br><br>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br><br>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br><br>我们此后的征途是星辰大海 ^_^</div>'
-                    ,
-                    success: function (layero) {
-                        var btn = layero.find('.layui-layer-btn');
-                        btn.css('text-align', 'center');
-                        btn.find('.layui-layer-btn0').attr({
-                            href: 'http://www.layui.com/'
-                            , target: '_blank'
-                        });
-                    }
-                });
-            }
-            , offset: function (othis) {
-                var type = othis.data('type')
-                    , text = othis.text();
-
-                layer.open({
-                    type: 1
-                    , offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-                    , id: 'LAY_demo' + type //防止重复弹出
-                    , content: '<div style="padding: 20px 100px;">' + text + '</div>'
-                    , btn: '关闭全部'
-                    , btnAlign: 'c' //按钮居中
-                    , shade: 0 //不显示遮罩
-                    , yes: function () {
-                        layer.closeAll();
-                    }
-                });
-            }
-        };
-
-        $('.site-demo-button .layui-btn').on('click', function () {
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });
-
-    });
-</script>
 
 <script>
     let fileOperation;
@@ -364,29 +244,116 @@
         <%--loadFile: function () {--%>
         <%--$.post("${baseurl}/download/zip");--%>
         <%--}--%>
-        <%--}--%>
     });
 
     $(function () {
         $.get("${baseurl}/download/zip");
-    /*, function (data) {
-            if (data.result) {
-                let datainfo = data.data;
-                console.log(datainfo);
-                $("#showInfo").html("");
-                for (let i = 0; i < datainfo.length; i++) {
-                    $("#showInfo").append(`<tr>
-                                    <td></td>
-                                    <td><a href="javascript:void(0);" class="downloadfile"
-                                           data-file-path="` + datainfo[i] + `"><strong>` + datainfo[i].replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi, "$1") + `</strong></a>
-                                    </td>
-                                    <td><a href="javascript:void(0);" class="downloadzipfile"
-                                           data-file-path="` + datainfo[i] + `"><strong>zip</strong></a></td>
-                                </tr>`);
-                }
-            }
-        }*/
     })
 </script>
+
+<script>
+    //  import up from  './src/components/Hello'
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                imgList: [],
+                size: 0
+            }
+        },
+        methods: {
+            fileClick() {
+                document.getElementById('upload_file').click()
+            },
+            fileChange(el) {
+                if (!el.target.files[0].size) return;
+                this.fileList(el.target);
+                el.target.value = ''
+            },
+            fileList(fileList) {
+                let files = fileList.files;
+                for (let i = 0; i < files.length; i++) {
+                    //判断是否为文件夹
+                    if (files[i].type != '') {
+                        this.fileAdd(files[i]);
+                    } else {
+                        //文件夹处理
+                        this.folders(fileList.items[i]);
+                    }
+                }
+            },
+            //文件夹处理
+            folders(files) {
+                let _this = this;
+                //判断是否为原生file
+                if (files.kind) {
+                    files = files.webkitGetAsEntry();
+                }
+                files.createReader().readEntries(function (file) {
+                    for (let i = 0; i < file.length; i++) {
+                        if (file[i].isFile) {
+                            _this.foldersAdd(file[i]);
+                        } else {
+                            _this.folders(file[i]);
+                        }
+                    }
+                })
+            },
+            foldersAdd(entry) {
+                let _this = this;
+                entry.file(function (file) {
+                    _this.fileAdd(file)
+                })
+            },
+            fileAdd(file) {
+                //总大小
+                this.size = this.size + file.size;
+                //判断是否为图片文件
+                if (file.type.indexOf('image') == -1) {
+                    file.src = '${baseurl}/public/images/update/wenjian.png';
+                    this.imgList.push({
+                        file
+                    });
+                } else {
+                    let reader = new FileReader();
+                    reader.vue = this;
+                    reader.readAsDataURL(file);
+                    reader.onload = function () {
+                        file.src = this.result;
+                        this.vue.imgList.push({
+                            file
+                        });
+                    }
+                }
+            },
+            fileDel(index) {
+                this.size = this.size - this.imgList[index].file.size;//总大小
+                this.imgList.splice(index, 1);
+            },
+            bytesToSize(bytes) {
+                if (bytes === 0) return '0 B';
+                let k = 1000, // or 1024
+                    sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+                    i = Math.floor(Math.log(bytes) / Math.log(k));
+                return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+            },
+            dragenter(el) {
+                el.stopPropagation();
+                el.preventDefault();
+            },
+            dragover(el) {
+                el.stopPropagation();
+                el.preventDefault();
+            },
+            drop(el) {
+                el.stopPropagation();
+                el.preventDefault();
+                this.fileList(el.dataTransfer);
+            }
+        }
+    })
+
+</script>
+
 </body>
 </html>

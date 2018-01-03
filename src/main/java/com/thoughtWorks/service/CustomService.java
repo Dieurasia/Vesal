@@ -1,5 +1,6 @@
 package com.thoughtWorks.service;
 
+import com.thoughtWorks.common.ServerResponse;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public interface CustomService {
      * @param custom
      * @return
      */
-    Custom login (Custom custom) throws Exception;
+    ServerResponse<Custom> login (Custom custom) throws Exception;
 
     /**
      * 订阅和取消订阅
@@ -49,5 +50,5 @@ public interface CustomService {
      * @param custom
      * @throws Exception
      */
-    void customRegister(Custom custom) throws Exception;
+    ServerResponse<String> customRegister(Custom custom) throws Exception;
 }

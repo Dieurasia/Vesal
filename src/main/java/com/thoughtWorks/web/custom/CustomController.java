@@ -1,12 +1,11 @@
 package com.thoughtWorks.web.custom;
 
+import com.thoughtWorks.common.Constant;
+import com.thoughtWorks.common.ServerResponse;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
-import com.thoughtWorks.util.Constant;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,42 +21,32 @@ import java.util.Map;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/CustomLogin")
+@RequestMapping("/CustomLogin/")
 public class CustomController {
     @Autowired
     private CustomService customService;
 
     /**
      * 用户登录
+     *
      * @param custom
-     * @param request
      * @return
      */
     @RequestMapping(value = "login")
     @ResponseBody
-    private Map<String, Object> login(Custom custom, HttpServletRequest request) {
-        Map<String, Object> data = new HashMap<>();
+    private ServerResponse<Custom> login(Custom custom, HttpSession session) {
         try {
-            Custom custom1 = customService.login(custom);
-            if (custom1 != null) {
-                request.getSession().setAttribute("custom", custom1);
-                data.put("result", true);
-            } else {
-                data.put("result", false);
-                data.put("msg", Constant.ACCOUNT_OR_PWD_ERROR);
+            ServerResponse<Custom> response = customService.login(custom);
+            if (response.isSuccess()) {
+                session.setAttribute(Constant.CURRENT_USER, response.getData());
             }
-        } catch (UnknownAccountException e) {
-            data.put("result", false);
-            data.put("msg", Constant.ACCOUNT_NOT_EXIST);
-        } catch (LockedAccountException e) {
-            data.put("result", false);
-            data.put("msg", Constant.ACCOUNT_IS_LOCK);
+
+            return response;
         } catch (Exception e) {
-            data.put("result", false);
-            data.put("msg", Constant.ACCOUNT_OR_PWD_ERROR);
+            e.printStackTrace();
         }
 
-        return data;
+        return ServerResponse.createByErrorMessage("登录失败");
     }
 
     /**
@@ -149,34 +138,35 @@ public class CustomController {
 
     @RequestMapping(value = "/queryCustomByName")
     @ResponseBody
-    public  Map<String, Object> queryCustomByName(String cName) {
+    public Map<String, Object> queryCustomByName(String cName) {
         Map<String, Object> data = new HashMap<>();
         try {
-            boolean result= customService.queryCustomByName(cName);
-            data.put("result",result);
+            boolean result = customService.queryCustomByName(cName);
+            data.put("result", result);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return data;
     }
-        @RequestMapping(value = "/customRegister")
+
+
+    @RequestMapping(value = "/customRegister")
     @ResponseBody
-    public Result customRegister(Custom custom ,HttpServletRequest request) {
+    public ServerResponse<String> customRegister(Custom custom, HttpServletRequest request) {
         try {
             String ip = getLocalIp(request);
             custom.setcIp(ip);
-            customService.customRegister(custom);
 
-            return Result.success(null, Constant.SEARCH_SUCCESS);
+            return customService.customRegister(custom);
         } catch (Exception e) {
             e.printStackTrace();
-
-            return Result.failure(null, Constant.SEARCH_FAILURE);
         }
+        return ServerResponse.createByErrorMessage("注册失败！！！");
     }
 
     /**
      * 获取IP
+     *
      * @param request
      * @return
      */
@@ -196,7 +186,7 @@ public class CustomController {
             if (realIp.equals(forwarded)) {
                 ip = realIp;
             } else {
-                if(forwarded != null){
+                if (forwarded != null) {
                     forwarded = forwarded.split(",")[0];
                 }
                 ip = realIp + "/" + forwarded;

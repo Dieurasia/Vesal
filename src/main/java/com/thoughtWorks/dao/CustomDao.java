@@ -55,5 +55,9 @@ public interface CustomDao{
      * @param custom
      * @throws Exception
      */
-    void customRegister(@Param("custom") Custom custom) throws  Exception;
+    int customRegister(@Param("custom") Custom custom) throws  Exception;
+
+    int checkUsername(String cName);
+
+    int checkEmail(String cEmail);
 }

@@ -4,7 +4,7 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.RoleService;
-import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.common.Constant;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

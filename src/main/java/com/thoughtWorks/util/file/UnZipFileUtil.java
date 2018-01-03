@@ -44,7 +44,7 @@ public class UnZipFileUtil {
 		}
 
 		for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements();) {
-			ZipEntry entry = (ZipEntry) entries.nextElement();
+			ZipEntry entry = entries.nextElement();
 			String zipEntryName = entry.getName();
 			InputStream in = zip.getInputStream(entry);
 			String outPath = (descDir  +"/"+ zipEntryName).replaceAll("\\*", "/");

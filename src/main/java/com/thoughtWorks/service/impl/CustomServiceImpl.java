@@ -1,9 +1,13 @@
 package com.thoughtWorks.service.impl;
 
+import com.thoughtWorks.common.Constant;
+import com.thoughtWorks.common.ServerResponse;
 import com.thoughtWorks.dao.CustomDao;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
+import com.thoughtWorks.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +24,16 @@ public class CustomServiceImpl implements CustomService {
     private CustomDao customDao;
 
     @Override
-    public Custom login(Custom custom) throws Exception {
-        return customDao.login(custom);
+    public ServerResponse<Custom> login(Custom custom) throws Exception {
+        custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
+        Custom custom1 = customDao.login(custom);
+
+        if (custom1 == null) {
+            return ServerResponse.createByErrorMessage("用户名或密码错误");
+        }
+        custom1.setcPassword(StringUtils.EMPTY);
+
+        return ServerResponse.createBySuccess("登录成功", custom1);
     }
 
     @Override
@@ -55,9 +67,46 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public void customRegister(Custom custom) throws Exception {
+    public ServerResponse<String> customRegister(Custom custom) throws Exception {
+        //验证用户名是否已存在
+        ServerResponse validResponse = this.checkValid(custom.getcName(), Constant.ValidType.USERNAME);
+        if (!validResponse.isSuccess()) {
+            return ServerResponse.createErrorMessageResponse("用户已存在!");
+        }
+        //验证用邮箱是否已存在
+        validResponse = this.checkValid(custom.getcEmail(), Constant.ValidType.EMAIL);
+        if (!validResponse.isSuccess()) {
+            return ServerResponse.createErrorMessageResponse("Email已存在");
+        }
+        custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
-        customDao.customRegister(custom);
+        int count = customDao.customRegister(custom);
+        if (count == 0) {
+            return ServerResponse.createErrorMessageResponse("注册失败");
+        }
+
+        return ServerResponse.createSuccessMessageResponse("注册成功");
+    }
+
+    public ServerResponse<String> checkValid(String str, String type) {
+        if (StringUtils.isNotBlank(type)) {
+            if (Constant.ValidType.USERNAME.equals(type)) {
+                int resultCount = customDao.checkUsername(str);
+                if (resultCount > 0) {
+                    return ServerResponse.createErrorMessageResponse("用户以存在");
+                }
+            }
+
+            if (Constant.ValidType.EMAIL.equals(type)) {
+                int resultCount = customDao.checkEmail(str);
+                if (resultCount > 0) {
+                    return ServerResponse.createErrorMessageResponse("Email已存在!");
+                }
+            }
+        }else {
+            return ServerResponse.createErrorMessageResponse("参数类型错误,只能选择用户名或Email!");
+        }
+        return ServerResponse.createSuccessMessageResponse("用户名/Email校验成功!");
     }
 }

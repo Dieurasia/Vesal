@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
@@ -15,27 +17,27 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/interface")
-public class    ModelInterface {
+public class ModelInterface {
     @Autowired
     private ModelInterfaceService modelInterfaceService;
 
     @RequestMapping()
     @ResponseBody
-    public List<Map<String,Object>> modelInterface(String model) {
-        List<Map<String,Object>> list = null;
-       int count = countStringIncludeChar(model,"-");
-       String [] modelName = model.split("-");
+    public Map<String, Object> modelInterface(String model) {
+        Map<String, Object> map = new HashMap<>();
+        int count = countStringIncludeChar(model, "-");
+        String[] modelName = model.split("-");
         try {
-            list = modelInterfaceService.modelInterface(modelName);
-            System.out.println(list);
+            List<Map<String, Object>> list = modelInterfaceService.modelInterface(modelName);
+            map.put("items", list);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+        return map;
     }
 
-    public int countStringIncludeChar(String str, String ch){
-        int count = str.length() - str.replaceAll(ch,"").length();
+    public int countStringIncludeChar(String str, String ch) {
+        int count = str.length() - str.replaceAll(ch, "").length();
         return count;
     }
 }

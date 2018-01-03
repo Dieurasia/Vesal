@@ -17,4 +17,36 @@ public interface SystemDisplayService {
      * @throws Exception
      */
     List<Map<String,Object>> systemInfo(Level level) throws Exception;
+
+    /**
+     * 模型菜单所有类别
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuClassify()throws Exception;
+    /**
+     * 第一级别菜单
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuAClassify()throws Exception;
+    /**
+     * 第二级别菜单
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuBClassify(int b_aid)throws Exception;
+    /**
+     * 第三级别菜单
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> modelMenuCClassify(int c_bid)throws Exception;
+    /**
+     *根据id查找模型信息
+     * @param  level
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> queryModelById(Level level)throws Exception;
 }
