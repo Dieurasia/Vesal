@@ -204,6 +204,11 @@
             <artifactId>shiro-aspectj</artifactId>
             <version>1.2.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.8</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -215,6 +220,11 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.16.6.1</version>
             </plugin>
         </plugins>
     </build>

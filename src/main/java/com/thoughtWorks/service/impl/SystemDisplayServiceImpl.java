@@ -24,18 +24,11 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
     @Override
     public List<Map<String, Object>> systemInfo(Level level) throws Exception {
         List<Map<String, Object>> data = systemDisplayDao.systemInfo(level);
-        for (Map<String, Object> map : data) {
-            String m_thumbnail = (String) map.get("m_thumbnail");
-            String m_dynamic = (String) map.get("m_dynamic");
-            map.put("m_thumbnail", m_thumbnail.replaceAll("\\\\", "/"));
-            map.put("m_dynamic", m_dynamic.replaceAll("\\\\", "/"));
-        }
         return data;
     }
 
     @Override
     public List<Map<String, Object>> modelMenuClassify() throws Exception {
-        Map<String, Object> map = new HashedMap();
         //一级菜单
         List<Map<String, Object>> aClassify = systemDisplayDao.modelMenuAClassify();
         for (Map<String, Object> aClassifyMap : aClassify) {
@@ -43,12 +36,6 @@ public class SystemDisplayServiceImpl implements SystemDisplayService {
             //二级菜单
             List<Map<String, Object>> bClassify = systemDisplayDao.modelMenuBClassify(b_aid);
             aClassifyMap.put("BClassify", bClassify);
-            for (Map<String, Object> bClassifyMap : bClassify) {
-                int c_bid = Integer.valueOf(bClassifyMap.get("b_id").toString());
-                //三级菜单
-                List<Map<String, Object>> cClassify = systemDisplayDao.modelMenuCClassify(c_bid);
-                bClassifyMap.put("CClassify", cClassify);
-            }
         }
         return aClassify;
     }
