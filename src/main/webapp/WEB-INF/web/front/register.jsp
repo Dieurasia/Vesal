@@ -40,6 +40,8 @@
                 </select>
                 <input type="text" name="userPhone" placeholder="请输入联系电话" style="margin-top: 10px">
                 <input type="text" name="userEmail" placeholder="请输入电子邮箱">
+                <button type="button" id="code-button" class="btn btn-info" style="margin-bottom: 10px">发送邮箱验证码</button>
+                <input type="text" name="codeEmail" placeholder="请输入邮箱验证码">
                 <input type="text" name="userCity" placeholder="请输入所在城市">
                 <input style="display: none" type="text" id="showMsg">
                 <button type="button" id="submit-button">注册信息</button>
