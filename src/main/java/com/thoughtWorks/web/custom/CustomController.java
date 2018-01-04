@@ -6,6 +6,7 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.entity.Subscribe;
 import com.thoughtWorks.service.CustomService;
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author ubuntu
@@ -163,6 +165,56 @@ public class CustomController {
         }
         return ServerResponse.createByErrorMessage("注册失败！！！");
     }
+
+    //验证码
+    @RequestMapping(value = "/identifying")
+    @ResponseBody
+    public Map<String, Object> identifying(String emailaddress) {
+        Map<String, Object> data = new HashMap<>();
+
+        //codeEmail生成6位随机数字
+        StringBuffer buffer = new StringBuffer();
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            buffer.append(random.nextInt(10));
+        }
+        String codeEmail = buffer.toString();
+
+        boolean isNull = sendEmail(emailaddress, codeEmail);
+        if (isNull) {
+            data.put("result", true);
+            data.put("codeEmail", codeEmail);
+            data.put("msg", Constant.EMAIL_SUCCESS);
+        } else {
+            data.put("result", false);
+            data.put("msg", Constant.EMAIL_FAILUER);
+        }
+        return data;
+    }
+
+    public static boolean sendEmail(String emailaddress, String code) {
+
+        try {
+            HtmlEmail email = new HtmlEmail();//不用更改
+            email.setHostName("smtp.163.com");//需要修改，126邮箱为smtp.126.com,163邮箱为163.smtp.com，QQ为smtp.qq.com
+            email.setCharset("UTF-8");
+            email.addTo(emailaddress);// 收件地址
+
+            email.setFrom("vesalmail@163.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
+
+            email.setAuthentication("vesalmail@163.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
+
+            email.setSubject("维萨里邮箱验证码");//此处填写邮件名，邮件名可任意填写
+            email.setMsg("【维萨里产品展示网】验证码:" + code + "，该验证码5分钟内有效。为了保证您的账户安全，请勿向他人泄露验证码信息。");//此处填写邮件内容
+
+            email.send();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     /**
      * 获取IP

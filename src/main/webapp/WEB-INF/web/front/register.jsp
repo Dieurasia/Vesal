@@ -44,6 +44,7 @@
                 <input type="text" name="codeEmail" placeholder="请输入邮箱验证码">
                 <input type="text" name="userCity" placeholder="请输入所在城市">
                 <input style="display: none" type="text" id="showMsg">
+                <input style="display: none" type="text" id="codeEmail">
                 <button type="button" id="submit-button">注册信息</button>
             </form>
         </div>
@@ -97,13 +98,15 @@
         //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
         let customNameIsNo = true;
+         let codeEmail = $("#codeEmail").val();
+        let custemCodeEmail = $("input[name='codeEmail']").val();
         $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username}, function (data) {
             customNameIsNo = data.result;
             if (!customNameIsNo) {
                 layer.msg("用户名已经存在", {
                     time: 2000
                 });
-            } else if (username == "" || password == "" || passwordAgain == "" || userOccupation == "" || userPhone == "" || userEmail == "" || userCity == "") {
+            } else if (username == "" || password == "" || passwordAgain == "" || userOccupation == "" || userPhone == "" || userEmail == "" || userCity == "" || custemCodeEmail == "") {
                 layer.msg("信息不能为空", {
                     time: 2000
                 });
@@ -131,6 +134,10 @@
                 layer.msg("地址输入不正确", {
                     time: 2000
                 });
+            } else if (custemCodeEmail !== codeEmail ) {
+                layer.msg("邮箱验证码输入不正确", {
+                    time: 2000
+                });
             } else {
                 $.post("${baseurl}/CustomLogin/customRegister",
                     {
@@ -139,7 +146,7 @@
                         cOccupation: userOccupation,
                         cPhone: userPhone,
                         cEmail: userEmail,
-                        cCity: userCity,
+                        cCity: userCity
                     }, function (data) {
                         if (data.status == 0) {
                             layer.msg("注冊成功", {
@@ -152,6 +159,27 @@
             }
         });
     });
+    $("#code-button").click(function () {
+        let emailaddress = $("input[name='codeEmail']").val();
+        let userEmail = $("input[name='userEmail']").val();
+        //邮箱：
+        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if(userEmail != "" && checkEmail.test(userEmail)){
+            $.post("${baseurl}/CustomLogin/identifying",
+                {emailaddress:userEmail}, function (data) {
+                    if (data.result) {
+                        $("#codeEmail").val(data.codeEmail);
+                    }
+                    layer.msg(data.msg, {
+                        time: 2000
+                    });
+                })
+        }else{
+            layer.msg("邮箱不能为空！", {
+                time: 2000
+            });
+        }
+    })
 </script>
 
 </body>
