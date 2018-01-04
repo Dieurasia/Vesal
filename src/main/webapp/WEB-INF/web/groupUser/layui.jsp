@@ -11,6 +11,27 @@
     <title></title>
 </head>
 <body>
+
+<script id="list-tpl" type="text/html">
+    {{# layui.each(d, function(index, item){ }}
+    <tr>
+        <td>{{ index+1}}</td>
+        <td>{{ item.c_name}}</td>
+        <td>{{ item.c_pwd2}}</td>
+        {{ } }}
+        <td>
+            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
+                    onclick="teacher.update('{{item.id}}')">
+                <i class="layui-icon">&#xe642;</i>修改
+            </button>
+            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="teacher.delete('{{item.id}}')">
+                <i class="layui-icon">&#xe60a;</i>删除
+            </button>
+        </td>
+    </tr>
+    {{# }); }}
+
+</script>
 <div id="randomGenerateAccountPassword" style="display: none">
     <form id="menu-add" lay-filter="menu-add" class="layui-form layui-form-pane" method="post">
         <div class="layui-form-item" style="margin: auto">
@@ -29,8 +50,8 @@
         </div>
         <br>
         <div class="layui-form-item" id="showMsg" style="margin: auto;display: none">
-                <input type="text" id="msgInfo" required style="color: red"
-                       placeholder="" autocomplete="off" class="layui-input ">
+            <input type="text" id="msgInfo" required style="color: red"
+                   placeholder="" autocomplete="off" class="layui-input ">
         </div>
         <br>
         <div class="layui-form-item">

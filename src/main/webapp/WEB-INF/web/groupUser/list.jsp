@@ -31,13 +31,19 @@
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>菜单名称</th>
-                            <th>url</th>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>密码</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="list">
+                        <tr>
+                            <td>贤心</td>
+                            <td>汉族</td>
+                            <td>1989-10-14</td>
+                            <td>人生似修行</td>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -50,6 +56,11 @@
 <jsp:include page="layui.jsp"></jsp:include>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
+    let totalSize = 10;
+    let currentIndex = 1;
+    let pageSize = 10;
+    let teacher;
+    let classId = 0;
     let groupUser, currentMenuId;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
@@ -59,6 +70,43 @@
             laytpl = layui.laytpl;
 
         groupUser = {
+            page: function () {
+                layui.laypage({
+                    cont: 'demo1',
+                    pages: totalSize, //总页数
+                    curr: currentIndex,
+                    last: totalSize,
+                    groups: 5,//连续显示分页数
+                    skin: '#1E9FFF',
+                    jump: function (obj, first) {
+                        currentIndex = obj.curr;
+                        if (!first) {
+                            groupUser.list();
+                        }
+                    }
+                });
+            },
+            list: function () {
+                $.ajax({
+                    url: baseUrl + "/back/groupUsers/list",
+                    type: "post",
+                    data: {currentIndex: currentIndex, pageSize: pageSize},
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status === 0) {
+                            currentIndex = data.data.page.currentIndex;
+                            totalSize = data.data.page.totalSize;
+                            groupUser.page();
+                            // showTotalCount(data.page.totalCount);
+                            laytpl($("#list-tpl").text()).render(data.data.accountInfo, function (html) {
+                                $("#list").html(html);
+                            });
+                            form.render();
+                        }
+                    }
+                });
+            },
+
             randomGenerateAccountPassword: function () {
                 layer.open({
                     type: 1,
@@ -71,19 +119,23 @@
                 let userNumber = $("input[name='userNumber']").val();
                 let usernamePrefix = $("input[name='usernamePrefix']").val();
 
-                if (userNumber !== "" && userNumber !== null && usernamePrefix !== "" && usernamePrefix !== null){
+                if (userNumber !== "" && userNumber !== null && usernamePrefix !== "" && usernamePrefix !== null) {
                     $.post(baseUrl + "back/groupUsers/addAccount", {
                         userNumber: userNumber,
                         usernamePrefix: usernamePrefix
                     }, function (data) {
                         alert(123);
                     })
-                }else {
+                } else {
                     $("#msgInfo").val("请将信息填写完整");
                     $("#showMsg").show();
                 }
             }
         }
+
+        $(function () {
+            groupUser.list();
+        })
     });
 
 </script>
