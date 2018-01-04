@@ -40,6 +40,13 @@ public class GroupUsersController {
         return ServerResponse.createBySuccess(data);
     }
 
+    @RequestMapping("/deleteAccount")
+    @ResponseBody
+    public ServerResponse<String> addAccount(Integer id, HttpServletRequest request) {
+        ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+        return groupUsersService.deleteAccount(id);
+    }
+
     @RequestMapping("/addAccount")
     @ResponseBody
     public ServerResponse<String> addAccount(Integer userNumber, String usernamePrefix, HttpServletRequest request) {

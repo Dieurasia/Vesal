@@ -13,4 +13,8 @@ public interface GroupUsersDao {
     List<Map<String,Object>> selectAccount(@Param("data") Map<String, Object> data);
 
     Long selectAccountTotalSize(String userName);
+
+    int checkPrefix(@Param("checkInfo") Map<String, Object> checkInfo);
+
+    void deleteAccount(Integer id);
 }

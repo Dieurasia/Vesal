@@ -15,6 +15,7 @@
     <select id="selectAccount" parameterType="map" resultType="map">
         select c_id,c_name,c_pwd2 from v_custom
         WHERE parentAccount = #{data.parentAccount}
+        ORDER BY c_id DESC
         LIMIT #{data.start},#{data.size}
     </select>
 
@@ -22,5 +23,16 @@
         select COUNT(1) from v_custom
         WHERE parentAccount = #{userName}
     </select>
+
+    <select id="checkPrefix" parameterType="map" resultType="int">
+        select count(1) from v_custom
+        WHERE parentAccount = #{checkInfo.parentAccount}
+        AND groupUserPrefix = #{checkInfo.prefix}
+    </select>
+
+    <delete id="deleteAccount" parameterType="int">
+        DELETE FROM v_custom
+        WHERE v_custom.c_id = #{id}
+    </delete>
 
 </mapper>

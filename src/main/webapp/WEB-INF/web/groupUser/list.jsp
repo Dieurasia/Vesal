@@ -92,7 +92,6 @@
                     type: "post",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
-                        console.log(data);
                         if (data.status === 0) {
                             currentIndex = data.data.page.currentIndex;
                             totalSize = data.data.page.totalSize;
@@ -105,6 +104,19 @@
                         }
                     }
                 });
+            },
+            deleteAccount:function (id) {
+                $.ajax({
+                    url:baseUrl + "/back/groupUsers/deleteAccount",
+                    type:"post",
+                    data:{id:id},
+                    success:function (data) {
+                        if (data.status === 0) {
+                            layer.msg(data.msg);
+                            setTimeout("self.location.reload()", 2000);
+                        }
+                    }
+                })
             },
 
             randomGenerateAccountPassword: function () {
@@ -124,7 +136,14 @@
                         userNumber: userNumber,
                         usernamePrefix: usernamePrefix
                     }, function (data) {
-                        alert(123);
+                        console.log(data);
+                        if (data.status === 0) {
+                            top.layer.msg(data.msg);
+                            setTimeout("self.location.reload()", 2000);
+                        }else {
+                            $("#msgInfo").val(data.msg);
+                            $("#showMsg").show();
+                        }
                     })
                 } else {
                     $("#msgInfo").val("请将信息填写完整");

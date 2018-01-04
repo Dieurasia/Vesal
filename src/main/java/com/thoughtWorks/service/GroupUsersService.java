@@ -11,4 +11,6 @@ public interface GroupUsersService {
     ServerResponse<String> addAccount(Integer userNumber, String usernamePrefix, HttpServletRequest request,String userName);
 
     List<Map<String, Object>> selectAccount(PageUtil pageUtil, String userName);
+
+    ServerResponse<String> deleteAccount(Integer id);
 }

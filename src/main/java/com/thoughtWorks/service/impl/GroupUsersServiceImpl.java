@@ -18,7 +18,14 @@ public class GroupUsersServiceImpl implements GroupUsersService {
     GroupUsersDao groupUsersDao;
 
     @Override
-    public ServerResponse<String> addAccount(Integer userNumber, String usernamePrefix, HttpServletRequest request,String userName) {
+    public ServerResponse<String> addAccount(Integer userNumber, String usernamePrefix, HttpServletRequest request, String userName) {
+        Map<String, Object> checkInfo = new HashMap<>();
+        checkInfo.put("parentAccount", userName);
+        checkInfo.put("prefix", usernamePrefix);
+        int prefixNameIsRepeated = groupUsersDao.checkPrefix(checkInfo);
+        if (prefixNameIsRepeated != 0) {
+            return ServerResponse.createByErrorMessage("该前缀名以存在，请换一个");
+        }
         List<Map<String, String>> userInfo = new ArrayList<>();
         for (int i = 0; i < userNumber; i++) {
             Map<String, String> data = new HashMap<>();
@@ -50,6 +57,19 @@ public class GroupUsersServiceImpl implements GroupUsersService {
         pageUtil.setTotalSize(groupUsersDao.selectAccountTotalSize(userName));
 
         return groupUsersDao.selectAccount(data);
+    }
+
+    @Override
+    public ServerResponse<String> deleteAccount(Integer id) {
+        try {
+            groupUsersDao.deleteAccount(id);
+
+            return ServerResponse.createBySuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ServerResponse.createByError();
     }
 
 }
