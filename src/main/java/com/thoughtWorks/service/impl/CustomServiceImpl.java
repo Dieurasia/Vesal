@@ -60,7 +60,7 @@ public class CustomServiceImpl implements CustomService {
     @Override
     public boolean queryCustomByName(String cName) throws Exception {
         Custom custom = customDao.queryCustomByName(cName);
-        if (custom == null) {
+        if (custom != null) {
             return true;
         }
         return false;
@@ -68,16 +68,6 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public ServerResponse<String> customRegister(Custom custom) throws Exception {
-        //验证用户名是否已存在
-        ServerResponse validResponse = this.checkValid(custom.getcName(), Constant.ValidType.USERNAME);
-        if (!validResponse.isSuccess()) {
-            return ServerResponse.createErrorMessageResponse("用户已存在!");
-        }
-        //验证用邮箱是否已存在
-        validResponse = this.checkValid(custom.getcEmail(), Constant.ValidType.EMAIL);
-        if (!validResponse.isSuccess()) {
-            return ServerResponse.createErrorMessageResponse("Email已存在");
-        }
         custom.setcPassword(MD5Util.MD5EncodeUtf8(custom.getcPassword()));
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         custom.setcCode(uuid);
@@ -86,24 +76,21 @@ public class CustomServiceImpl implements CustomService {
         return ServerResponse.createSuccessMessageResponse("注册成功");
     }
 
-    public ServerResponse<String> checkValid(String str, String type) {
-        if (StringUtils.isNotBlank(type)) {
-            if (Constant.ValidType.USERNAME.equals(type)) {
-                int resultCount = customDao.checkUsername(str);
-                if (resultCount > 0) {
-                    return ServerResponse.createErrorMessageResponse("用户以存在");
-                }
-            }
-
-            if (Constant.ValidType.EMAIL.equals(type)) {
-                int resultCount = customDao.checkEmail(str);
-                if (resultCount > 0) {
-                    return ServerResponse.createErrorMessageResponse("Email已存在!");
-                }
-            }
-        }else {
-            return ServerResponse.createErrorMessageResponse("参数类型错误,只能选择用户名或Email!");
+    @Override
+    public boolean checkPhone(String cPhone) {
+       int resultCount = customDao.checkPhone(cPhone);
+       if (resultCount > 0) {
+            return true;
         }
-        return ServerResponse.createSuccessMessageResponse("用户名/Email校验成功!");
+        return false;
+    }
+
+    @Override
+    public boolean checkEmail(String cEmail) {
+        int resultCount = customDao.checkEmail(cEmail);
+        if (resultCount > 0) {
+            return true;
+        }
+        return false;
     }
 }

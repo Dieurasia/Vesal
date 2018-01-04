@@ -30,7 +30,6 @@ public class CustomController {
 
     /**
      * 用户登录
-     *
      * @param custom
      * @return
      */
@@ -138,19 +137,32 @@ public class CustomController {
         return data;
     }
 
+    /**
+     * 通过姓名查找用户
+     * @param cName
+     * @return
+     */
     @RequestMapping(value = "/queryCustomByName")
     @ResponseBody
-    public Map<String, Object> queryCustomByName(String cName) {
+    public Map<String, Object> queryCustomByName(String cName,String cPhone) {
         Map<String, Object> data = new HashMap<>();
         try {
-            boolean result = customService.queryCustomByName(cName);
-            data.put("result", result);
+            boolean customName = customService.queryCustomByName(cName);
+            boolean customPhone = customService.checkPhone(cPhone);
+            data.put("customName", customName);
+            data.put("customPhone", customPhone);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return data;
     }
 
+    /**
+     * 用户注册信息
+     * @param custom
+     * @param request
+     * @return
+     */
 
     @RequestMapping(value = "/customRegister")
     @ResponseBody
@@ -166,28 +178,39 @@ public class CustomController {
         return ServerResponse.createByErrorMessage("注册失败！！！");
     }
 
-    //验证码
+    /**
+     *   邮箱验证码
+     */
     @RequestMapping(value = "/identifying")
     @ResponseBody
-    public Map<String, Object> identifying(String emailaddress) {
+    public Map<String, Object> identifying(String cEmail) {
         Map<String, Object> data = new HashMap<>();
+        try {
+            boolean customEmail = customService.checkEmail(cEmail);
+            if(customEmail){
+                data.put("result", false);
+                data.put("msg", Constant.EMAIL_HAVE);
+            }else{
+                //codeEmail生成6位随机数字
+                StringBuffer buffer = new StringBuffer();
+                Random random = new Random();
+                for (int i = 0; i < 6; i++) {
+                    buffer.append(random.nextInt(10));
+                }
+                String codeEmail = buffer.toString();
 
-        //codeEmail生成6位随机数字
-        StringBuffer buffer = new StringBuffer();
-        Random random = new Random();
-        for (int i = 0; i < 6; i++) {
-            buffer.append(random.nextInt(10));
-        }
-        String codeEmail = buffer.toString();
-
-        boolean isNull = sendEmail(emailaddress, codeEmail);
-        if (isNull) {
-            data.put("result", true);
-            data.put("codeEmail", codeEmail);
-            data.put("msg", Constant.EMAIL_SUCCESS);
-        } else {
-            data.put("result", false);
-            data.put("msg", Constant.EMAIL_FAILUER);
+                boolean isNull = sendEmail(cEmail, codeEmail);
+                if (isNull) {
+                    data.put("result", true);
+                    data.put("codeEmail", codeEmail);
+                    data.put("msg", Constant.EMAIL_SUCCESS);
+                } else {
+                    data.put("result", false);
+                    data.put("msg", Constant.EMAIL_FAILUER);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return data;
     }

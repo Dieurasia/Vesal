@@ -57,7 +57,18 @@ public interface CustomDao{
      */
     void customRegister(@Param("custom") Custom custom) throws  Exception;
 
-    int checkUsername(String cName);
 
+    /**
+     * 验证手机号是否存在
+     * @param cPhone
+     * @return
+     */
+    int checkPhone(String cPhone);
+
+    /**
+     * 验证邮箱是否存在
+     * @param cEmail
+     * @return
+     */
     int checkEmail(String cEmail);
 }

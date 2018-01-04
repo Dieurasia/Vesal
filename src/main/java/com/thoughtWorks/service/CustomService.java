@@ -51,4 +51,18 @@ public interface CustomService {
      * @throws Exception
      */
     ServerResponse<String> customRegister(Custom custom) throws Exception;
+
+    /**
+     * 验证手机号是否存在
+     * @param cPhone
+     * @return
+     */
+    boolean checkPhone(String cPhone);
+
+    /**
+     * 验证邮箱是否存在
+     * @param cEmail
+     * @return
+     */
+    boolean checkEmail(String cEmail);
 }

@@ -100,13 +100,18 @@
         let customNameIsNo = true;
          let codeEmail = $("#codeEmail").val();
         let custemCodeEmail = $("input[name='codeEmail']").val();
-        $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username}, function (data) {
-            customNameIsNo = data.result;
-            if (!customNameIsNo) {
+        $.post("${baseurl}/CustomLogin/queryCustomByName", {cName: username,cPhone:userPhone}, function (data) {
+            customNameIsNo = data.customName;
+            customPhoneIsNo = data.customPhone;
+            if (customNameIsNo) {
                 layer.msg("用户名已经存在", {
                     time: 2000
                 });
-            } else if (username == "" || password == "" || passwordAgain == "" || userOccupation == "" || userPhone == "" || userEmail == "" || userCity == "" || custemCodeEmail == "") {
+            }else if (customPhoneIsNo) {
+                layer.msg("手机号已经存在", {
+                    time: 2000
+                });
+            }else if (username == "" || password == "" || passwordAgain == "" || userOccupation == "" || userPhone == "" || userEmail == "" || userCity == "" || custemCodeEmail == "") {
                 layer.msg("信息不能为空", {
                     time: 2000
                 });
@@ -160,13 +165,11 @@
         });
     });
     $("#code-button").click(function () {
-        let emailaddress = $("input[name='codeEmail']").val();
         let userEmail = $("input[name='userEmail']").val();
         //邮箱：
         let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
         if(userEmail != "" && checkEmail.test(userEmail)){
-            $.post("${baseurl}/CustomLogin/identifying",
-                {emailaddress:userEmail}, function (data) {
+            $.post("${baseurl}/CustomLogin/identifying",{cEmail:userEmail}, function (data) {
                     if (data.result) {
                         $("#codeEmail").val(data.codeEmail);
                     }

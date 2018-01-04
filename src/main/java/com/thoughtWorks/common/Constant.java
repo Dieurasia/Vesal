@@ -49,4 +49,5 @@ public class Constant {
 
     public static final String EMAIL_SUCCESS = "邮件发送成功";
     public static final String EMAIL_FAILUER = "邮件发送失败";
+    public static final String EMAIL_HAVE = "邮箱已存在";
 }
