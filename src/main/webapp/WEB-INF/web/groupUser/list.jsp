@@ -35,16 +35,13 @@
                             <th>序号</th>
                             <th>用户名</th>
                             <th>密码</th>
+                            <th>集团电话</th>
+                            <th>集团邮箱</th>
+                            <th>集团名称</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="list">
-                        <tr>
-                            <td>贤心</td>
-                            <td>汉族</td>
-                            <td>1989-10-14</td>
-                            <td>人生似修行</td>
-                        </tr>
                         </tbody>
                     </table>
 
@@ -93,6 +90,7 @@
                     type: "post",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
+                        console.log("后台数据："+JSON.stringify(data))
                         if (data.status === 0) {
                             currentIndex = data.data.page.currentIndex;
                             totalSize = data.data.page.totalSize;
@@ -106,12 +104,12 @@
                     }
                 });
             },
-            deleteAccount:function (id) {
+            deleteAccount: function (id) {
                 $.ajax({
-                    url:baseUrl + "/back/groupUsers/deleteAccount",
-                    type:"post",
-                    data:{id:id},
-                    success:function (data) {
+                    url: baseUrl + "/back/groupUsers/deleteAccount",
+                    type: "post",
+                    data: {id: id},
+                    success: function (data) {
                         if (data.status === 0) {
                             top.layer.msg(data.msg);
                             form.render();
@@ -125,24 +123,30 @@
                 layer.open({
                     type: 1,
                     title: '随机生成用户',
-                    area: ["25%", "39%"],
+                    area: ["80%", "80%"],
                     content: $("#randomGenerateAccountPassword")
                 })
             },
             addAccount: function () {
                 let userNumber = $("input[name='userNumber']").val();
+                let c_phone = $("input[name='accountPhone']").val();
+                let c_email = $("input[name='accountEmail']").val();
                 let usernamePrefix = $("input[name='usernamePrefix']").val();
+                let parentAccount = $("input[name='groupUsersName']").val();
 
                 if (userNumber !== "" && userNumber !== null && usernamePrefix !== "" && usernamePrefix !== null) {
                     $.post(baseUrl + "back/groupUsers/addAccount", {
                         userNumber: userNumber,
-                        usernamePrefix: usernamePrefix
+                        groupUserPrefix: usernamePrefix,
+                        parentAccount: parentAccount,
+                        cPhone:c_phone,
+                        cEmail:c_email
                     }, function (data) {
                         console.log(data);
                         if (data.status === 0) {
                             top.layer.msg(data.msg);
                             setTimeout("self.location.reload()", 2000);
-                        }else {
+                        } else {
                             $("#msgInfo").val(data.msg);
                             $("#showMsg").show();
                         }

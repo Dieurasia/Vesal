@@ -5,29 +5,28 @@
 <mapper namespace="com.thoughtWorks.dao.GroupUsersDao">
 
     <insert id="addAccount" parameterType="list">
-        insert into v_custom (c_name, c_password,c_pwd2,groupUserPrefix,parentAccount)
+        insert into v_custom (c_name, c_password,adminName,groupUserPrefix,parentAccount,c_phone,c_email)
         values
         <foreach collection="userInfo" item="item" index="index" separator=",">
-            (#{item.name},#{item.pwd},#{item.pwd2},#{item.groupUserPrefix},#{item.parentAccount})
+            (#{item.name},#{item.pwd},#{item.adminName},#{item.groupUserPrefix},#{item.parentAccount},#{item.cPhone},#{item.cEmail})
         </foreach>
     </insert>
 
     <select id="selectAccount" parameterType="map" resultType="map">
-        select c_id,c_name,c_pwd2 from v_custom
-        WHERE parentAccount = #{data.parentAccount}
-        ORDER BY c_id DESC
+        select c_id,c_name,parentAccount,c_phone,c_email from v_custom
+        WHERE adminName = #{data.adminName}
+        ORDER BY parentAccount DESC
         LIMIT #{data.start},#{data.size}
     </select>
 
     <select id="selectAccountTotalSize" parameterType="string" resultType="long">
         select COUNT(1) from v_custom
-        WHERE parentAccount = #{userName}
+        WHERE adminName = #{userName}
     </select>
 
     <select id="checkPrefix" parameterType="map" resultType="int">
         select count(1) from v_custom
-        WHERE parentAccount = #{checkInfo.parentAccount}
-        AND groupUserPrefix = #{checkInfo.prefix}
+        WHERE groupUserPrefix = #{checkInfo.prefix}
     </select>
 
     <delete id="deleteAccount" parameterType="int">
