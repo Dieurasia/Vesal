@@ -20,7 +20,7 @@ import java.util.*;
  * @author ubuntu
  */
 @Controller
-@RequestMapping("/CustomLogin/")
+@RequestMapping("/CustomLogin")
 public class CustomController {
     @Autowired
     private CustomService customService;

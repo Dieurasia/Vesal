@@ -65,7 +65,7 @@
         $('.wrapper').addClass('form-success');
         let username = $("#username").val();
         let password = $("#password").val();
-        $.post("${baseurl}/CustomLogin/login", {
+            $.post("${baseurl}/CustomLogin/login", {
             cName: username,
             cPassword: password
         }, function (data) {

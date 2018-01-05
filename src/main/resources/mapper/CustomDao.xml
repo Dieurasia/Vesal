@@ -5,7 +5,7 @@
 <mapper namespace="com.thoughtWorks.dao.CustomDao">
 
     <select id="login" resultType="Custom" parameterType="Custom">
-        select * from v_custom where c_name = #{cName} or c_phone = #{cName}  or c_email = #{cName} AND c_password = #{cPassword}
+        select * from v_custom where c_name = #{cName}  AND c_password = #{cPassword}
     </select>
     <insert id="addSubscribe" parameterType="Subscribe">
         insert into v_subscribe(custom_id, model_id, s_whether) VALUES (#{customId},#{modelId},#{sWhether})
