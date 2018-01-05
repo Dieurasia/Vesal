@@ -15,7 +15,7 @@
     <select id="selectAccount" parameterType="map" resultType="map">
         select c_id,c_name,parentAccount,c_phone,c_email from v_custom
         WHERE adminName = #{data.adminName}
-        ORDER BY parentAccount DESC
+        ORDER BY c_id DESC
         LIMIT #{data.start},#{data.size}
     </select>
 

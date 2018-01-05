@@ -11,6 +11,7 @@
 <head>
     <title></title>
     <script src="${baseurl}/public/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${baseurl}/public/js/verification/verification.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
 </head>
@@ -90,7 +91,7 @@
                     type: "post",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
-                        console.log("后台数据："+JSON.stringify(data))
+                        console.log("后台数据：" + JSON.stringify(data))
                         if (data.status === 0) {
                             currentIndex = data.data.page.currentIndex;
                             totalSize = data.data.page.totalSize;
@@ -134,13 +135,24 @@
                 let usernamePrefix = $("input[name='usernamePrefix']").val();
                 let parentAccount = $("input[name='groupUsersName']").val();
 
-                if (userNumber !== "" && userNumber !== null && usernamePrefix !== "" && usernamePrefix !== null) {
+                if (!verificat.mobileVer(c_phone)) {
+                    $("#msgInfo").val("手机号输入错误");
+                    $("#showMsg").show();
+                    return;
+                }
+                if (!verificat.emailVer(c_email)) {
+                    $("#msgInfo").val("邮箱输入错误");
+                    $("#showMsg").show();
+                    return;
+                }
+
+                if (userNumber !== "" && c_phone !== "" && usernamePrefix !== "" && c_email !== "" && parentAccount !== "") {
                     $.post(baseUrl + "back/groupUsers/addAccount", {
                         userNumber: userNumber,
                         groupUserPrefix: usernamePrefix,
                         parentAccount: parentAccount,
-                        cPhone:c_phone,
-                        cEmail:c_email
+                        cPhone: c_phone,
+                        cEmail: c_email
                     }, function (data) {
                         console.log(data);
                         if (data.status === 0) {
