@@ -19,8 +19,8 @@
 <div class="htmleaf-container">
     <div id="logo">
         <a href="${baseurl}/page/index">
-        <img id="img" src="${baseurl}/public/images/favicon.ico"/>
-        <span id="title">维萨里展示网</span>
+            <img id="img" src="${baseurl}/public/images/favicon.ico"/>
+            <span id="title">维萨里展示网</span>
         </a>
     </div>
     <div class="wrapper">
@@ -29,7 +29,7 @@
             <form class="form">
                 <input type="text" placeholder="用户名/手机号/邮箱" id="username">
                 <input type="password" placeholder="密码" id="password">
-                <button type="submit" id="login-button">登录</button>
+                <button type="button" id="login-button">登录</button>
             </form>
         </div>
 
@@ -65,20 +65,26 @@
         $('.wrapper').addClass('form-success');
         let username = $("#username").val();
         let password = $("#password").val();
+        if (username == "" || password == "") {
+            layer.msg("信息不能为空", {
+                time: 2000
+            });
+        } else {
             $.post("${baseurl}/CustomLogin/login", {
-            cName: username,
-            cPassword: password
-        }, function (data) {
-            if (data.status == 0) {
-                location.href="${baseurl}/page/index";
-            } else {
-                layer.msg(data.msg, {
-                    time: 1000
-                }, function () {
-                    location.reload();
-                });
-            }
-        });
+                cName: username,
+                cPassword: password
+            }, function (data) {
+                if (data.status == 0) {
+                    location.href = "${baseurl}/page/index";
+                } else {
+                    layer.msg(data.msg, {
+                        time: 1000
+                    }, function () {
+                        location.reload();
+                    });
+                }
+            });
+        }
     });
 </script>
 
