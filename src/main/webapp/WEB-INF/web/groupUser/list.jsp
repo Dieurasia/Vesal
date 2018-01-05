@@ -107,7 +107,6 @@
                 });
             },
             deleteAccount:function (id) {
-                alert(id);
                 $.ajax({
                     url:baseUrl + "/back/groupUsers/deleteAccount",
                     type:"post",
