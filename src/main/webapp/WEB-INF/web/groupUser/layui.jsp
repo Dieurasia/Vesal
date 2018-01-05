@@ -17,7 +17,6 @@
     <tr>
         <td>{{ index+1}}</td>
         <td>{{ item.c_name}}</td>
-        <td>123456</td>
         <td>{{ item.c_phone}}</td>
         <td>{{ item.c_email}}</td>
         <td>{{ item.parentAccount}}</td>
