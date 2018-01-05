@@ -20,11 +20,11 @@
         <td>{{ item.c_pwd2}}</td>
         {{ } }}
         <td>
-            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                    onclick="teacher.update('{{item.id}}')">
-                <i class="layui-icon">&#xe642;</i>修改
-            </button>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="teacher.delete('{{item.id}}')">
+            <%--<button class="layui-btn layui-btn-mini " style="background: #21a1a1"--%>
+                    <%--onclick="teacher.update('{{item.id}}')">--%>
+                <%--<i class="layui-icon">&#xe642;</i>修改--%>
+            <%--</button>--%>
+            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="groupUser.deleteAccount('{{item.c_id}}')">
                 <i class="layui-icon">&#xe60a;</i>删除
             </button>
         </td>

@@ -10,6 +10,7 @@
 <html>
 <head>
     <title></title>
+    <script src="${baseurl}/public/js/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
 </head>
@@ -64,7 +65,7 @@
     let groupUser, currentMenuId;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
-        window.layer = layui.layer;
+        var layer = layui.layer;
         let element = layui.element(),
             form = layui.form(),
             laytpl = layui.laytpl;
@@ -106,13 +107,15 @@
                 });
             },
             deleteAccount:function (id) {
+                alert(id);
                 $.ajax({
                     url:baseUrl + "/back/groupUsers/deleteAccount",
                     type:"post",
                     data:{id:id},
                     success:function (data) {
                         if (data.status === 0) {
-                            layer.msg(data.msg);
+                            top.layer.msg(data.msg);
+                            form.render();
                             setTimeout("self.location.reload()", 2000);
                         }
                     }
