@@ -33,9 +33,9 @@
                     <li><a href="${baseurl}/page/index">首页</a></li>
                     <span id="menuModel">
                     </span>
-                    <li><a href="#">手绘分享</a></li>
+                    <li><a href="${baseurl}/page/handDrawing">手绘分享</a></li>
                     <li><a href="#">软件下载</a></li>
-                    <li><a href="#">关于我们</a>
+                    <li><a href="${baseurl}/page/about">关于我们</a>
                     <li><a style="cursor:hand" onclick="session()">用户中心 </a></li>
                 </ul>
             </nav>

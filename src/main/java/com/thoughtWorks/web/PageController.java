@@ -50,4 +50,13 @@ public class PageController {
         return "front/modelShow/details/modelDetails.jsp?id="+id;
     }
 
+    @RequestMapping("about")
+        public String about() {
+        return "front/about/about";
+    }
+    @RequestMapping("handDrawing")
+    public String handDrawing() {
+        return "front/handDrawing/handDrawing";
+    }
+
 }
