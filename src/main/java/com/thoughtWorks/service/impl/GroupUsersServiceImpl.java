@@ -26,7 +26,7 @@ public class GroupUsersServiceImpl implements GroupUsersService {
 
         int prefixNameIsRepeated = groupUsersDao.checkPrefix(checkInfo);
         if (prefixNameIsRepeated != 0) {
-            return ServerResponse.createByErrorMessage("该前缀名以存在，请换一个");
+            return ServerResponse.createByErrorMessage("该前缀名以存在，请换一个！！！");
         }
         List<Map<String, String>> userInfo = new ArrayList<>();
         for (int i = 0; i < userNumber; i++) {
@@ -46,11 +46,11 @@ public class GroupUsersServiceImpl implements GroupUsersService {
 
         try {
             groupUsersDao.addAccount(userInfo);
-            return ServerResponse.createBySuccess();
+            return ServerResponse.createBySuccessMessage("更新成功！！！");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ServerResponse.createByErrorMessage("更新失败");
+        return ServerResponse.createByErrorMessage("更新失败！！！");
     }
 
     @Override
@@ -70,12 +70,12 @@ public class GroupUsersServiceImpl implements GroupUsersService {
         try {
             groupUsersDao.deleteAccount(id);
 
-            return ServerResponse.createBySuccess();
+            return ServerResponse.createBySuccessMessage("删除数据成功！！！");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return ServerResponse.createByError();
+        return ServerResponse.createByErrorMessage("删除数据失败！！！");
     }
 
 }
