@@ -42,7 +42,7 @@ img {
   outline: none;
 }
 .vcenter {
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   right: 0;
   bottom: 0;
@@ -1639,7 +1639,7 @@ ul li {
   display: block;
 }
 @media (max-width: 640px) {
-  .about_img {
+  . about_img {
     margin-bottom: 0px;
   }
 }
