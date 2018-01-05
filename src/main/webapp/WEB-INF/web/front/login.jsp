@@ -67,7 +67,9 @@
         let password = $("#password").val();
         if (username == "" || password == "") {
             layer.msg("信息不能为空", {
-                time: 2000
+                time: 1000
+            }, function () {
+                location.reload();
             });
         } else {
             $.post("${baseurl}/CustomLogin/login", {
