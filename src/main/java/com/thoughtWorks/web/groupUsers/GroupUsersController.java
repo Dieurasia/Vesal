@@ -2,6 +2,7 @@ package com.thoughtWorks.web.groupUsers;
 
 import com.thoughtWorks.common.ServerResponse;
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Custom;
 import com.thoughtWorks.service.GroupUsersService;
 import com.thoughtWorks.util.PageUtil;
 import org.apache.shiro.SecurityUtils;
@@ -49,8 +50,8 @@ public class GroupUsersController {
 
     @RequestMapping("/addAccount")
     @ResponseBody
-    public ServerResponse<String> addAccount(Integer userNumber, String usernamePrefix, HttpServletRequest request) {
+    public ServerResponse<String> addAccount(Integer userNumber, Custom custom, HttpServletRequest request) {
         ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-        return groupUsersService.addAccount(userNumber,usernamePrefix,request,user.getUserName());
+        return groupUsersService.addAccount(userNumber,custom,request,user.getUserName());
     }
 }

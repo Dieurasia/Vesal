@@ -10,6 +10,33 @@ public class Custom {
     private String cEmail;
     private String cCity;
     private String cIp;
+    private String adminName;
+    private String parentAccount;
+    private String groupUserPrefix;
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getParentAccount() {
+        return parentAccount;
+    }
+
+    public void setParentAccount(String parentAccount) {
+        this.parentAccount = parentAccount;
+    }
+
+    public String getGroupUserPrefix() {
+        return groupUserPrefix;
+    }
+
+    public void setGroupUserPrefix(String groupUserPrefix) {
+        this.groupUserPrefix = groupUserPrefix;
+    }
 
     public Integer getcId() {
         return cId;
@@ -81,5 +108,23 @@ public class Custom {
 
     public void setcIp(String cIp) {
         this.cIp = cIp;
+    }
+
+    @Override
+    public String toString() {
+        return "Custom{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cPassword='" + cPassword + '\'' +
+                ", cCode='" + cCode + '\'' +
+                ", cOccupation='" + cOccupation + '\'' +
+                ", cPhone='" + cPhone + '\'' +
+                ", cEmail='" + cEmail + '\'' +
+                ", cCity='" + cCity + '\'' +
+                ", cIp='" + cIp + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", parentAccount='" + parentAccount + '\'' +
+                ", groupUserPrefix='" + groupUserPrefix + '\'' +
+                '}';
     }
 }

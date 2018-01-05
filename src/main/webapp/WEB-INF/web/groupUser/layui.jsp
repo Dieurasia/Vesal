@@ -17,7 +17,10 @@
     <tr>
         <td>{{ index+1}}</td>
         <td>{{ item.c_name}}</td>
-        <td>{{ item.c_pwd2}}</td>
+        <td>123456</td>
+        <td>{{ item.c_phone}}</td>
+        <td>{{ item.c_email}}</td>
+        <td>{{ item.parentAccount}}</td>
         {{ } }}
         <td>
             <%--<button class="layui-btn layui-btn-mini " style="background: #21a1a1"--%>
@@ -35,14 +38,35 @@
 <div id="randomGenerateAccountPassword" style="display: none">
     <form id="menu-add" lay-filter="menu-add" class="layui-form layui-form-pane" method="post">
         <div class="layui-form-item" style="margin: auto">
-            <label class="layui-form-label" style="width: auto">给定用户名称的前缀</label>
+            <label class="layui-form-label" style="width: auto">集团用户名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="usernamePrefix" required
+                <input type="text" name="groupUsersName" required
                        placeholder="" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item" style="margin: auto">
-            <label class="layui-form-label" style="width: auto">随机生成的用户位数</label>
+            <label class="layui-form-label" style="width: auto">集团用户电话</label>
+            <div class="layui-input-inline">
+                <input type="tel" name="accountPhone" required
+                       placeholder="" autocomplete="off" class="layui-input ">
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin: auto">
+            <label class="layui-form-label" style="width: auto">集团用户邮箱</label>
+            <div class="layui-input-inline">
+                <input type="email" name="accountEmail" required
+                       placeholder="" autocomplete="off" class="layui-input ">
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin: auto">
+            <label class="layui-form-label" style="width: auto">集团用户前缀</label>
+            <div class="layui-input-inline">
+                <input type="text" name="usernamePrefix" required
+                       placeholder="" autocomplete="off" class="layui-input " onKeyUp="value=value.replace(/[^a-zA-Z]/g,'')">
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin: auto">
+            <label class="layui-form-label" style="width: auto">集团用户数量</label>
             <div class="layui-input-inline">
                 <input type="number" name="userNumber" required
                        placeholder="" autocomplete="off" class="layui-input ">

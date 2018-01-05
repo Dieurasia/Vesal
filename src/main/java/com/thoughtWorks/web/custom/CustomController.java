@@ -223,10 +223,12 @@ public class CustomController {
             email.addTo(emailaddress);// 收件地址
 
 //          email.setFrom("vesalmail@163.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
-            email.setFrom("vesalemail@126.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
+//            email.setFrom("vesalemail@126.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
+            email.setFrom("xavesal@126.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
 
 //          email.setAuthentication("vesalmail@163.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
-            email.setAuthentication("vesalemail@126.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
+//            email.setAuthentication("vesalemail@126.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
+            email.setAuthentication("xavesal@126.com", "ren8565yu1");//此处填写邮箱地址和客户端授权码
 
             email.setSubject("消息接收邮箱验证");//此处填写邮件名，邮件名可任意填写，但需要经常改，否则会被网易拦截
             email.setMsg("【维萨里产品展示网】验证码:" + code + "，该验证码5分钟内有效。为了保证您的账户安全，请勿向他人泄露验证码信息。");//此处填写邮件内容
