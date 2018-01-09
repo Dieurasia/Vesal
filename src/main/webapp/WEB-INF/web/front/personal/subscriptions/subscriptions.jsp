@@ -104,6 +104,7 @@
                                      <div class="itemTag ">最新</div>
                                      <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
+                                    <div style="color: #b4a078">编号：`+ subscribe[i].m_code+`</div>
                                     <h4 class="name">
                                         <a href="#" title="肝" target="_blank"><span>` + subscribe[i].m_name + `</span>
                                         </a>

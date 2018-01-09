@@ -33,9 +33,9 @@
 
     <!--banner  start-->
     <section class="banner">
-        <div><a href="index.jsp"><img src="${baseurl}/public/files/files0001.jpg" alt=""></a></div>
-        <div hidden><a href="index.jsp"><img src="${baseurl}/public/files/files000%20(2).jpg" alt=""></a></div>
-        <div hidden><a href="index.jsp"><img src="${baseurl}/public/files/files000%20(3).jpg" alt=""></a></div>
+        <div><a ><img src="${baseurl}/public/files/files0001.jpg" alt=""></a></div>
+        <div hidden><a ><img src="${baseurl}/public/files/files000%20(2).jpg" alt=""></a></div>
+        <div hidden><a ><img src="${baseurl}/public/files/files000%20(3).jpg" alt=""></a></div>
     </section>
     <!--banner end-->
     <div class="home_pro">

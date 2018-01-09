@@ -33,45 +33,6 @@
         <div id="j-goodsAreaWrap">
             <div class="m-goodsArea">
                 <div class="m-sortbar" id="modelMenu">
-                    <%--<div class="category"><span class="name">分类：</span>--%>
-                    <%--<div class="categoryGroup">--%>
-                    <%--<a href="javascript:;" class="categoryItem  active">系统解剖</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">局部解剖</a>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="area"><span class="name">系统：</span>--%>
-                    <%--<div class="categoryGroup">--%>
-                    <%--<a href="javascript:;" class="categoryItem ">全部</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem  active">运动系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">消化系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">呼吸系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">泌尿系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">生殖系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">脉管系统(心血管系)</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">脉管系统(淋巴系)</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">感觉器</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">神经系统</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem ">内分泌系统</a>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="area"><span class="name">子分类：</span>--%>
-                    <%--<div class="categoryGroup">--%>
-                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">全部</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem j-categoryItem active">骨学</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">关节学</a>--%>
-                    <%--<a href="javascript:;" class="categoryItem j-categoryItem">肌学</a>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--&lt;%&ndash;<div class="sorts">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<span class="name">排序：</span>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<a href="javascript:;" class="sort sort-default">默认</a>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<a href="javascript:;" class="sort sort-price active">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<span>价格</span>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<div class="icon">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<i class="w-icon-arrow arrow-up-gold"></i>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<i class="w-icon-arrow arrow-down-gray"></i></div>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                 </div>
                 <div class="m-content">
                     <ul class="m-itemList f-margin-top-25" id="model">
@@ -120,6 +81,7 @@
                 _html += ` <div class="itemTag ">最新</div>
                            <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
+                                    <div style="color: #b4a078">编号：`+ subscribe[i].m_code+`</div>
                                     <h4 class="name">
                                         <a href="` + modelDetails + `"  target="_blank"><span>` + subscribe[i].m_name + `</span>
                                         </a>
