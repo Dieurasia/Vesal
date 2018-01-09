@@ -17,9 +17,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/main_personal.css.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/userexinfo.css">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
-
-
-    <!-- include main css -->
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/jquery.mmenu.all.css"/>
@@ -83,7 +80,7 @@
                                     <i><img src="${baseurl}/public/images/subscribe.png" style="width: 40px"></i>
                                     <span>我的订阅</span></a>
                                 </li>
-                                <li><a href="#"><i
+                                <li><a href="${baseurl}/page/shopping"><i
                                 ><img src="${baseurl}/public/images/daiban.png"
                                       style="width: 40px"></i><span>全部订单</span></a></li>
                                 <li><a href="#"><i

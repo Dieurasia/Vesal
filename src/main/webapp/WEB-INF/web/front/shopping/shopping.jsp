@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../public/tag.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,10 +8,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>购物车</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/carts.css">
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
+    <!-- include main css -->
+    <link rel="stylesheet" href="${baseurl}/public/css/reset.css">
+    <link rel="stylesheet" href="${baseurl}/public/css/carts.css">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
+    <script src="${baseurl}/public/js/jquery.min.js"></script>
 </head>
 <body>
+<jsp:include page="../public/header.jsp"/>
     <section class="cartMain">
         <div class="cartMain_hd">
             <ul class="order_lists cartTop">
@@ -46,7 +54,7 @@
                         <label for="checkbox_2"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/1.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -76,7 +84,7 @@
                         <label for="checkbox_3"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/2.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/2.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -106,7 +114,7 @@
                         <label for="checkbox_6"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/3.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/3.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -151,7 +159,7 @@
                         <label for="checkbox_4"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/4.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/4.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -181,7 +189,7 @@
                         <label for="checkbox_5"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/5.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/5.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -226,7 +234,7 @@
                         <label for="checkbox_8"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/1.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -256,7 +264,7 @@
                         <label for="checkbox_9"></label>
                     </li>
                     <li class="list_con">
-                        <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+                        <div class="list_img"><a href="javascript:;"><img src="${baseurl}/public/images/shopping/1.png" alt=""></a></div>
                         <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
                     </li>
                     <li class="list_info">
@@ -297,9 +305,9 @@
         <p>您确认要删除该宝贝吗？</p>
         <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
     </section>
-	
-    <script src="js/jquery.min.js"></script>
-    <script src="js/carts.js"></script>
+<jsp:include page="../public/footer.jsp"/>
+<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
+<script src="${baseurl}/public/js/carts.js"></script>
 	
 </body>
 </html>

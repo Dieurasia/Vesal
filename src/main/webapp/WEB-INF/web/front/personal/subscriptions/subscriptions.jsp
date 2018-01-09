@@ -8,6 +8,7 @@
     <title>个人主页</title>
     <meta name="description">
     <meta name="keyword" content="个人中心">
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/main_personal.css.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/userexinfo.css">
     <link rel="stylesheet" href="${baseurl}/public/css/show_list.css">

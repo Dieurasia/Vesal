@@ -11,7 +11,6 @@ layui.use(['elements', 'jquery', 'layer', 'navtab', 'form', 'common'], function 
         layer = layui.layer,
         device = layui.device(),
         elements = layui.elements(),
-        larry = layui.larry(),
         form = layui.form(),
         common = layui.common;
     navtab = layui.navtab({
