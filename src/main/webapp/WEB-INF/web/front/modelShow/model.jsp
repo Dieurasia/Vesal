@@ -74,7 +74,7 @@
                                 <div class="bd">
                                     <div class="prdtTags">`
                 if (subscribe[i].s_whether == 1) {
-                    _html += `<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>`;
+                    _html += `<span class=" itemTag attribute" style="cursor:pointer">取消订阅</span>`;
                 } else {
                     _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
                 }
@@ -110,7 +110,7 @@
                         let sWhether = 0;
                         let customId = data.user.cId;
                         if (hasclazz) {
-                            thiz.text("已订阅").addClass("attribute").removeClass("new");
+                            thiz.text("取消订阅").addClass("attribute").removeClass("new");
                             sWhether = 1;
                             layer.msg("订阅成功", {
                                 time: 2000

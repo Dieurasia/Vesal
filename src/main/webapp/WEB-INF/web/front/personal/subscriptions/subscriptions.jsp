@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="bd">
                                     <div class="prdtTags">
-                                    <span class=" itemTag attribute" style="cursor:pointer">已订阅</span>
+                                    <span class=" itemTag attribute" style="cursor:pointer">取消订阅</span>
                                      <div class="itemTag ">最新</div>
                                      <span style="display: none">` + subscribe[i].m_id + `</span>
                                     </div>
@@ -135,7 +135,7 @@
                     let sWhether = 0;
                     let customId = data.user.cId;
                     if (hasclazz) {
-                        thiz.text("已订阅").addClass("attribute").removeClass("new");
+                        thiz.text("取消订阅").addClass("attribute").removeClass("new");
                         sWhether = 1;
                         layer.msg("订阅成功", {
                             time: 2000

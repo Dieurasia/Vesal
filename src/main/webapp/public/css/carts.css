@@ -22,7 +22,7 @@ label.mark{
 }
 
 a:hover{
-    color: #ff873e;
+    color: #c0ae8a;
     text-decoration: underline;
 }
 
@@ -161,7 +161,7 @@ a:hover{
     color: #3c3c3c;
 }
 .order_lists .list_con .list_text a:hover{
-    color: #ff873e;
+    color: #c0ae8a;
     text-decoration: underline;
 }
 
@@ -221,9 +221,9 @@ a:hover{
     top:0;
 }
 .order_lists .list_amount .amount_box a:hover{
-    border-color: #ff873e;
+    border-color: #c0ae8a;
     text-decoration: none;
-    color: #ff873e;
+    color: #c0ae8a;
     z-index: 3;
 }
 
@@ -279,7 +279,7 @@ a:hover{
     color: #3c3c3c;
 }
 .bar-wrapper .bar-right strong{
-    color: #f40;
+    color: #e36844;
 }
 
 .bar-wrapper .bar-right .piece{
@@ -329,7 +329,7 @@ a:hover{
     border-radius: 2px;
 }
 .bar-wrapper .bar-right .calBtn a.btn_sty{
-    background: #f40;
+    background: #e36844;
     cursor: pointer;
 }
 

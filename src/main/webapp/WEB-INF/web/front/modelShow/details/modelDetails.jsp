@@ -178,17 +178,14 @@
                            href="javascript:;">
                             <span><span>立即购买</span></span>
                         </a>
-                        <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
-                           href="javascript:;">
+                        <span>
+                             <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
+                                href="javascript:;">
                             <span><i class="w-icon-cart cart-detail"></i>
                                 <span>加入购物车</span>
                             </span>
                         </a>
-                            <%--<div class="bd">--%>
-                                <%--<div class="prdtTags">--%>
-                                    <%--<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -206,83 +203,14 @@
                         </ul>
                     </div>
                     <div class="m-detailHtml">
-                        <%--<ul class="m-attrList" style="visibility: visible;">--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">部位</span>--%>
-                        <%--<span class="value">头部</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">款式</span>--%>
-                        <%--<span class="value">块状</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">材料</span>--%>
-                        <%--<span class="value">纳米材料</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">风格</span>--%>
-                        <%--<span class="value">人体1:1</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">工艺</span>--%>
-                        <%--<span class="value">其它</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item">--%>
-                        <%--<span class="name">图案</span>--%>
-                        <%--<span class="value">纯色</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item" style="width: 100%;">--%>
-                        <%--<span class="name">尺寸</span>--%>
-                        <%--<span class="value">10cm*10cm</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="item j-item" style="width: 100%; border-bottom: none;">--%>
-                        <%--<span class="name">重量</span>--%>
-                        <%--<span class="value">约4.1kg</span>--%>
-                        <%--</li>--%>
-                        <%--</ul>--%>
                         <div>
                             <p>
                                 <span style="font-size: 20px; font-weight: bold">简介:</span><br>
                                 <span id="modelIntroduce"></span>
                             </p>
-                            <%--<p>--%>
-                            <%--<img data-original="#" class="img-lazyload short img-lazyloaded"--%>
-                            <%--src="./WeiSali_files/images/JuJueJi.gif">--%>
-                            <%--</p>--%>
                         </div>
                     </div>
                 </div>
-                <%--<div class="right">--%>
-                <%--<div>--%>
-                <%--<div class="m-hotSell">--%>
-                <%--<header class="hd">最新上线</header>--%>
-                <%--<div class="bd">--%>
-                <%--<ul>--%>
-                <%--<li class="item">--%>
-                <%--<a href="#" target="_parent"></a>--%>
-                <%--</li>--%>
-                <%--<li class="item">--%>
-                <%--<a href="#" target="_parent">--%>
-                <%--<div class="img-wrap">--%>
-                <%--<img width="250" height="250"--%>
-                <%--src="./WeiSali_files/images/DaNaoDongMai.PNG">--%>
-                <%--</div>--%>
-                <%--<div class="content">--%>
-                <%--<div class="title">--%>
-                <%--<span class=""></span>--%>
-                <%--<span class="name">大脑动脉</span>--%>
-                <%--</div>--%>
-                <%--<div class="price">--%>
-                <%--<span>¥</span><span>59</span>--%>
-                <%--</div>--%>
-                <%--</div>--%>
-                <%--</a>--%>
-                <%--</li>--%>
-                <%--</ul>--%>
-                <%--</div>--%>
-                <%--</div>--%>
-                <%--</div>--%>
-                <%--</div>--%>
             </div>
         </div>
     </div>
@@ -305,49 +233,7 @@
             $("#modelCode").html(modelInfo.m_code)
             $("#modelIntroduce").html(modelInfo.m_introduce)
             $("#modelVersion").html(modelInfo.m_version)
-            $("#modelCount").html(modelInfo.count)
-            if (modelInfo.s_whether == 1) {
-                _html += `<span class=" itemTag attribute" style="cursor:pointer">已订阅</span>`;
-            } else {
-                _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
-            }
-
-            <%--$(".itemTag").click(function () {--%>
-                <%--let hasclazz = $(this).hasClass("new");--%>
-                <%--let thiz = $(this);--%>
-                <%--let modelId = $(this).siblings('span').text();--%>
-
-                <%--//判断是否有session--%>
-                <%--$.post("${baseurl}/CustomLogin/session", function (data) {--%>
-                    <%--if (data.haveSession) {--%>
-                        <%--let sWhether = 0;--%>
-                        <%--let customId = data.user.cId;--%>
-                        <%--if (hasclazz) {--%>
-                            <%--thiz.text("已订阅").addClass("attribute").removeClass("new");--%>
-                            <%--sWhether = 1;--%>
-                            <%--layer.msg("订阅成功", {--%>
-                                <%--time: 2000--%>
-                            <%--});--%>
-                        <%--} else {--%>
-                            <%--thiz.text("+订阅").addClass("new").removeClass("attribute");--%>
-                            <%--sWhether = 2;--%>
-                            <%--layer.msg("取消订阅", {--%>
-                                <%--time: 2000--%>
-                            <%--});--%>
-                        <%--}--%>
-                        <%--$.post("${baseurl}/CustomLogin/Subscribe", {--%>
-                            <%--sWhether: sWhether,--%>
-                            <%--customId: customId,--%>
-                            <%--modelId: modelId--%>
-                        <%--}, function (data) {--%>
-
-                        <%--});--%>
-                    <%--} else {--%>
-                        <%--location.href = "${baseurl}/page/frontLogin";--%>
-                    <%--}--%>
-                <%--});--%>
-            <%--});--%>
-
+            $("#modelCount").html(modelInfo.count);
         });
     });
 </script>
