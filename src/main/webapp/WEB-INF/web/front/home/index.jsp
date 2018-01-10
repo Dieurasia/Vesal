@@ -292,7 +292,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <script src="./index_files/jquery.min.js.下载"></script>
                             <script>
                                 var timer = null;
                                 var index = 1;
@@ -491,7 +490,6 @@
     <%--底部--%>
    <jsp:include page="../public/footer.jsp"/>
 </div>
-<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${baseurl}/public/js/jquery.mmenu.all.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${baseurl}/public/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${baseurl}/public/js/wow.js" type="text/javascript" charset="utf-8"></script>

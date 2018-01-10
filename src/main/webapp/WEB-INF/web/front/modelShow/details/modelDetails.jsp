@@ -178,13 +178,8 @@
                            href="javascript:;">
                             <span><span>立即购买</span></span>
                         </a>
-                        <span>
-                             <a style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
-                                href="javascript:;">
-                            <span><i class="w-icon-cart cart-detail"></i>
-                                <span>加入购物车</span>
-                            </span>
-                        </a>
+                        <span id="car-shopping">
+
                         </span>
                     </div>
                 </div>
@@ -221,7 +216,6 @@
     $(function () {
         let m_id = ("${param.id}".split(".jsp")[0]);
         $.post("${baseurl}/systemDisplay/queryModelById", {modelId: m_id}, function (data) {
-            console.log(data)
             let modelInfo = data.modelInfo[0];
             let m_dynamic = "${baseurl}/file/" + modelInfo.m_dynamic;
             let m_thumbnail = "${baseurl}/file/" + modelInfo.m_thumbnail;
@@ -234,8 +228,31 @@
             $("#modelIntroduce").html(modelInfo.m_introduce)
             $("#modelVersion").html(modelInfo.m_version)
             $("#modelCount").html(modelInfo.count);
+            $("#car-shopping").html(`<span style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
+                                   onclick="shopping(`+modelInfo.m_id+`)">
+                                <i class="w-icon-cart cart-detail"></i>
+                                <span>加入购物车</span>
+                             </span>`);
+
         });
     });
+    function shopping(m_id) {
+        //判断是否有session
+        $.post("${baseurl}/CustomLogin/session", function (data) {
+            if (data.haveSession) {
+                let custom_id = data.user.cId;
+                let model_id = m_id;
+                $.post("${baseurl}/order/addOrder",{customId:custom_id,modelId:model_id},
+                    function (data) {
+                        layer.msg(data.msg, {
+                            time: 2000
+                        });
+                });
+            } else {
+                location.href = "${baseurl}/page/frontLogin";
+            }
+        });
+    }
 </script>
 this.src=''
 </body>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thoughtWorks.dao.OrderDao">
+
+    <insert id="addOrder" parameterType="Order">
+        insert into v_order(o_code, o_promotion,
+         o_ordertime,o_settlementtime,o_duration,
+         o_notes,o_finish,custom_id,model_id)VALUES
+         (#{oCode},#{oPromotion},#{oOrderTime},#{oSettlementTime},
+         #{oDuration},#{oNotes},#{oFinish},#{customId},#{modelId})
+    </insert>
+</mapper>
