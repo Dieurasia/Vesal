@@ -36,21 +36,6 @@
 <div id="j-app">
     <div class="g-bd">
         <div class="m-crumbs ">
-            <%--<span>--%>
-            <%--<span class="crumb-name ">首页</span>--%>
-            <%--<i class="w-icon-arrow arrow-right-hollow gap"></i>--%>
-            <%--</span>--%>
-            <%--<span>--%>
-            <%--<a class="crumb-url " href="#">人体</a>--%>
-            <%--<i class="w-icon-arrow arrow-right-hollow gap"></i>--%>
-            <%--</span>--%>
-            <%--<span>--%>
-            <%--<a class="crumb-url " href="#">骨骼</a>--%>
-            <%--<i class="w-icon-arrow arrow-right-hollow gap"></i>--%>
-            <%--</span>--%>
-            <%--<span>--%>
-            <%--<span class="crumb-name ">头部骨骼</span>--%>
-            <%--</span>--%>
         </div>
         <div class="m-detail">
             <div class="detailHd">
@@ -229,24 +214,48 @@
             $("#modelVersion").html(modelInfo.m_version)
             $("#modelCount").html(modelInfo.count);
             $("#car-shopping").html(`<span style="line-height: 36px;" class="btn w-button w-button-xl w-button-primary"
-                                   onclick="shopping(`+modelInfo.m_id+`)">
+                                   onclick="shopping(` + modelInfo.m_id + `)">
                                 <i class="w-icon-cart cart-detail"></i>
                                 <span>加入购物车</span>
                              </span>`);
 
         });
     });
+
     function shopping(m_id) {
         //判断是否有session
-        $.post("${baseurl}/CustomLogin/session", function (data) {
-            if (data.haveSession) {
-                let custom_id = data.user.cId;
-                let model_id = m_id;
-                $.post("${baseurl}/order/addOrder",{customId:custom_id,modelId:model_id},
-                    function (data) {
-                        layer.msg(data.msg, {
-                            time: 2000
-                        });
+        $.post("${baseurl}/CustomLogin/session", function (session) {
+            if (session.haveSession) {
+                let custom_id = session.user.cId;
+                //查询商品信息
+                $.post("${baseurl}/systemDisplay/queryModelById", {modelId: m_id}, function (data) {
+                    let modelInfo = data.modelInfo[0];
+                    let model_id = m_id;
+                    let oModelPrice = modelInfo.m_price;
+                    let oModelVersion = modelInfo.m_version;
+                    let oModelIntroduce = modelInfo.m_introduce;
+                    let oModelCode = modelInfo.m_code;
+                    //查看购物车是否有该模型
+                    $.post("${baseurl}/order/queryAddOrder", {
+                        customId: custom_id, modelId: model_id
+                    }, function (value) {
+                        if (value.data === 0) {
+                            //添加模型到购物车
+                            $.post("${baseurl}/order/addOrder", {
+                                    oModelCode: oModelCode, oModelPrice: oModelPrice, oModelIntroduce: oModelIntroduce,
+                                    oModelVersion: oModelVersion, customId: custom_id, modelId: model_id
+                                },
+                                function (dataMsg) {
+                                    layer.msg(dataMsg.msg, {
+                                        time: 2000
+                                    });
+                                });
+                        } else {
+                            layer.msg(value.msg, {
+                                time: 2000
+                            });
+                        }
+                    });
                 });
             } else {
                 location.href = "${baseurl}/page/frontLogin";
@@ -254,6 +263,5 @@
         });
     }
 </script>
-this.src=''
 </body>
 </html>

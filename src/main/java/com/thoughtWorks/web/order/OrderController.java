@@ -37,5 +37,19 @@ public class OrderController {
         return generalResults;
     }
 
+    @RequestMapping("queryAddOrder")
+    @ResponseBody
+    public GeneralResults queryAddOrder(Order order) {
+        GeneralResults generalResults = null;
+
+        try {
+            generalResults = GeneralResults.success(orderService.queryAddOrder(order),GeneralMessage.ADD_ORDER_HAVE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return generalResults;
+    }
+
 
 }

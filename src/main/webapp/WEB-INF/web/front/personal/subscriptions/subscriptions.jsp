@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>个人主页</title>
+    <title>维萨里3D医学模型库</title>
     <meta name="description">
     <meta name="keyword" content="个人中心">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
@@ -31,7 +31,7 @@
         <div style="float:left;margin-top: 20px;">
             <div class="orders-link-box">
                 <div class="link-group"><p class="title"><a
-                        href="#">个人主页</a></p>
+                        href="#">维萨里3D医学模型库</a></p>
                     <p class="title"><a href="#">我的订单</a></p>
                     <ul class="link-ul">
                         <li><a href="#">全部订单</a><i
@@ -92,10 +92,11 @@
             let file = ("${baseurl}/file/" + fileLong);
             let m_dynamic = subscribe[i].m_dynamic;
             let dynamic = ("${baseurl}/file/" + m_dynamic);
+            let modelDetails = ("${baseurl}/page/modelDetails?id=" + subscribe[i].m_id);
             _html += `<li class="item">
                             <div class="m-product j-product ">
                                 <div class="hd">
-                                    <a href="#" title="` + subscribe[i].m_name + `" target="_blank">
+                                    <a href="` + modelDetails + `" title="` + subscribe[i].m_name + `" target="_blank">
                                         <img src="` + file + `" alt="` + subscribe[i].m_name + `" class="img"
                                         onmouseover= "this.src='` + dynamic + `'" onmouseout="this.src='` + file + `'" ></a>
                                 </div>

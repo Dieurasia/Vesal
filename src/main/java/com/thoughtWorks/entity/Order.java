@@ -23,6 +23,7 @@ public class Order {
     private Double oModelPrice;
     private String oModelIntroduce;
     private String oModelVersion;
+    private String oModelCode;
     private Integer customId;
     private Integer modelId;
 }

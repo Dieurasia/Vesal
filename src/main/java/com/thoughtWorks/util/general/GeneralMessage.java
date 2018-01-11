@@ -16,5 +16,5 @@ public class GeneralMessage {
 
     public static final  String ADD_ORDER_SUCCESS = "成功添加购物车";
     public static final  String ADD_ORDER_FAILURE = "添加购物车失败";
-
+    public static final  String ADD_ORDER_HAVE = "勿重复加入购物车";
 }

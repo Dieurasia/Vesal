@@ -81,10 +81,10 @@
                                     <span>我的订阅</span></a>
                                 </li>
                                 <li><a href="${baseurl}/page/shopping"><i
-                                ><img src="${baseurl}/public/images/daiban.png"
-                                      style="width: 40px"></i><span>全部订单</span></a></li>
+                                ><img src="${baseurl}/public/images/personal/购物车.png"
+                                      style="width: 40px"></i><span>购物车</span></a></li>
                                 <li><a href="#"><i
-                                ><img src="${baseurl}/public/images/fukuan.png" style="width: 40px"></i><span>待付款</span></a>
+                                ><img src="${baseurl}/public/images/fukuan.png" style="width: 40px"></i><span>全部订单</span></a>
                                 </li>
                                 <li><a href="#"><i
                                 ><img src="${baseurl}/public/images/tuikuan.png"

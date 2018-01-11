@@ -13,4 +13,11 @@ public interface OrderService {
      * @throws Exception
      */
     void addOrder(Order order)throws Exception;
+    /**
+     * 查找商品是否已经添加到购物车
+     * @param order
+     * @return
+     * @throws Exception
+     */
+    int queryAddOrder(Order order)throws Exception;
 }

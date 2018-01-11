@@ -21,10 +21,15 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void addOrder(Order order) throws Exception {
-        order.setOCode(orderCode(order));
         order.setOOrderTime(nowTime());
         order.setOFinish(0);
         orderDao.addOrder(order);
+    }
+
+    @Override
+    public int queryAddOrder(Order order) throws Exception {
+
+        return orderDao.queryAddOrder(order);
     }
 
     /**
