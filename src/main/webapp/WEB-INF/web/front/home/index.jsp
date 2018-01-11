@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>维萨里产品展示网</title>
-    <meta name="keywords" content="维萨里产品展示网">
-    <meta name="description" content="维萨里产品展示网">
+    <title>维萨里3D医学模型库</title>
+    <meta name="keywords" content="维萨里3D医学模型库">
+    <meta name="description" content="维萨里3D医学模型库">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <!-- include main css -->

@@ -4,7 +4,8 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>维萨里下载</title>
+    <title>维萨里3D医学模型库</title>
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/dingtalk.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/download.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>

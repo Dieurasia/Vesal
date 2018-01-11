@@ -5,9 +5,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>个人主页</title>
+    <title>维萨里3D医学模型库</title>
     <meta name="description">
-    <meta name="keyword" content="个人中心">
+    <meta name="keyword" content="维萨里3D医学模型库">
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
     <meta name="lx:category" content="group">

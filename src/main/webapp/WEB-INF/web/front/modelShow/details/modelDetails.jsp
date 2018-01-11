@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>维萨里产品展示网</title>
+    <title>维萨里3D医学模型库</title>
     <meta name="renderer" content="webkit">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" href="${baseurl}/public/css/style-856946ebda.css" type="text/css">

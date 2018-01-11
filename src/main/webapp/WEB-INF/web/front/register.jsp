@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
-    <title>维萨里展示网</title>
+    <title>维萨里3D医学模型库</title>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/register_front.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
@@ -20,7 +20,7 @@
     <div id="logo">
         <a href="${baseurl}/page/index">
             <img id="img" src="${baseurl}/public/images/favicon.ico"/>
-            <span id="title">维萨里展示网</span>
+            <span id="title">维萨里3D医学模型库</span>
         </a>
     </div>
     <div class="wrapper">
