@@ -101,9 +101,22 @@ public class PageController {
     public String handDrawing() {
         return "front/handDrawing/handDrawing";
     }
+
+    /**
+     * 购物车
+     * @return
+     */
     @RequestMapping("shopping")
     public String shopping() {
         return "front/shopping/shopping";
+    }
+    /**
+     * 下载页面
+     * @return
+     */
+    @RequestMapping("download")
+    public String download() {
+        return "front/download/download";
     }
 
 }

@@ -20,6 +20,9 @@ public class Order {
     private Integer oDuration;
     private String oNotes;
     private Integer oFinish;
+    private Double oModelPrice;
+    private String oModelIntroduce;
+    private String oModelVersion;
     private Integer customId;
     private Integer modelId;
 }

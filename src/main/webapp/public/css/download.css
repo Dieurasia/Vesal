@@ -1,0 +1,151 @@
+.download-content {
+    width: 100%;
+    background: #fff
+}
+
+.download_card {
+    width: 1200px;
+    padding: 64px 100px;
+    background: #fff;
+    overflow: hidden;
+    margin: auto
+}
+
+.download_card .phone {
+    width: 240px;
+    height: 486px;
+    border-radius: 30px;
+    border: 1px solid #e4e4e4;
+    padding-top: 55px;
+    float: left
+}
+
+.download_card .phone .screen {
+    width: 215px;
+    height: 377px;
+    border: 1px solid #e4e4e4;
+    margin: auto
+}
+
+.download_card .content {
+    float: right;
+    /*margin-left: 10%;*/
+}
+
+.download_card .content .title {
+    font-size: 30px;
+    margin-top: 20px;
+    color: #333
+}
+
+.download_card .content .title i {
+    font-size: 18px
+}
+
+.download_card .content .desc {
+    font-size: 14px;
+    color: #999;
+    margin-top: 5px
+}
+
+.download_card .content .list {
+    margin-top: 26px;
+    overflow: hidden
+}
+
+.download_card .list .item {
+    float: left;
+    width: 168px;
+    height: 168px;
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    padding-top: 20px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    color: #999
+}
+
+.download_card .list .item-sp {
+    padding-top: 0
+}
+
+.download_card .list .item + .item {
+    margin-left: 9px
+}
+
+.download_card .item .iconfont {
+    font-size: 60px;
+    color: #939799
+}
+
+.download_card .phone #side_code {
+    margin: 82px auto auto;
+    width: 150px;
+    height: 150px
+}
+
+.download_card .phone p {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin: 10px 0
+}
+
+.download_card .phone p + p {
+    margin-top: -5px
+}
+
+.download-dev {
+    position: relative;
+    margin: 15px 0 0
+}
+
+.download-dev-item {
+    position: relative;
+    display: inline-block;
+    padding: 25px 0 0 30px;
+    width: 345px;
+    height: 100px;
+    border: 1px solid #e4e4e4;
+    background-color: #fff;
+    cursor: pointer
+}
+
+.download-dev-item:hover {
+    background-color: #f8f8f8
+}
+
+.download-dev-new {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    background: url(//gw.alicdn.com/tfs/TB1fCYPeMoQMeJjy1XaXXcSsFXa-40-40.png) no-repeat
+}
+
+.download-dev-icon {
+    float: left;
+    font-family: iconfont !important;
+    font-size: 46px;
+    color: #929799
+}
+
+.download-dev-icon.icon1 {
+    margin: 5px 0 0 85px;
+    font-size: 36px
+}
+
+.download-dev-text {
+    float: left;
+    margin: 5px 0 0 15px;
+    font-size: 16px;
+    color: #000;
+    text-align: left
+}
+
+.download-dev-text-sp {
+    font-size: 16px;
+    color: #999
+}
