@@ -77,7 +77,6 @@
             if (session.haveSession) {
                 let custom_id = session.user.cId;
                 $.post("${baseurl}/order/queryUnfinishedOrder", {customId: custom_id}, function (data) {
-                    console.log(data);
                     let _html = ""
                     for (let i = 0; i < data.data.length; i++) {
                         let img = "${baseurl}/file/" + data.data[i].m_thumbnail;
@@ -301,7 +300,6 @@
                     $('.delBtn').click(function () {
                         $order_lists = $(this).parents('.order_lists');
                         o_id = $(this).parents('.order_lists').find('.o_id').val();
-                        alert(o_id)
                         $order_content = $order_lists.parents('.order_content');
                         $('.model_bg').fadeIn(300);
                         $('.my_model').fadeIn(300);
