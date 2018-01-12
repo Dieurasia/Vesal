@@ -72,7 +72,6 @@
 <script type="text/javascript">
 
     $(function () {
-        
         $.post("${baseurl}/CustomLogin/session", function (session) {
             if (session.haveSession) {
                 let custom_id = session.user.cId;
@@ -361,6 +360,8 @@
                     }
 
                 });
+            }else{
+                location.href = "${baseurl}/page/frontLogin";
             }
         });
     });
