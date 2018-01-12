@@ -12,4 +12,10 @@
     <select id="queryAddOrder" resultType="int" parameterType="Order">
         select count(*) from v_order where custom_id = #{customId} AND model_id = #{modelId}
     </select>
+    <select id="queryUnfinishedOrder" resultType="Map" parameterType="Order">
+        SELECT v_order.*,v_model.* from v_order,v_model where v_order.custom_id = #{customId} AND v_order.o_finish =0 AND v_model.m_id = v_order.model_id
+    </select>
+    <select id="deleteOrderByOid"  parameterType="int">
+        DELETE from v_order where o_id = #{o_id}
+    </select>
 </mapper>

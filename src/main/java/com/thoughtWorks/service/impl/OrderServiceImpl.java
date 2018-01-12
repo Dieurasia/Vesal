@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author 马欢欢
@@ -30,6 +29,16 @@ public class OrderServiceImpl implements OrderService{
     public int queryAddOrder(Order order) throws Exception {
 
         return orderDao.queryAddOrder(order);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryUnfinishedOrder(Order order) throws Exception {
+        return orderDao.queryUnfinishedOrder(order);
+    }
+
+    @Override
+    public void deleteOrderByOid(int o_id) throws Exception {
+        orderDao.deleteOrderByOid(o_id);
     }
 
     /**

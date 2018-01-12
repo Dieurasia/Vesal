@@ -21,6 +21,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 添加模型到购物车
+     * @param order
+     * @return
+     */
     @RequestMapping("addOrder")
     @ResponseBody
     public GeneralResults addOrder(Order order) {
@@ -37,6 +42,11 @@ public class OrderController {
         return generalResults;
     }
 
+    /**
+     * 查询该模型是否已经添加在购物车
+     * @param order
+     * @return
+     */
     @RequestMapping("queryAddOrder")
     @ResponseBody
     public GeneralResults queryAddOrder(Order order) {
@@ -51,5 +61,43 @@ public class OrderController {
         return generalResults;
     }
 
+    /**
+     * 查询当前用户所有购物车模型信息
+     * @param order
+     * @return
+     */
+    @RequestMapping("queryUnfinishedOrder")
+    @ResponseBody
+    public GeneralResults queryUnfinishedOrder(Order order) {
+        GeneralResults generalResults = null;
 
+        try {
+            generalResults = GeneralResults.success(orderService.queryUnfinishedOrder(order),GeneralMessage.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            generalResults = GeneralResults.success(GeneralMessage.SEARCH_FAILURE);
+            e.printStackTrace();
+        }
+
+        return generalResults;
+    }
+    /**
+     *删除购物车订单信息通过订单
+     * @param o_id
+     * @return
+     */
+    @RequestMapping("deleteOrderByOid")
+    @ResponseBody
+    public GeneralResults deleteOrderByOid(int o_id) {
+        GeneralResults generalResults = null;
+
+        try {
+            orderService.deleteOrderByOid(o_id);
+            generalResults = GeneralResults.success(GeneralMessage.DELETE_SUCCESS);
+        } catch (Exception e) {
+            generalResults = GeneralResults.success(GeneralMessage.DELETE_FAILURE);
+            e.printStackTrace();
+        }
+
+        return generalResults;
+    }
 }
