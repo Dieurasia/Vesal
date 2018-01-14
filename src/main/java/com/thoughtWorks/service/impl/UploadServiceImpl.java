@@ -18,14 +18,18 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public void addZipInfo(Map<String, Object> zipFile) {
         String code = (String) zipFile.get("code");
+        int resultCount = uploadDao.checkCode(code);
+
         //提取关于类型的信息
         Map<String, Object> data = extractFileInformation(zipFile);
 
-
         Map<String,Object> zipData = getModelGrade(code, zipFile,data);
 
-
-        uploadDao.addZipInfo(zipData);
+        if (resultCount == 0) {
+            uploadDao.addZipInfo(zipData);
+        }else {
+            uploadDao.upZipInfo(zipData);
+        }
     }
 
     private Map<String, Object> getModelGrade(String code, Map<String, Object> zipFiles, Map<String, Object> data) {
