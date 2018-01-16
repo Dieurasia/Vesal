@@ -1,5 +1,6 @@
 package com.thoughtWorks.web.order;
 
+import com.thoughtWorks.entity.Cart;
 import com.thoughtWorks.entity.Order;
 import com.thoughtWorks.service.OrderService;
 import com.thoughtWorks.util.general.GeneralMessage;
@@ -23,19 +24,19 @@ public class OrderController {
 
     /**
      * 添加模型到购物车
-     * @param order
+     * @param cart
      * @return
      */
-    @RequestMapping("addOrder")
+    @RequestMapping("addCart")
     @ResponseBody
-    public GeneralResults addOrder(Order order) {
+    public GeneralResults addCart(Cart cart) {
         GeneralResults generalResults;
 
         try {
-            orderService.addOrder(order);
-            generalResults =  GeneralResults.success(GeneralMessage.ADD_ORDER_SUCCESS);
+            orderService.addCart(cart);
+            generalResults =  GeneralResults.success(GeneralMessage.ADD_CART_SUCCESS);
         } catch (Exception e) {
-            generalResults = GeneralResults.failure(GeneralMessage.ADD_ORDER_FAILURE);
+            generalResults = GeneralResults.failure(GeneralMessage.ADD_CART_FAILURE);
             e.printStackTrace();
         }
 
@@ -44,16 +45,16 @@ public class OrderController {
 
     /**
      * 查询该模型是否已经添加在购物车
-     * @param order
+     * @param cart
      * @return
      */
-    @RequestMapping("queryAddOrder")
+    @RequestMapping("queryAddCart")
     @ResponseBody
-    public GeneralResults queryAddOrder(Order order) {
+    public GeneralResults queryAddCart(Cart cart) {
         GeneralResults generalResults = null;
 
         try {
-            generalResults = GeneralResults.success(orderService.queryAddOrder(order),GeneralMessage.ADD_ORDER_HAVE);
+            generalResults = GeneralResults.success(orderService.queryAddCart(cart),GeneralMessage.ADD_CART_HAVE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,16 +64,16 @@ public class OrderController {
 
     /**
      * 查询当前用户所有购物车模型信息
-     * @param order
+     * @param cart
      * @return
      */
-    @RequestMapping("queryUnfinishedOrder")
+    @RequestMapping("queryCartModel")
     @ResponseBody
-    public GeneralResults queryUnfinishedOrder(Order order) {
+    public GeneralResults queryCartModel(Cart cart) {
         GeneralResults generalResults = null;
 
         try {
-            generalResults = GeneralResults.success(orderService.queryUnfinishedOrder(order),GeneralMessage.SEARCH_SUCCESS);
+            generalResults = GeneralResults.success(orderService.queryCartModel(cart),GeneralMessage.SEARCH_SUCCESS);
         } catch (Exception e) {
             generalResults = GeneralResults.success(GeneralMessage.SEARCH_FAILURE);
             e.printStackTrace();
@@ -82,16 +83,16 @@ public class OrderController {
     }
     /**
      *删除购物车订单信息通过订单
-     * @param o_id
+     * @param c_id
      * @return
      */
-    @RequestMapping("deleteOrderByOid")
+    @RequestMapping("deleteCartByCid")
     @ResponseBody
-    public GeneralResults deleteOrderByOid(int o_id) {
+    public GeneralResults deleteCartByCid(int c_id) {
         GeneralResults generalResults = null;
 
         try {
-            orderService.deleteOrderByOid(o_id);
+            orderService.deleteCartByCid(c_id);
             generalResults = GeneralResults.success(GeneralMessage.DELETE_SUCCESS);
         } catch (Exception e) {
             generalResults = GeneralResults.success(GeneralMessage.DELETE_FAILURE);

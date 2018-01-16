@@ -56,7 +56,7 @@
         <div class="bar-right">
             <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
             <div class="totalMoney">共计: <strong class="total_text" >0.00</strong></div>
-            <div class="calBtn"><a href="javascript:;">结算</a></div>
+            <div class="calBtn"><a href="javascript:;">提交订单</a></div>
         </div>
     </div>
 </section>
@@ -75,16 +75,16 @@
         $.post("${baseurl}/CustomLogin/session", function (session) {
             if (session.haveSession) {
                 let custom_id = session.user.cId;
-                $.post("${baseurl}/order/queryUnfinishedOrder", {customId: custom_id}, function (data) {
+                $.post("${baseurl}/order/queryCartModel", {customId: custom_id}, function (data) {
                     let _html = ""
                     for (let i = 0; i < data.data.length; i++) {
                         let img = "${baseurl}/file/" + data.data[i].m_thumbnail;
-                        let m_introduce = (data.data[i].o_model_introduce).substr(0, 40) + "...";
+                        let m_introduce = (data.data[i].m_introduce).substr(0, 40) + "...";
                         let modelDetails = ("${baseurl}/page/modelDetails?id=" + data.data[i].m_id);
                         _html += `<ul class="order_lists">
                 <li class="list_chk">
-                    <input type="checkbox" id="checkbox_`+ data.data[i].o_id +`" class="son_check">
-                    <label for="checkbox_`+ data.data[i].o_id +`"></label>
+                    <input type="checkbox" id="checkbox_`+ data.data[i].c_id +`" class="son_check">
+                    <label for="checkbox_`+ data.data[i].c_id +`"></label>
                 </li>
                 <a href = "`+modelDetails+`">
                 <li class="list_con">
@@ -98,11 +98,11 @@
                 </li>
                 </a>
                 <li class="list_info">
-                    <p>编号：` + data.data[i].o_model_code + `</p>
-                    <p>版本号：` + data.data[i].o_model_version + `.0</p>
+                    <p>编号：` + data.data[i].m_code + `</p>
+                    <p>版本号：` + data.data[i].m_version + `.0</p>
                 </li>
                 <li class="list_price">
-                    <p class="price">￥` + data.data[i].o_model_price + `</p>
+                    <p class="price">￥` + data.data[i].m_price + `</p>
                 </li>
                 <li class="list_amount">
                     <div class="amount_box">
@@ -111,10 +111,10 @@
                     </div>
                 </li>
                 <li class="list_sum">
-                    <p class="sum_price">￥` + data.data[i].o_model_price + `</p>
+                    <p class="sum_price">￥` + data.data[i].m_price + `</p>
                 </li>
                 <li class="list_op">
-                 <input type="text" value="` + data.data[i].o_id +`" class = "o_id" style="display: none">
+                 <input type="text" value="` + data.data[i].c_id +`" class = "c_id" style="display: none">
                     <p class="del"><a href="javascript:;"  class="delBtn">移除商品</a></p>
                 </li>
             </ul>`
@@ -295,10 +295,10 @@
 
                     var $order_lists = null;
                     var $order_content = '';
-                    let o_id = 0;
+                    let c_id = 0;
                     $('.delBtn').click(function () {
                         $order_lists = $(this).parents('.order_lists');
-                        o_id = $(this).parents('.order_lists').find('.o_id').val();
+                        c_id = $(this).parents('.order_lists').find('.c_id').val();
                         $order_content = $order_lists.parents('.order_content');
                         $('.model_bg').fadeIn(300);
                         $('.my_model').fadeIn(300);
@@ -320,7 +320,7 @@
                     //确定按钮，移除商品
                     $('.dialog-sure').click(function () {
                         $order_lists.remove();
-                        delBtn(o_id)
+                        delBtn(c_id)
                         if ($order_content.html().trim() == null || $order_content.html().trim().length == 0) {
                             $order_content.parents('.cartBox').remove();
                         }
@@ -365,8 +365,8 @@
             }
         });
     });
-    function delBtn(o_id) {
-        $.post("${baseurl}/order/deleteOrderByOid", {o_id: o_id}, function (data) {
+    function delBtn(c_id) {
+        $.post("${baseurl}/order/deleteCartByCid", {c_id: c_id}, function (data) {
             layer.msg(data.msg, {
                 time: 2000
             });

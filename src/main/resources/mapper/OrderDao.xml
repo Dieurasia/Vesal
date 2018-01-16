@@ -18,4 +18,17 @@
     <select id="deleteOrderByOid"  parameterType="int">
         DELETE from v_order where o_id = #{o_id}
     </select>
+
+    <insert id="addCart" parameterType="Cart">
+        insert into v_cart(custom_id,model_id)VALUES(#{customId},#{modelId})
+    </insert>
+    <select id="queryAddCart" resultType="int" parameterType="Cart">
+        select count(*) from v_cart where custom_id = #{customId} AND model_id = #{modelId}
+    </select>
+    <select id="queryCartModel" resultType="Map" parameterType="Cart">
+        SELECT v_cart.*,v_model.* from v_cart,v_model where v_cart.custom_id = #{customId} and v_cart.model_id = v_model.m_id
+    </select>
+    <select id="deleteCartByCid"  parameterType="int">
+        DELETE from v_cart where c_id = #{cId}
+    </select>
 </mapper>

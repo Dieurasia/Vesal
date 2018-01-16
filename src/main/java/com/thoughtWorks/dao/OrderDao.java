@@ -1,5 +1,6 @@
 package com.thoughtWorks.dao;
 
+import com.thoughtWorks.entity.Cart;
 import com.thoughtWorks.entity.Order;
 
 import java.util.*;
@@ -17,7 +18,7 @@ public interface OrderDao {
     void addOrder(Order order)throws Exception;
 
     /**
-     * 查找商品是否已经添加到购物车
+     * 查找商品是否已经添加到订单
      * @param order
      * @return
      * @throws Exception
@@ -25,7 +26,7 @@ public interface OrderDao {
     int queryAddOrder(Order order)throws Exception;
 
     /**
-     * 查询购物车未付款的所有模型
+     * 查询订单未付款的所有模型
      * @param order
      * @return
      * @throws Exception
@@ -33,9 +34,41 @@ public interface OrderDao {
     List<Map<String,Object>> queryUnfinishedOrder(Order order)throws Exception;
 
     /**
-     * 删除购物车模型
+     * 删除订单模型
      * @param o_id
      * @throws Exception
      */
     void deleteOrderByOid(int o_id)throws Exception;
+
+
+    /**
+     * 添加到购物车
+     * @param cart
+     * @throws Exception
+     */
+    void addCart(Cart cart) throws Exception;
+
+    /**
+     * 删除购物车模型
+     * @param c_id
+     * @throws Exception
+     */
+    void deleteCartByCid(int c_id)throws Exception;
+
+    /**
+     * 查找商品是否已经添加到购物车
+     * @param cart
+     * @return
+     * @throws Exception
+     */
+    int queryAddCart(Cart cart)throws Exception;
+
+    /**
+     * 查询购物车未付款的所有模型
+     * @param cart
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> queryCartModel(Cart cart)throws Exception;
+
 }

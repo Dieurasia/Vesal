@@ -1,6 +1,7 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.OrderDao;
+import com.thoughtWorks.entity.Cart;
 import com.thoughtWorks.entity.Order;
 import com.thoughtWorks.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,26 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public void deleteOrderByOid(int o_id) throws Exception {
         orderDao.deleteOrderByOid(o_id);
+    }
+
+    @Override
+    public void addCart(Cart cart) throws Exception {
+        orderDao.addCart(cart);
+    }
+
+    @Override
+    public void deleteCartByCid(int c_id) throws Exception {
+        orderDao.deleteCartByCid(c_id);
+    }
+
+    @Override
+    public int queryAddCart(Cart cart) throws Exception {
+        return orderDao.queryAddCart(cart);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryCartModel(Cart cart) throws Exception {
+        return orderDao.queryCartModel(cart);
     }
 
     /**
