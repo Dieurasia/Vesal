@@ -15,4 +15,5 @@ public class Cart {
     private Integer cId;
     private Integer customId;
     private Integer modelId;
+    private Integer cFinish;
 }

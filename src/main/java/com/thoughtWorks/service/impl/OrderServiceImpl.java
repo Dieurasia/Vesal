@@ -2,6 +2,7 @@ package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.OrderDao;
 import com.thoughtWorks.entity.Cart;
+import com.thoughtWorks.entity.Model;
 import com.thoughtWorks.entity.Order;
 import com.thoughtWorks.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,36 @@ import java.util.*;
  * @date 18-1-10
  */
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
 
     @Override
-    public void addOrder(Order order) throws Exception {
-        order.setOOrderTime(nowTime());
-        order.setOFinish(0);
-        orderDao.addOrder(order);
+    public void addOrder(int customId, String allModelId) throws Exception {
+        List<Order> list = new ArrayList<>();
+        List<Model> modelIdList = new ArrayList<>();
+        String[] modelIds = allModelId.split(",");
+        String orderCode = orderCode(customId);
+        String nowTime = nowTime();
+        for (int i = 0; i < modelIds.length; i++) {
+            Model model = orderDao.queryModelById(Integer.parseInt(modelIds[i]));
+            Order order = new Order();
+            //下单时间
+            order.setOOrderTime(nowTime);
+            order.setOFinish(0);
+            order.setCustomId(customId);
+            order.setModelId(model.getMId());
+            order.setOModelPrice(model.getMPrice());
+            order.setOModelIntroduce(model.getMIntroduce());
+            order.setOModelVersion(model.getMVersion());
+            order.setOModelCode(model.getMCode());
+            //订单编码
+            order.setOCode(orderCode);
+            list.add(order);
+            modelIdList.add(model);
+        }
+        orderDao.updateCartById(modelIdList);
+        orderDao.addOrder(list);
     }
 
     @Override
@@ -44,6 +66,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void addCart(Cart cart) throws Exception {
+        cart.setCFinish(0);
         orderDao.addCart(cart);
     }
 
@@ -64,10 +87,11 @@ public class OrderServiceImpl implements OrderService{
 
     /**
      * 随机生成订单编码
-     * @param order
+     *
+     * @param customId
      * @return
      */
-    public String orderCode(Order order) {
+    public String orderCode(int customId) {
         Random random = new Random();
         String result = "";
         final int NUM = 6;
@@ -75,15 +99,16 @@ public class OrderServiceImpl implements OrderService{
             result += random.nextInt(10);
         }
         String timeMillis = System.currentTimeMillis() + "";
-        String orderCode = timeMillis.substring(4) + "" + order.getCustomId() + "" + result;
+        String orderCode = timeMillis.substring(4) + "" + customId + "" + result;
         return orderCode;
     }
 
     /**
      * 获取系统时间
+     *
      * @return
      */
-    public String nowTime(){
+    public String nowTime() {
         //可以方便地修改日期格式
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(new Date());

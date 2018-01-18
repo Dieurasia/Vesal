@@ -101,4 +101,19 @@ public class OrderController {
 
         return generalResults;
     }
+
+    @RequestMapping("addOrder")
+    @ResponseBody
+    public GeneralResults addOrder(int customId, String allModelId){
+        GeneralResults generalResults;
+        try {
+            orderService.addOrder(customId,allModelId);
+            generalResults = GeneralResults.success(GeneralMessage.ADD_ORDER_SUCCESS);
+        } catch (Exception e) {
+            generalResults = GeneralResults.success(GeneralMessage.ADD_CART_FAILURE);
+            e.printStackTrace();
+        }
+        return generalResults;
+    }
+
 }

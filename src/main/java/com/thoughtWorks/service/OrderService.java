@@ -13,10 +13,11 @@ import java.util.Map;
 public interface OrderService {
     /**
      * 添加一个订单
-     * @param order
+     * @param customId
+     * @param allModelId
      * @throws Exception
      */
-    void addOrder(Order order)throws Exception;
+    void addOrder(int customId,String allModelId)throws Exception;
     /**
      * 查找商品是否已经添加到购物车
      * @param order
