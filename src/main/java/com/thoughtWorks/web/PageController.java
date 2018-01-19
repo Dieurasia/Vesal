@@ -119,4 +119,14 @@ public class PageController {
         return "front/download/download";
     }
 
+    /**
+     * 订单页面
+     *
+     * @return
+     */
+    @RequestMapping("order")
+    public String order() {
+        return "front/shopping/order/order";
+    }
+
 }
