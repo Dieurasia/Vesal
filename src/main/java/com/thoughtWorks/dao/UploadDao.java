@@ -13,4 +13,7 @@ public interface UploadDao {
 
     String getModelGradeThr(String count2);
 
+    int checkCode(String code);
+
+    void upZipInfo(@Param("zipFile") Map<String, Object> zipFile);
 }

@@ -13,19 +13,15 @@
         #{zipFile.xml},#{zipFile.oneId},#{zipFile.twoId},#{zipFile.thrId});
     </insert>
 
-    <select id="getModelGrade" parameterType="map" resultType="map">
-        select
-        aclassify.a_id,
-        bclassify.b_id,
-        cclassify.c_id
-        from v_cclassify cclassify
-        INNER JOIN (select * from v_bclassify) bclassify ON cclassify.c_bid = bclassify.b_id
-        INNER JOIN (select * from v_aclassify) aclassify ON bclassify.b_aid = aclassify.a_id
-        WHERE cclassify.c_name = #{data.count2}
---         (select * from v_aclassify WHERE v_aclassify.a_name = #{data.count0}) aclassify,
---         (select * from v_bclassify WHERE v_bclassify.b_name = #{data.count1}) bclassify,
---         (select * from v_cclassify WHERE v_cclassify.c_name = #{data.count2}) cclassify;
-    </select>
+    <update id="upZipInfo" parameterType="map">
+        UPDATE v_model
+        SET
+        v_model.m_name = #{zipFile.name}, v_model.m_price = #{zipFile.price}, v_model.m_introduce = #{zipFile.introduce}, v_model.m_thumbnail = #{zipFile.imgStr},
+        v_model.m_dynamic = #{zipFile.gifStr}, v_model.m_unity = #{zipFile.gifStr}, v_model.m_file = #{zipFile.gifStr}, v_model.m_version = "1",
+        v_model.m_xmlpath = #{zipFile.xml}, v_model.m_aclassify = #{zipFile.oneId}, v_model.m_bclassify = #{zipFile.twoId}, v_model.m_cclassify = #{zipFile.thrId})
+        WHERE v_model.m_code = #{zipFile.code}
+
+    </update>
 
     <select id="getModelGradeOne" parameterType="String" resultType="String">
         select a_id from v_aclassify WHERE v_aclassify.a_name = #{count0};
@@ -37,6 +33,11 @@
 
     <select id="getModelGradeThr" parameterType="String" resultType="String">
         select c_id from v_cclassify WHERE v_cclassify.c_name = #{count2};
+    </select>
+
+    <select id="checkCode" parameterType="string" resultType="int">
+        select COUNT(1) from v_model
+        WHERE m_code = #{code}
     </select>
 
 </mapper>

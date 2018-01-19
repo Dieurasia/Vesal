@@ -14,11 +14,13 @@ public class GeneralMessage {
     public static final String EMAIL_FAILUER = "邮件发送失败";
     public static final String EMAIL_HAVE = "邮箱已存在";
 
-    public static final String ADD_ORDER_SUCCESS = "成功添加购物车";
-    public static final String ADD_ORDER_FAILURE = "添加购物车失败";
-    public static final String ADD_ORDER_HAVE = "勿重复加入购物车";
+    public static final String ADD_CART_SUCCESS = "成功添加购物车";
+    public static final String ADD_CART_FAILURE = "添加购物车失败";
+    public static final String ADD_ORDER_SUCCESS = "订单提交成功";
+    public static final String ADD_ORDER_FAILURE = "订单提交失败";
+    public static final String ADD_CART_HAVE = "勿重复加入购物车";
     public static final String SEARCH_SUCCESS = "查询成功";
     public static final String SEARCH_FAILURE = "查询失败";
     public static final String DELETE_SUCCESS = "删除成功";
-    public static final String DELETE_FAILURE= "删除失败";
+    public static final String DELETE_FAILURE = "删除失败";
 }

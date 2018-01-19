@@ -227,23 +227,22 @@
         $.post("${baseurl}/CustomLogin/session", function (session) {
             if (session.haveSession) {
                 let custom_id = session.user.cId;
-                //查询商品信息
-                $.post("${baseurl}/systemDisplay/queryModelById", {modelId: m_id}, function (data) {
-                    let modelInfo = data.modelInfo[0];
-                    let model_id = m_id;
-                    let oModelPrice = modelInfo.m_price;
-                    let oModelVersion = modelInfo.m_version;
-                    let oModelIntroduce = modelInfo.m_introduce;
-                    let oModelCode = modelInfo.m_code;
+                <%--//查询商品信息--%>
+                <%--$.post("${baseurl}/systemDisplay/queryModelById", {modelId: m_id}, function (data) {--%>
+                    <%--let modelInfo = data.modelInfo[0];--%>
+                    <%--let model_id = m_id;--%>
+                    <%--let oModelPrice = modelInfo.m_price;--%>
+                    <%--let oModelVersion = modelInfo.m_version;--%>
+                    <%--let oModelIntroduce = modelInfo.m_introduce;--%>
+                    <%--let oModelCode = modelInfo.m_code;--%>
                     //查看购物车是否有该模型
-                    $.post("${baseurl}/order/queryAddOrder", {
-                        customId: custom_id, modelId: model_id
+                    $.post("${baseurl}/order/queryAddCart", {
+                        customId: custom_id, modelId: m_id
                     }, function (value) {
                         if (value.data === 0) {
                             //添加模型到购物车
-                            $.post("${baseurl}/order/addOrder", {
-                                    oModelCode: oModelCode, oModelPrice: oModelPrice, oModelIntroduce: oModelIntroduce,
-                                    oModelVersion: oModelVersion, customId: custom_id, modelId: model_id
+                            $.post("${baseurl}/order/addCart", {
+                                    customId: custom_id, modelId: m_id
                                 },
                                 function (dataMsg) {
                                     layer.msg(dataMsg.msg, {
@@ -255,7 +254,7 @@
                                 time: 2000
                             });
                         }
-                    });
+                    // });
                 });
             } else {
                 location.href = "${baseurl}/page/frontLogin";

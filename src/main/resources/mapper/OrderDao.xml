@@ -3,19 +3,61 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.OrderDao">
-    <insert id="addOrder" parameterType="Order">
-        insert into v_order(o_ordertime,o_finish,custom_id,model_id,o_model_price,
-        o_model_introduce,o_model_version,o_model_code)VALUES
-         (#{oOrderTime},#{oFinish},#{customId},#{modelId},#{oModelPrice},
-         #{oModelIntroduce},#{oModelVersion},#{oModelCode})
+    <insert id="addOrder" parameterType="java.util.List">
+        INSERT INTO v_order (o_ordertime, o_finish, custom_id, model_id, o_model_price,
+        o_model_introduce, o_model_version, o_model_code,o_code) VALUES
+        <foreach collection="list" item="order" index="index" separator=",">
+            (#{order.oOrderTime}, #{order.oFinish}, #{order.customId}, #{order.modelId},
+            #{order.oModelPrice},#{order.oModelIntroduce}, #{order.oModelVersion},
+            #{order.oModelCode},#{order.oCode})
+        </foreach>
     </insert>
+    <update id="updateCartById" parameterType="java.util.List">
+        <foreach collection="list" item="model" index="index" open="" close="" separator=";">
+            update v_cart
+               SET c_finish=1
+            where model_id = #{model.mId}
+        </foreach>
+    </update>
     <select id="queryAddOrder" resultType="int" parameterType="Order">
-        select count(*) from v_order where custom_id = #{customId} AND model_id = #{modelId}
+        SELECT count(*)
+        FROM v_order
+        WHERE custom_id = #{customId} AND model_id = #{modelId}
     </select>
     <select id="queryUnfinishedOrder" resultType="Map" parameterType="Order">
-        SELECT v_order.*,v_model.* from v_order,v_model where v_order.custom_id = #{customId} AND v_order.o_finish =0 AND v_model.m_id = v_order.model_id
+        SELECT
+            v_order.*,
+            v_model.*
+        FROM v_order, v_model
+        WHERE v_order.custom_id = #{customId} AND v_order.o_finish = 0 AND v_model.m_id = v_order.model_id
     </select>
-    <select id="deleteOrderByOid"  parameterType="int">
-        DELETE from v_order where o_id = #{o_id}
+    <select id="deleteOrderByOid" parameterType="int">
+        DELETE FROM v_order
+        WHERE o_id = #{o_id}
+    </select>
+    <select id="queryModelById" resultType="Model" parameterType="int">
+        SELECT * FROM v_model
+        WHERE m_id = #{m_id}
+    </select>
+
+
+    <insert id="addCart" parameterType="Cart">
+        INSERT INTO v_cart (custom_id, model_id,c_finish) VALUES (#{customId}, #{modelId}, #{cFinish})
+    </insert>
+    <select id="queryAddCart" resultType="int" parameterType="Cart">
+        SELECT count(*)
+        FROM v_cart
+        WHERE custom_id = #{customId} AND model_id = #{modelId} AND c_finish = 0
+    </select>
+    <select id="queryCartModel" resultType="Map" parameterType="Cart">
+        SELECT
+            v_cart.*,
+            v_model.*
+        FROM v_cart, v_model
+        WHERE v_cart.custom_id = #{customId} AND v_cart.model_id = v_model.m_id AND v_cart.c_finish = 0
+    </select>
+    <select id="deleteCartByCid" parameterType="int">
+        DELETE FROM v_cart
+        WHERE c_id = #{cId}
     </select>
 </mapper>

@@ -37,16 +37,16 @@
     </div>
 
     <div class="cartBox">
-        <div class="shop_info">
-            <div class="all_check">
-                <!--店铺全选-->
-                <input type="checkbox" id="shop_a" class="shopChoice">
-                <label for="shop_a" class="shop"></label>
-            </div>
-            <div class="shop_name">
-                <span >我的购物车</span>
-            </div>
-        </div>
+        <%--<div class="shop_info">--%>
+        <%--<div class="all_check">--%>
+        <%--<!--店铺全选-->--%>
+        <%--<input type="checkbox" id="shop_a" class="shopChoice">--%>
+        <%--<label for="shop_a" class="shop"></label>--%>
+        <%--</div>--%>
+        <%--<div class="shop_name">--%>
+        <%--<span>我的购物车</span>--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <div class="order_content" id="shopping_text">
 
         </div>
@@ -55,8 +55,8 @@
     <div class="bar-wrapper">
         <div class="bar-right">
             <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
-            <div class="totalMoney">共计: <strong class="total_text" >0.00</strong></div>
-            <div class="calBtn"><a href="javascript:;">结算</a></div>
+            <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+            <div class="calBtn"><a href="javascript:;">提交订单</a></div>
         </div>
     </div>
 </section>
@@ -65,7 +65,7 @@
     <p class="title">删除宝贝<span class="closeModel">X</span></p>
     <p>您确认要删除该宝贝吗？</p>
     <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a>
-        <a href="javascript:;"class="dialog-close">关闭</a></div>
+        <a href="javascript:;" class="dialog-close">关闭</a></div>
 </section>
 <jsp:include page="../public/footer.jsp"/>
 <script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
@@ -74,19 +74,21 @@
     $(function () {
         $.post("${baseurl}/CustomLogin/session", function (session) {
             if (session.haveSession) {
-                let custom_id = session.user.cId;
-                $.post("${baseurl}/order/queryUnfinishedOrder", {customId: custom_id}, function (data) {
-                    let _html = ""
-                    for (let i = 0; i < data.data.length; i++) {
-                        let img = "${baseurl}/file/" + data.data[i].m_thumbnail;
-                        let m_introduce = (data.data[i].o_model_introduce).substr(0, 40) + "...";
-                        let modelDetails = ("${baseurl}/page/modelDetails?id=" + data.data[i].m_id);
+                var custom_id = session.user.cId;
+                $.post("${baseurl}/order/queryCartModel", {customId: custom_id}, function (data) {
+                    var _html = "";
+                    var allCheckbox = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        allCheckbox.push(data.data[i].c_id);
+                        var img = "${baseurl}/file/" + data.data[i].m_thumbnail;
+                        var m_introduce = (data.data[i].m_introduce).substr(0, 40) + "...";
+                        var modelDetails = ("${baseurl}/page/modelDetails?id=" + data.data[i].m_id);
                         _html += `<ul class="order_lists">
                 <li class="list_chk">
-                    <input type="checkbox" id="checkbox_`+ data.data[i].o_id +`" class="son_check">
-                    <label for="checkbox_`+ data.data[i].o_id +`"></label>
+                    <input name="model" value="` + data.data[i].m_id + `" type="checkbox" id="` + data.data[i].c_id + `" class="son_check">
+                    <label for="` + data.data[i].c_id + `"></label>
                 </li>
-                <a href = "`+modelDetails+`">
+                <a href = "` + modelDetails + `">
                 <li class="list_con">
                     <div class="list_img">
                          <img src="` + img + `">
@@ -98,11 +100,11 @@
                 </li>
                 </a>
                 <li class="list_info">
-                    <p>编号：` + data.data[i].o_model_code + `</p>
-                    <p>版本号：` + data.data[i].o_model_version + `.0</p>
+                    <p>编号：` + data.data[i].m_code + `</p>
+                    <p>版本号：` + data.data[i].m_version + `</p>
                 </li>
                 <li class="list_price">
-                    <p class="price">￥` + data.data[i].o_model_price + `</p>
+                    <p class="price">￥` + data.data[i].m_price + `</p>
                 </li>
                 <li class="list_amount">
                     <div class="amount_box">
@@ -111,10 +113,10 @@
                     </div>
                 </li>
                 <li class="list_sum">
-                    <p class="sum_price">￥` + data.data[i].o_model_price + `</p>
+                    <p class="sum_price">￥` + data.data[i].m_price + `</p>
                 </li>
                 <li class="list_op">
-                 <input type="text" value="` + data.data[i].o_id +`" class = "o_id" style="display: none">
+                 <input type="text" value="` + data.data[i].c_id + `" class = "c_id" style="display: none">
                     <p class="del"><a href="javascript:;"  class="delBtn">移除商品</a></p>
                 </li>
             </ul>`
@@ -124,26 +126,50 @@
                     var $allCheckbox = $('input[type="checkbox"]'),     //全局的全部checkbox
                         $wholeChexbox = $('.whole_check'),
                         $cartBox = $('.cartBox'),                       //每个商铺盒子
-                        $shopCheckbox = $('.shopChoice'),               //每个商铺的checkbox
-                        $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
+                        $shopCheckbox = $('.shopChoice'),
+                        //每个商铺的checkbox
+                        $calBtn = $('.calBtn'),
+                        $sonCheckBox = $('.son_check');
+                    // var allCId = [];
+                    //删除指定的数组
+                    Array.prototype.remove = function (val) {
+                        var index = this.indexOf(val);
+                        if (index > -1) {
+                            this.splice(index, 1);
+                        }
+                    };
+                    //每个商铺下的商品的checkbox
                     $allCheckbox.click(function () {
+
                         if ($(this).is(':checked')) {
+                            // if ($(this).attr("id") != "all" && $(this).attr("id") != "shop_a")
+                            //     allCId.push($(this).attr("id"));
                             $(this).next('label').addClass('mark');
                         } else {
-                            $(this).next('label').removeClass('mark')
+                            // if ($(this).attr("id") != "all" && $(this).attr("id") != "shop_a")
+                            //     allCId.remove($(this).attr("id"));
+                            // alert($(this).attr("id")+"$(this).attr");
+                            // let aa = allCId.remove($(this).attr("id"));
+                            // alert(aa+"单选shanchu");
+                            $(this).next('label').removeClass('mark');
                         }
+                        // alert(allCId+"单选");
                     });
+
 
                     //===============================================全局全选与单个商品的关系================================
                     $wholeChexbox.click(function () {
                         var $checkboxs = $cartBox.find('input[type="checkbox"]');
                         if ($(this).is(':checked')) {
+                            // allCId=allCheckbox;
                             $checkboxs.prop("checked", true);
                             $checkboxs.next('label').addClass('mark');
                         } else {
+                            // allCId = [];
                             $checkboxs.prop("checked", false);
                             $checkboxs.next('label').removeClass('mark');
                         }
+                        // alert(allCId+"全选");
                         totalMoney();
                     });
 
@@ -169,7 +195,7 @@
                                 $wholeChexbox.next('label').removeClass('mark');
                             }
                         })
-                    })
+                    });
 
                     //=======================================每个店铺checkbox与全选checkbox的关系/每个店铺与其下商品样式的变化===================================================
 
@@ -295,10 +321,10 @@
 
                     var $order_lists = null;
                     var $order_content = '';
-                    let o_id = 0;
+                    var c_id = 0;
                     $('.delBtn').click(function () {
                         $order_lists = $(this).parents('.order_lists');
-                        o_id = $(this).parents('.order_lists').find('.o_id').val();
+                        c_id = $(this).parents('.order_lists').find('.c_id').val();
                         $order_content = $order_lists.parents('.order_content');
                         $('.model_bg').fadeIn(300);
                         $('.my_model').fadeIn(300);
@@ -320,7 +346,7 @@
                     //确定按钮，移除商品
                     $('.dialog-sure').click(function () {
                         $order_lists.remove();
-                        delBtn(o_id)
+                        delBtn(c_id)
                         if ($order_content.html().trim() == null || $order_content.html().trim().length == 0) {
                             $order_content.parents('.cartBox').remove();
                         }
@@ -359,14 +385,38 @@
                         }
                     }
 
+                    // ============================提交订单============================
+                    $calBtn.click(function () {
+                        var chk_value = [];
+                        $('input[name="model"]:checked').each(function () {
+                            chk_value.push($(this).val());
+                        });
+                        if (chk_value.length != 0) {
+                            $.post("${baseurl}/order/addOrder",
+                                {
+                                    customId: custom_id,
+                                    allModelId: chk_value.toString()
+                                },
+                                function (data) {
+                                    layer.msg(data.msg, {
+                                        time: 2000
+                                    }, function () {
+                                        location.href = "#";
+                                    });
+                                });
+                        }
+                    });
+
                 });
-            }else{
+            } else {
                 location.href = "${baseurl}/page/frontLogin";
             }
         });
     });
-    function delBtn(o_id) {
-        $.post("${baseurl}/order/deleteOrderByOid", {o_id: o_id}, function (data) {
+
+    //删除商品
+    function delBtn(c_id) {
+        $.post("${baseurl}/order/devareCartByCid", {c_id: c_id}, function (data) {
             layer.msg(data.msg, {
                 time: 2000
             });
