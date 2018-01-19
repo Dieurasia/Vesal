@@ -399,9 +399,9 @@
                                 },
                                 function (data) {
                                     layer.msg(data.msg, {
-                                        time: 2000
+                                        time: 1000
                                     }, function () {
-                                        location.href = "#";
+                                        location.href = "${baseurl}/page/order";
                                     });
                                 });
                         }

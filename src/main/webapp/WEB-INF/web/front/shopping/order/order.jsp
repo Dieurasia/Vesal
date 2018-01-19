@@ -4,13 +4,18 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>维萨里</title>
+    <title>维萨里3D医学模型库</title>
+    <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/order_base.css"/>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/order_checkOut.css"/>
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/style.css"/>
+    <script src="${baseurl}/public/js/jquery.min.js"></script>
 </head>
 
 <body>
-<div class="container">
+<jsp:include page="../../public/header.jsp"/>
+<div class=" container1 ">
     <div class="checkout-box">
         <div id="checkoutInvoice">
             <div class="xm-box">
@@ -86,7 +91,6 @@
                                             小米圆领纯色T恤 男款 红色 XXL </a>
                                     </div>
                                 </div>
-
                                 <div class="col col-2">39元</div>
                                 <div class="col col-3">4</div>
                                 <div class="col col-4">156元</div>
@@ -94,7 +98,6 @@
                         </dd>
                     </dl>
                     <div class="checkout-count clearfix">
-                        <!-- checkout-count-extend -->
                         <div class="checkout-price">
                             <ul>
                                 <li>
@@ -109,21 +112,18 @@
                             </ul>
                             <p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
                         </div>
-                        <!--  -->
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
         <div class="checkout-confirm">
-            <a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-            <input type="submit" class="btn btn-primary" value="立即下单" id="checkoutToPay"/>
+            <a href="${baseurl}/page/shopping" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
+            <input type="submit" class="btn btn-primary" value="立即支付" id="checkoutToPay"/>
         </div>
     </div>
     <hr>
 </div>
+<jsp:include page="../../public/footer.jsp"/>
+<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
 </body>
 </html>

@@ -104,30 +104,30 @@ body {
 	color:#8c8c8c;
 	background-color:#fff
 }
-.container {
+.container1 {
 	margin-right:auto;
 	margin-left:auto;
 	*zoom:1
 }
-.container:before,.container:after {
+.container1:before,.container1:after {
 	display:table;
 	content:"";
 	line-height:0
 }
-.container:after {
+.container1:after {
 	clear:both
 }
-.container-fluid {
+.container1-fluid {
 	padding-right:0;
 	padding-left:0;
 	*zoom:1
 }
-.container-fluid:before,.container-fluid:after {
+.container1-fluid:before,.container1-fluid:after {
 	display:table;
 	content:"";
 	line-height:0
 }
-.container-fluid:after {
+.container1-fluid:after {
 	clear:both
 }
 a {
@@ -602,7 +602,7 @@ a:hover,a:focus {
 .row:after {
 	clear:both
 }
-.container {
+.container1 {
 	width:1200px
 }
 .span20 {
@@ -2445,7 +2445,7 @@ a:hover,a:focus {
 	color:#666
 }
 @media (max-width:1260px) {
-	.container {
+	.container1 {
 	width:930px
 }
 .row .col-16 {

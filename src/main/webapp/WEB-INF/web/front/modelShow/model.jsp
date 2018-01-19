@@ -74,9 +74,9 @@
                                 <div class="bd">
                                     <div class="prdtTags">`
                 if (subscribe[i].s_whether == 1) {
-                    _html += `<span class=" itemTag attribute" style="cursor:pointer">取消订阅</span>`;
+                    _html += `<span class=" subscribe itemTag attribute" style="cursor:pointer">取消订阅</span>`;
                 } else {
-                    _html += `<span class=" itemTag new" style="cursor:pointer">+订阅</span>`;
+                    _html += `<span class="subscribe itemTag new" style="cursor:pointer">+订阅</span>`;
                 }
                 _html += ` <div class="itemTag ">最新</div>
                            <span style="display: none">` + subscribe[i].m_id + `</span>
@@ -99,7 +99,7 @@
                         </li>`;
             }
             $("#model").html(_html);
-            $(".itemTag").click(function () {
+            $(".subscribe").click(function () {
                 let hasclazz = $(this).hasClass("new");
                 let thiz = $(this);
                 let modelId = $(this).siblings('span').text();
