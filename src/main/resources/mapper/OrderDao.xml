@@ -5,31 +5,27 @@
 <mapper namespace="com.thoughtWorks.dao.OrderDao">
     <insert id="addOrder" parameterType="java.util.List">
         INSERT INTO v_order (o_ordertime, o_finish, custom_id, model_id, o_model_price,
-        o_model_introduce, o_model_version, o_model_code,o_code) VALUES
+        o_model_introduce, o_model_version, o_model_code,o_code,o_thumbnail,o_name) VALUES
         <foreach collection="list" item="order" index="index" separator=",">
             (#{order.oOrderTime}, #{order.oFinish}, #{order.customId}, #{order.modelId},
             #{order.oModelPrice},#{order.oModelIntroduce}, #{order.oModelVersion},
-            #{order.oModelCode},#{order.oCode})
+            #{order.oModelCode},#{order.oCode},#{order.oThumbnail},#{order.oName})
         </foreach>
     </insert>
     <update id="updateCartById" parameterType="java.util.List">
         <foreach collection="list" item="model" index="index" open="" close="" separator=";">
             update v_cart
-               SET c_finish=1
+            SET c_finish=1
             where model_id = #{model.mId}
         </foreach>
     </update>
-    <select id="queryAddOrder" resultType="int" parameterType="Order">
-        SELECT count(*)
-        FROM v_order
-        WHERE custom_id = #{customId} AND model_id = #{modelId}
+    <select id="queryAllOrderCode" resultType="string" parameterType="int">
+        SELECT DISTINCT o_code
+        FROM v_order where custom_id = #{customId}  ORDER BY  o_id DESC
     </select>
-    <select id="queryUnfinishedOrder" resultType="Map" parameterType="Order">
-        SELECT
-            v_order.*,
-            v_model.*
-        FROM v_order, v_model
-        WHERE v_order.custom_id = #{customId} AND v_order.o_finish = 0 AND v_model.m_id = v_order.model_id
+    <select id="queryOrderInfoByCode" resultType="Map" parameterType="string">
+        SELECT * FROM v_order
+        WHERE o_code = #{oCode}
     </select>
     <select id="deleteOrderByOid" parameterType="int">
         DELETE FROM v_order
@@ -47,7 +43,7 @@
     <select id="queryAddCart" resultType="int" parameterType="Cart">
         SELECT count(*)
         FROM v_cart
-        WHERE custom_id = #{customId} AND model_id = #{modelId} AND c_finish = 0
+        WHERE custom_id = #{customId} AND model_id = #{modelId}
     </select>
     <select id="queryCartModel" resultType="Map" parameterType="Cart">
         SELECT

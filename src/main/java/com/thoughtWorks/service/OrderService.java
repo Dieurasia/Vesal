@@ -13,35 +13,34 @@ import java.util.Map;
 public interface OrderService {
     /**
      * 添加一个订单
+     *
      * @param customId
      * @param allModelId
      * @throws Exception
      */
-    void addOrder(int customId,String allModelId)throws Exception;
+    void addOrder(int customId, String allModelId) throws Exception;
+
     /**
-     * 查找商品是否已经添加到购物车
-     * @param order
+     * 查询所有订单信息
+     *
+     * @param customId
      * @return
      * @throws Exception
      */
-    int queryAddOrder(Order order)throws Exception;
-    /**
-     * 查询购物车未付款的所有模型
-     * @param order
-     * @return
-     * @throws Exception
-     */
-    List<Map<String, Object>> queryUnfinishedOrder(Order order)throws Exception;
+    List<Map<String, Object>> queryOrderInfo(int customId) throws Exception;
+
     /**
      * 删除购物车模型
+     *
      * @param o_id
      * @throws Exception
      */
-    void deleteOrderByOid(int o_id)throws Exception;
+    void deleteOrderByOid(int o_id) throws Exception;
 
 
     /**
      * 添加到购物车
+     *
      * @param cart
      * @throws Exception
      */
@@ -49,25 +48,28 @@ public interface OrderService {
 
     /**
      * 删除购物车模型
+     *
      * @param c_id
      * @throws Exception
      */
-    void deleteCartByCid(int c_id)throws Exception;
+    void deleteCartByCid(int c_id) throws Exception;
 
     /**
      * 查找商品是否已经添加到购物车
+     *
      * @param cart
      * @return
      * @throws Exception
      */
-    int queryAddCart(Cart cart)throws Exception;
+    int queryAddCart(Cart cart) throws Exception;
 
     /**
      * 查询购物车未付款的所有模型
+     *
      * @param cart
      * @return
      * @throws Exception
      */
-    List<Map<String,Object>> queryCartModel(Cart cart)throws Exception;
+    List<Map<String, Object>> queryCartModel(Cart cart) throws Exception;
 
 }

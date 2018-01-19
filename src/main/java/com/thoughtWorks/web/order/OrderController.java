@@ -102,6 +102,12 @@ public class OrderController {
         return generalResults;
     }
 
+    /**
+     * 添加订单
+     * @param customId
+     * @param allModelId
+     * @return
+     */
     @RequestMapping("addOrder")
     @ResponseBody
     public GeneralResults addOrder(int customId, String allModelId){
@@ -111,6 +117,24 @@ public class OrderController {
             generalResults = GeneralResults.success(GeneralMessage.ADD_ORDER_SUCCESS);
         } catch (Exception e) {
             generalResults = GeneralResults.success(GeneralMessage.ADD_CART_FAILURE);
+            e.printStackTrace();
+        }
+        return generalResults;
+    }
+
+    /**
+     * 查询订单信息通过用户id
+     * @param customId
+     * @return
+     */
+    @RequestMapping("queryOrderInfo")
+    @ResponseBody
+    public GeneralResults queryOrderInfo(int customId){
+        GeneralResults generalResults;
+        try {
+            generalResults = GeneralResults.success( orderService.queryOrderInfo(customId),GeneralMessage.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            generalResults = GeneralResults.success(GeneralMessage.SEARCH_FAILURE);
             e.printStackTrace();
         }
         return generalResults;

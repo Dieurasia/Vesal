@@ -25,11 +25,30 @@
             </div>
         </div>
     </div>
-    <div class="checkout-box-ft">
+    <span id="_html">
+
+    </span>
+
+</div>
+<jsp:include page="../../public/footer.jsp"/>
+<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.post("${baseurl}/CustomLogin/session", function (session) {
+            if (session.haveSession) {
+                var custom_id = session.user.cId;
+                $.post("${baseurl}/order/queryOrderInfo", {customId: custom_id}, function (data) {
+                    var data = data.data;
+                    var _html = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        var count = 0.0;
+                        var state = data[i].orderInfo[0].o_finish == 0 ? "待支付" : "已经支付";
+                        _html += `<div class="checkout-box-ft">
         <div id="checkoutGoodsList" class="checkout-goods-box">
             <div class="xm-box">
                 <div class="box-hd">
-                    <h2 class="title">订单状态：<span style="color:#ff4646;margin-right: 30px;">待支付</span>订单编号：256325632563
+                    <h2 class="title">订单状态：<span style="color:#ff4646;margin-right: 30px;">` + state + `</span>订单编号：` + data[i].orderCode + `
                     </h2>
                 </div>
                 <div class="box-bd">
@@ -39,69 +58,38 @@
                             <span class="col col-2">购买价格</span>
                             <span class="col col-3">购买数量</span>
                             <span class="col col-4">小计（元）</span>
-                        </dt>
-                        <dd class="item clearfix">
+                        </dt>`
+                        var orderInfo = data[i].orderInfo;
+                        for (var j = 0; j < orderInfo.length; j++) {
+                            count += parseFloat(orderInfo[j].o_model_price);
+                            var img = "${baseurl}/file/" + orderInfo[j].o_thumbnail;
+                            var modelDetails = ("${baseurl}/page/modelDetails?id=" + orderInfo[j].model_id);
+                            var shopping = "${baseurl}/page/shopping";
+                            _html += `<dd class="item clearfix">
                             <div class="item-row">
                                 <div class="col col-1">
                                     <div class="g-pic">
-                                        <img src="http://i1.mifile.cn/a1/T11lLgB5YT1RXrhCrK!40x40.jpg"
-                                             srcset="http://i1.mifile.cn/a1/T11lLgB5YT1RXrhCrK!80x80.jpg 2x" width="40"
-                                             height="40"/>
+                                        <img src="` + img + `" width="40" height="40"/>
                                     </div>
                                     <div class="g-info">
-                                        <a href="#">
-                                            小米T恤 忍者米兔双截棍 军绿 XXL </a>
+                                        <a href="` + modelDetails + `">
+                                            ` + orderInfo[j].o_name + `</a>
                                     </div>
                                 </div>
-
-                                <div class="col col-2">39元</div>
+                                <div class="col col-2">` + orderInfo[j].o_model_price + `元</div>
                                 <div class="col col-3">1</div>
-                                <div class="col col-4">39元</div>
+                                <div class="col col-4">` + orderInfo[j].o_model_price + `元</div>
                             </div>
-                        </dd>
-                        <dd class="item clearfix">
-                            <div class="item-row">
-                                <div class="col col-1">
-                                    <div class="g-pic">
-                                        <img src="http://i1.mifile.cn/a1/T14BLvBKJT1RXrhCrK!40x40.jpg"
-                                             srcset="http://i1.mifile.cn/a1/T14BLvBKJT1RXrhCrK!80x80.jpg 2x" width="40"
-                                             height="40"/>
-                                    </div>
-                                    <div class="g-info">
-                                        <a href="#">
-                                            招财猫米兔 白色 </a>
-                                    </div>
-                                </div>
+                        </dd>`
+                        }
 
-                                <div class="col col-2">49元</div>
-                                <div class="col col-3">1</div>
-                                <div class="col col-4">49元</div>
-                            </div>
-                        </dd>
-                        <dd class="item clearfix">
-                            <div class="item-row">
-                                <div class="col col-1">
-                                    <div class="g-pic">
-                                        <img src="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!40x40.jpg"
-                                             srcset="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!80x80.jpg 2x" width="40"
-                                             height="40"/>
-                                    </div>
-                                    <div class="g-info">
-                                        <a href="#">
-                                            小米圆领纯色T恤 男款 红色 XXL </a>
-                                    </div>
-                                </div>
-                                <div class="col col-2">39元</div>
-                                <div class="col col-3">4</div>
-                                <div class="col col-4">156元</div>
-                            </div>
-                        </dd>
-                    </dl>
+                        count = count.toFixed(2);
+                        _html += `</dl>
                     <div class="checkout-count clearfix">
                         <div class="checkout-price">
                             <ul>
                                 <li>
-                                    订单总额：<span>244元</span>
+                                    订单总额：<span>` + count + `元</span>
                                 </li>
                                 <li>
                                     活动优惠：<span>-0元</span>
@@ -110,20 +98,27 @@
                                     优惠券抵扣：<span id="couponDesc">-0元</span>
                                 </li>
                             </ul>
-                            <p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+                            <p class="checkout-total">应付总额：<span><strong id="totalPrice">` + count + `</strong>元</span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="checkout-confirm">
-            <a href="${baseurl}/page/shopping" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
+            <a href="` + shopping + `" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
             <input type="submit" class="btn btn-primary" value="立即支付" id="checkoutToPay"/>
         </div>
     </div>
-    <hr>
-</div>
-<jsp:include page="../../public/footer.jsp"/>
-<script type="text/javascript" src="${baseurl}/public/js/front_Layui.js"></script>
+    <hr>`;
+
+                    }
+                    $("#_html").html(_html);
+                });
+            } else {
+                location.href = "${baseurl}/page/frontLogin";
+            }
+        });
+    });
+</script>
 </body>
 </html>

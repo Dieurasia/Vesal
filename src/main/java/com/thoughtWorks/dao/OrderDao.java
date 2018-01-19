@@ -30,22 +30,20 @@ public interface OrderDao {
     void updateCartById(List<Model> modelIds) throws Exception;
 
     /**
-     * 查找商品是否已经添加到订单
-     *
-     * @param order
+     *  查找商品是否已经添加到订单
+     * @param customId
      * @return
      * @throws Exception
      */
-    int queryAddOrder(Order order) throws Exception;
+    List<String> queryAllOrderCode(int customId) throws Exception;
 
     /**
-     * 查询订单未付款的所有模型
+     * 通过订单编码查询订单信息
      *
-     * @param order
      * @return
      * @throws Exception
      */
-    List<Map<String, Object>> queryUnfinishedOrder(Order order) throws Exception;
+    List<Map<String, Object>> queryOrderInfoByCode(String oCode) throws Exception;
 
     /**
      * 查询id查询模型

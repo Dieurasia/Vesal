@@ -41,6 +41,8 @@ public class OrderServiceImpl implements OrderService {
             order.setOModelCode(model.getMCode());
             //订单编码
             order.setOCode(orderCode);
+            order.setOThumbnail(model.getMThumbnail());
+            order.setOName(model.getMName());
             list.add(order);
             modelIdList.add(model);
         }
@@ -48,15 +50,18 @@ public class OrderServiceImpl implements OrderService {
         orderDao.addOrder(list);
     }
 
-    @Override
-    public int queryAddOrder(Order order) throws Exception {
-
-        return orderDao.queryAddOrder(order);
-    }
 
     @Override
-    public List<Map<String, Object>> queryUnfinishedOrder(Order order) throws Exception {
-        return orderDao.queryUnfinishedOrder(order);
+    public List<Map<String, Object>> queryOrderInfo(int customId) throws Exception {
+        List<String> orderCodeList = orderDao.queryAllOrderCode(customId);
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (String orderCode : orderCodeList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("orderCode", orderCode);
+            map.put("orderInfo", orderDao.queryOrderInfoByCode(orderCode));
+            list.add(map);
+        }
+        return list;
     }
 
     @Override

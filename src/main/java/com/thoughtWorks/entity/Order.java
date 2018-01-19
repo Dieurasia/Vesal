@@ -26,4 +26,6 @@ public class Order {
     private String oModelCode;
     private Integer customId;
     private Integer modelId;
+    private String oThumbnail;
+    private String oName;
 }

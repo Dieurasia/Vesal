@@ -130,7 +130,6 @@
                         //每个商铺的checkbox
                         $calBtn = $('.calBtn'),
                         $sonCheckBox = $('.son_check');
-                    // var allCId = [];
                     //删除指定的数组
                     Array.prototype.remove = function (val) {
                         var index = this.indexOf(val);
@@ -142,18 +141,10 @@
                     $allCheckbox.click(function () {
 
                         if ($(this).is(':checked')) {
-                            // if ($(this).attr("id") != "all" && $(this).attr("id") != "shop_a")
-                            //     allCId.push($(this).attr("id"));
                             $(this).next('label').addClass('mark');
                         } else {
-                            // if ($(this).attr("id") != "all" && $(this).attr("id") != "shop_a")
-                            //     allCId.remove($(this).attr("id"));
-                            // alert($(this).attr("id")+"$(this).attr");
-                            // let aa = allCId.remove($(this).attr("id"));
-                            // alert(aa+"单选shanchu");
                             $(this).next('label').removeClass('mark');
                         }
-                        // alert(allCId+"单选");
                     });
 
 
@@ -161,15 +152,12 @@
                     $wholeChexbox.click(function () {
                         var $checkboxs = $cartBox.find('input[type="checkbox"]');
                         if ($(this).is(':checked')) {
-                            // allCId=allCheckbox;
                             $checkboxs.prop("checked", true);
                             $checkboxs.next('label').addClass('mark');
                         } else {
-                            // allCId = [];
                             $checkboxs.prop("checked", false);
                             $checkboxs.next('label').removeClass('mark');
                         }
-                        // alert(allCId+"全选");
                         totalMoney();
                     });
 
