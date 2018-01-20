@@ -30,7 +30,6 @@
                 <input type="text" name="username" placeholder="请输入用户名">
                 <input type="password" name="password" placeholder="请输入密码">
                 <input type="password" name="passwordAgain" placeholder="请确认密码">
-                <%--<input type="text" name="userCode" placeholder="请输入客户编码">--%>
                 <select id="userSet" style="color: #FFFFFF">
                     <option value="">请选择用户职业</option>
                     <option value="教师">教师</option>
@@ -39,7 +38,7 @@
                     <option value="其他">其他</option>
                 </select>
                 <input type="text" name="userPhone" placeholder="请输入联系电话" style="margin-top: 10px">
-                <input type="text" name="userEmail" placeholder="请输入电子邮箱">
+                <input type="email" name="userEmail" placeholder="请输入电子邮箱">
                 <button type="button" id="code-button" class="btn btn-info" style="margin-bottom: 10px">发送邮箱验证码</button>
                 <input type="text" name="codeEmail" placeholder="请输入邮箱验证码">
                 <input type="text" name="userCity" placeholder="请输入所在城市">
@@ -94,7 +93,7 @@
         //密码：只能输入6-20个字母、数字、下划线
         let checkPass = /^(\w){6,20}$/;
         //邮箱：
-        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|edu)$/;
         //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
         let customNameIsNo = true;
@@ -135,7 +134,8 @@
                 layer.msg("邮箱填写有误", {
                     time: 2000
                 });
-            } else if (!checkChinese.test(userCity)) {
+            }
+            else if (!checkChinese.test(userCity)) {
                 layer.msg("地址输入不正确", {
                     time: 2000
                 });
@@ -167,8 +167,8 @@
     $("#code-button").click(function () {
         let userEmail = $("input[name='userEmail']").val();
         //邮箱：
-        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-        if(userEmail != "" && checkEmail.test(userEmail)){
+        // let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if(userEmail != "" ){   //&& checkEmail.test(userEmail)
             $.post("${baseurl}/CustomLogin/identifying",{cEmail:userEmail}, function (data) {
                     if (data.result) {
                         $("#codeEmail").val(data.codeEmail);
@@ -177,11 +177,13 @@
                         time: 2000
                     });
                 })
-        }else{
+        }
+        //邮箱交给浏览器做判断，input框中加入了type="email"属性，若输入了错误的邮箱，鼠标悬浮在上面会有提示。
+        /*else{
             layer.msg("邮箱输入不正确！", {
                 time: 2000
             });
-        }
+        }*/
     })
 </script>
 
