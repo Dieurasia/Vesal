@@ -92,8 +92,8 @@
         let checkName = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
         //密码：只能输入6-20个字母、数字、下划线
         let checkPass = /^(\w){6,20}$/;
-        //邮箱：
-        let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|edu)$/;
+        //邮箱：input框中，有type="email",邮箱交由浏览器判断,正则表达式全是错误的
+        // let checkEmail = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org|edu)$/;
         //验证是否全为中文
         let checkChinese = /^[\u4e00-\u9fa5]+$/;
         let customNameIsNo = true;
@@ -130,11 +130,12 @@
                 layer.msg("手机/电话填写有误", {
                     time: 2000
                 });
-            } else if (!checkEmail.test(userEmail)) {
+            }
+/*            else if (!checkEmail.test(userEmail)) {
                 layer.msg("邮箱填写有误", {
                     time: 2000
                 });
-            }
+            }*/
             else if (!checkChinese.test(userCity)) {
                 layer.msg("地址输入不正确", {
                     time: 2000

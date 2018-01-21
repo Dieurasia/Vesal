@@ -27,6 +27,7 @@ public class CustomController {
 
     /**
      * 用户登录
+     *
      * @param custom
      * @return
      */
@@ -136,12 +137,13 @@ public class CustomController {
 
     /**
      * 通过姓名查找用户
+     *
      * @param cName
      * @return
      */
     @RequestMapping(value = "/queryCustomByName")
     @ResponseBody
-    public Map<String, Object> queryCustomByName(String cName,String cPhone) {
+    public Map<String, Object> queryCustomByName(String cName, String cPhone) {
         Map<String, Object> data = new HashMap<>();
         try {
             boolean customName = customService.queryCustomByName(cName);
@@ -156,6 +158,7 @@ public class CustomController {
 
     /**
      * 用户注册信息
+     *
      * @param custom
      * @param request
      * @return
@@ -176,7 +179,7 @@ public class CustomController {
     }
 
     /**
-     *   邮箱验证码
+     * 邮箱验证码
      */
     @RequestMapping(value = "/identifying")
     @ResponseBody
@@ -184,10 +187,10 @@ public class CustomController {
         Map<String, Object> data = new HashMap<>();
         try {
             boolean customEmail = customService.checkEmail(cEmail);
-            if(customEmail){
+            if (customEmail) {
                 data.put("result", false);
                 data.put("msg", Constant.EMAIL_HAVE);
-            }else{
+            } else {
                 //codeEmail生成6位随机数字
                 StringBuffer buffer = new StringBuffer();
                 Random random = new Random();
@@ -212,32 +215,28 @@ public class CustomController {
         return data;
     }
 
-    public static boolean sendEmail(String emailaddress, String code) {
-
+    /**
+     * 发送邮箱验证码
+     */
+    private static boolean sendEmail(String emailaddress, String code) {
         try {
-            HtmlEmail email = new HtmlEmail();//不用更改
-//          email.setHostName("smtp.163.com");//需要修改，126邮箱为smtp.126.com,163邮箱为smtp.163.com，QQ为smtp.qq.com
-            email.setHostName("smtp.126.com");//需要修改，126邮箱为smtp.126.com,163邮箱为smtp.163com，QQ为smtp.qq.com
+            HtmlEmail email = new HtmlEmail();
+            //126邮箱为smtp.126.com,163邮箱为smtp.163.com，QQ为smtp.qq.com
+            email.setHostName("smtp.126.com");
             email.setSmtpPort(25);
             email.setCharset("UTF-8");
-            email.addTo(emailaddress);// 收件地址
-
-//          email.setFrom("vesalmail@163.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
-//            email.setFrom("vesalemail@126.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
-            email.setFrom("xavesal@126.com", "维萨里产品展示网");//此处填邮箱地址和用户名,用户名可以任意填写
-
-//          email.setAuthentication("vesalmail@163.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
-//            email.setAuthentication("vesalemail@126.com", "ThoughtWorks1234");//此处填写邮箱地址和客户端授权码
-            email.setAuthentication("xavesal@126.com", "ren8565yu1");//此处填写邮箱地址和客户端授权码
-
-            email.setSubject("消息接收邮箱验证");//此处填写邮件名，邮件名可任意填写，但需要经常改，否则会被网易拦截
-            email.setMsg("【维萨里产品展示网】验证码:" + code + "，该验证码5分钟内有效。为了保证您的账户安全，请勿向他人泄露验证码信息。");//此处填写邮件内容
-
+            //收件地址
+            email.addTo(emailaddress);
+            //邮箱地址和用户名,用户名可以任意填写
+            email.setFrom("xavesal@126.com", "维萨里产品展示网");
+            //邮箱地址和客户端授权码
+            email.setAuthentication("xavesal@126.com", "ren8565yu1");
+            email.setSubject("消息接收邮箱验证");
+            email.setMsg("【维萨里产品展示网】验证码:" + code + "，该验证码5分钟内有效。为了保证您的账户安全，请勿向他人泄露验证码信息。");
             email.send();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-
             return false;
         }
     }
