@@ -334,7 +334,7 @@
                     //确定按钮，移除商品
                     $('.dialog-sure').click(function () {
                         $order_lists.remove();
-                        delBtn(c_id)
+                        delBtn(c_id);
                         if ($order_content.html().trim() == null || $order_content.html().trim().length == 0) {
                             $order_content.parents('.cartBox').remove();
                         }
@@ -404,7 +404,7 @@
 
     //删除商品
     function delBtn(c_id) {
-        $.post("${baseurl}/order/devareCartByCid", {c_id: c_id}, function (data) {
+        $.post("${baseurl}/order/deleteCartByCid", {c_id: c_id}, function (data) {
             layer.msg(data.msg, {
                 time: 2000
             });
