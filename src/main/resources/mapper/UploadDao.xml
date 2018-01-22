@@ -17,8 +17,8 @@
         UPDATE v_model
         SET
         v_model.m_name = #{zipFile.name}, v_model.m_price = #{zipFile.price}, v_model.m_introduce = #{zipFile.introduce}, v_model.m_thumbnail = #{zipFile.imgStr},
-        v_model.m_dynamic = #{zipFile.gifStr}, v_model.m_unity = #{zipFile.gifStr}, v_model.m_file = #{zipFile.gifStr}, v_model.m_version = "1",
-        v_model.m_xmlpath = #{zipFile.xml}, v_model.m_aclassify = #{zipFile.oneId}, v_model.m_bclassify = #{zipFile.twoId}, v_model.m_cclassify = #{zipFile.thrId})
+        v_model.m_dynamic = #{zipFile.gifStr}, v_model.m_unity = #{zipFile.gifStr}, v_model.m_file = #{zipFile.gifStr}, v_model.m_version = #{zipFile.version},
+        v_model.m_xmlpath = #{zipFile.xml}, v_model.m_aclassify = #{zipFile.oneId}, v_model.m_bclassify = #{zipFile.twoId}, v_model.m_cclassify = #{zipFile.thrId}
         WHERE v_model.m_code = #{zipFile.code}
 
     </update>

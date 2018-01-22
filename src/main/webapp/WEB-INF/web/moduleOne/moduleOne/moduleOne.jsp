@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="../../../public/tag.jsp" %>
-<html>
+<html lang="en">
 <head>
     <title>ModuleOne</title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
@@ -48,9 +48,8 @@
 
     <ul>
         <!-- The file uploads will be shown here -->
+
     </ul>
-
 </form>
-
 </body>
 </html>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,21 +40,20 @@ public class UploadController {
     private static final Logger log = LoggerFactory.getLogger(UploadController.class);
 
 
-    @RequestMapping(value = "spring", method = RequestMethod.GET)
-    public String spring() {
-        return "/upload/spring";
-    }
-
-    @RequestMapping(value = "spring", method = RequestMethod.POST)
-    public String springupload(@RequestParam("upload_file") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
+    @RequestMapping(value = "spring")
+    public ModelAndView springupload(@RequestParam("upload_file") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
         ReadFileUtil readFileUtil = new ReadFileUtil();
         response.setContentType("text/plain; charset=UTF-8");
         String originalFilename = null;
         for (MultipartFile file : ajaxuploadfile) {
 
             if (file.isEmpty()) {
-                model.addAttribute("msg", "没有文件！");
-                return "moduleOne/moduleOne/moduleOne";
+//                model.addAttribute("msg", "没有文件！");
+//                return "moduleOne/moduleOne/moduleOne";
+                modelAndView.addObject("msg","没有文件！");
+                modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
+                return modelAndView;
             } else {
                 log.warn("# originalFilename=[{}] , name=[{}] , size=[{}] , contentType=[{}] ", originalFilename, file.getName(), file.getSize(), file.getContentType());
                 try {
@@ -84,16 +84,18 @@ public class UploadController {
                     Map<String, Object> dataInfo = extractZipInfo(fileInfo);
 
                     uploadService.addZipInfo(dataInfo);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     log.error("# upload fail . error message={}", e.getMessage());
                     e.printStackTrace();
-                    model.addAttribute("msg", "上传失败！");
-                    return "moduleOne/moduleOne/moduleOne";
+                    modelAndView.addObject("msg","上传失败！");
+                    modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
+                    return modelAndView;
                 }
             }
         }
-        model.addAttribute("msg", "上传成功！");
-        return "moduleOne/moduleOne/moduleOne";
+        modelAndView.addObject("msg","上传成功！");
+        modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
+        return modelAndView;
     }
 
     private Map<String, Object> extractZipInfo(Map<String, Object> fileInfo) {

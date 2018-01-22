@@ -46,6 +46,7 @@ $(function(){
 
             // Automatically upload the file once it is added to the queue
             var jqXHR = data.submit();
+            alert(JSON.stringify(jqXHR));
         },
 
         progress: function(e, data){
