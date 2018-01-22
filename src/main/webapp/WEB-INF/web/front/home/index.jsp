@@ -8,7 +8,7 @@
     <title>维萨里3D医学模型库</title>
     <meta name="keywords" content="维萨里3D医学模型库">
     <meta name="description" content="维萨里3D医学模型库">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.1" >
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <!-- include main css -->
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/slick.css"/>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
     <link rel="shortcut icon" href="${baseurl}/public/images/favicon.ico">
     <title>维萨里3D医学模型库</title>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/register_front.css">

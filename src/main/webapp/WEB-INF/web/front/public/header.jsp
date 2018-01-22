@@ -25,7 +25,7 @@
         <div class="logo">
             <a href="${baseurl}/page/index">
                 <img src="${baseurl}/public/images/logo.png" alt=""/>
-                <span style="margin-left: 5px ;color: #096d96 " class="h4">维萨里3D医学模型库</span></a>
+                <span style="margin-left: 2px ;color: #096d96 " class="h4">维萨里3D医学模型库</span></a>
         </div>
         <div class="nav_right">
             <nav>
