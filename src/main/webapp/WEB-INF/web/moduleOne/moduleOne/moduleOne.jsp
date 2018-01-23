@@ -50,6 +50,12 @@
         <!-- The file uploads will be shown here -->
 
     </ul>
+
+ <span style="color: white" id="msg"></span>
 </form>
 </body>
 </html>
+<script>
+
+</script>
+<%--11--%>

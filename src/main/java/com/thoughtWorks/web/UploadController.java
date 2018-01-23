@@ -1,7 +1,7 @@
 package com.thoughtWorks.web;
 
-import com.thoughtWorks.service.UploadService;
 import com.thoughtWorks.common.Constants;
+import com.thoughtWorks.service.UploadService;
 import com.thoughtWorks.util.file.FileUtil;
 import com.thoughtWorks.util.file.ReadFileUtil;
 import com.thoughtWorks.util.file.UnZipFileUtil;
@@ -12,21 +12,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author Vincent.wang
@@ -41,25 +41,19 @@ public class UploadController {
 
 
     @RequestMapping(value = "spring")
-    public ModelAndView springupload(@RequestParam("upload_file") MultipartFile[] ajaxuploadfile, HttpServletRequest request, HttpServletResponse response, Model model) {
-        ModelAndView modelAndView = new ModelAndView();
-        ReadFileUtil readFileUtil = new ReadFileUtil();
-        response.setContentType("text/plain; charset=UTF-8");
-        String originalFilename = null;
-        for (MultipartFile file : ajaxuploadfile) {
+    @ResponseBody
+    public Map<String, Object> springupload(@RequestParam("upload_file") MultipartFile[] ajaxuploadfile, HttpServletRequest request, Model model) throws IOException {
+        Map<String, Object> rs = new HashMap<>();
 
-            if (file.isEmpty()) {
-//                model.addAttribute("msg", "没有文件！");
-//                return "moduleOne/moduleOne/moduleOne";
-                modelAndView.addObject("msg","没有文件！");
-                modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
-                return modelAndView;
-            } else {
-                log.warn("# originalFilename=[{}] , name=[{}] , size=[{}] , contentType=[{}] ", originalFilename, file.getName(), file.getSize(), file.getContentType());
-                try {
+            ReadFileUtil readFileUtil = new ReadFileUtil();
+            String originalFilename = null;
+            for (MultipartFile file : ajaxuploadfile) {
 
+                if (file.isEmpty()) {
+                    model.addAttribute("msg", "没有文件！");
+                } else {
+                    log.warn("# originalFilename=[{}] , name=[{}] , size=[{}] , contentType=[{}] ", originalFilename, file.getName(), file.getSize(), file.getContentType());
                     originalFilename = file.getOriginalFilename();
-                    //file.getOriginalFilename()是得到上传时的文件名
                     String uuid = UUID.randomUUID().toString().replaceAll("-", "");
                     String realPath = request.getServletContext().getRealPath("file") + Constants.PATH + uuid;
                     String unRealPath = request.getServletContext().getRealPath("file") + Constants.UNPATH + uuid;
@@ -84,18 +78,12 @@ public class UploadController {
                     Map<String, Object> dataInfo = extractZipInfo(fileInfo);
 
                     uploadService.addZipInfo(dataInfo);
-                } catch (Exception e) {
-                    log.error("# upload fail . error message={}", e.getMessage());
-                    e.printStackTrace();
-                    modelAndView.addObject("msg","上传失败！");
-                    modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
-                    return modelAndView;
                 }
             }
-        }
-        modelAndView.addObject("msg","上传成功！");
-        modelAndView.setViewName("moduleOne/moduleOne/moduleOne");
-        return modelAndView;
+
+
+        rs.put("msg", "温馨提示:上传成功！");
+        return rs;
     }
 
     private Map<String, Object> extractZipInfo(Map<String, Object> fileInfo) {
@@ -118,12 +106,12 @@ public class UploadController {
 
             if (key.equals("imgStr")) {
                 String imgs = (String) fileInfo.get(key);
-                    zipFileInfo.put("imgStr", splitStr(imgs));
+                zipFileInfo.put("imgStr", splitStr(imgs));
             }
 
             if (key.equals("gifStr")) {
                 String gifs = (String) fileInfo.get(key);
-                    zipFileInfo.put("gifStr", splitStr(gifs));
+                zipFileInfo.put("gifStr", splitStr(gifs));
             }
 
             if (key.equals("assetbundleStr")) {
